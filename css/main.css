@@ -1293,35 +1293,6 @@ pre code {
 .use-motion .menu-item {
   visibility: hidden;
 }
-.book-mark-link {
-  border-bottom: 0;
-  position: fixed;
-  top: -10px;
-  transition: top 0.3s;
-  right: 30px;
-}
-@media (max-width: 991px) {
-  .book-mark-link {
-    right: 20px;
-  }
-}
-@media (max-width: 991px) {
-  .book-mark-link {
-    display: none;
-  }
-}
-.book-mark-link::before {
-  color: #222;
-  font-size: 32px;
-  line-height: 1;
-  content: '\f02e';
-  font-family: 'Font Awesome 5 Free';
-  font-weight: 900;
-}
-.book-mark-link:hover,
-.book-mark-link-fixed {
-  top: -2px;
-}
 .github-corner :hover .octo-arm {
   animation: octocat-wave 560ms ease-in-out;
 }
@@ -3081,5 +3052,19 @@ mark.search-keyword {
 /*鼠标停留在图标上时，图标呈现发光效果*/
 }
 .my-github:hover {
+  opacity: 1;
+}
+.my-google {
+  background: url("/images/google.svg");
+  background-size: 1em 1em;
+  opacity: 0.55;
+  background-position: 0.05rem 0.2rem;
+  background-repeat: no-repeat;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 0rem;
+/*鼠标停留在图标上时，图标呈现发光效果*/
+}
+.my-google:hover {
   opacity: 1;
 }
