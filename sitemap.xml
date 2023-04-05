@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://returntmp.github.io/2023/04/04/Android-Webview/</loc>
+    <loc>https://returntmp.github.io/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2023-04-05</lastmod>
     
@@ -11,7 +11,7 @@
   </url>
   
   <url>
-    <loc>http://returntmp.github.io/index.html</loc>
+    <loc>https://returntmp.github.io/2023/04/04/Android-Webview/</loc>
     
     <lastmod>2023-04-05</lastmod>
     
@@ -20,7 +20,16 @@
   </url>
   
   <url>
-    <loc>http://returntmp.github.io/categories/index.html</loc>
+    <loc>https://returntmp.github.io/index.html</loc>
+    
+    <lastmod>2023-04-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://returntmp.github.io/categories/index.html</loc>
     
     <lastmod>2023-03-21</lastmod>
     
@@ -29,7 +38,7 @@
   </url>
   
   <url>
-    <loc>http://returntmp.github.io/about/index.html</loc>
+    <loc>https://returntmp.github.io/about/index.html</loc>
     
     <lastmod>2023-03-21</lastmod>
     
@@ -38,7 +47,7 @@
   </url>
   
   <url>
-    <loc>http://returntmp.github.io/tags/index.html</loc>
+    <loc>https://returntmp.github.io/tags/index.html</loc>
     
     <lastmod>2023-03-21</lastmod>
     
@@ -48,7 +57,7 @@
   
 
   <url>
-    <loc>http://returntmp.github.io/</loc>
+    <loc>https://returntmp.github.io/</loc>
     <lastmod>2023-04-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -56,7 +65,7 @@
 
   
   <url>
-    <loc>http://returntmp.github.io/tags/Android/</loc>
+    <loc>https://returntmp.github.io/tags/Android/</loc>
     <lastmod>2023-04-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>

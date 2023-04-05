@@ -24,25 +24,25 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言 我们团队有一个Electron桌面应用需要我移植到安卓应用中，我分析之后认为本身桌面应用没有基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓替换electron模块  介绍Android WebView组件是一个成熟的浏览器，作为子类实现，以将其嵌入到我们的Android应用程序中。 layout xml嵌入方式&lt;WebVie">
+    <meta name="description" content="前言 我们团队有一个Electron桌面应用需要我移植到安卓应用中，分析之后我觉得本身桌面应用基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓模块替换electron模块  介绍 Android WebView组件是一个成熟的浏览器，作为子类实现，以将其嵌入到我们的Android应用程序中。  layout xml嵌入方式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android-Webview">
-<meta property="og:url" content="http://returntmp.github.io/2023/04/04/Android-Webview/index.html">
+<meta property="og:url" content="https://returntmp.github.io/2023/04/04/Android-Webview/index.html">
 <meta property="og:site_name" content="ReturnTmp">
-<meta property="og:description" content="前言 我们团队有一个Electron桌面应用需要我移植到安卓应用中，我分析之后认为本身桌面应用没有基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓替换electron模块  介绍Android WebView组件是一个成熟的浏览器，作为子类实现，以将其嵌入到我们的Android应用程序中。 layout xml嵌入方式&lt;WebVie">
+<meta property="og:description" content="前言 我们团队有一个Electron桌面应用需要我移植到安卓应用中，分析之后我觉得本身桌面应用基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓模块替换electron模块  介绍 Android WebView组件是一个成熟的浏览器，作为子类实现，以将其嵌入到我们的Android应用程序中。  layout xml嵌入方式">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-04T02:41:26.000Z">
-<meta property="article:modified_time" content="2023-04-05T02:07:26.947Z">
+<meta property="article:modified_time" content="2023-04-05T04:18:29.012Z">
 <meta property="article:author" content="ReturnTmp">
 <meta property="article:tag" content="Android">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://returntmp.github.io/2023/04/04/Android-Webview/">
+<link rel="canonical" href="https://returntmp.github.io/2023/04/04/Android-Webview/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://returntmp.github.io/2023/04/04/Android-Webview/","path":"2023/04/04/Android-Webview/","title":"Android-Webview"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://returntmp.github.io/2023/04/04/Android-Webview/","path":"2023/04/04/Android-Webview/","title":"Android-Webview"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>Android-Webview | ReturnTmp</title>
@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -159,13 +159,13 @@
     <img class="site-author-image" itemprop="image" alt="ReturnTmp"
       src="/images/profile.jpg">
   <p class="site-author-name" itemprop="name">ReturnTmp</p>
-  <div class="site-description" itemprop="description">talk is cheap show me the code</div>
+  <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -192,9 +192,6 @@
       <span class="links-of-author-item">
         <a href="https://www.google.com/" title="Google → https:&#x2F;&#x2F;www.google.com&#x2F;" rel="noopener" target="_blank"><i class="fab my-google fa-fw"></i></a>
       </span>
-  </div>
-  <div class="cc-license site-overview-item animated" itemprop="license">
-    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdn.jsdelivr.net/npm/@creativecommons/vocabulary@2020.11.3/assets/license_badges/small/by_nc_sa.svg" alt="Creative Commons"></a>
   </div>
 
 
@@ -234,7 +231,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://returntmp.github.io/2023/04/04/Android-Webview/">
+    <link itemprop="mainEntityOfPage" href="https://returntmp.github.io/2023/04/04/Android-Webview/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.jpg">
@@ -243,7 +240,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="ReturnTmp">
-      <meta itemprop="description" content="talk is cheap show me the code">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -270,7 +267,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-05 10:07:26" itemprop="dateModified" datetime="2023-04-05T10:07:26+08:00">2023-04-05</time>
+      <time title="修改时间：2023-04-05 12:18:29" itemprop="dateModified" datetime="2023-04-05T12:18:29+08:00">2023-04-05</time>
     </span>
 
   
@@ -313,8 +310,11 @@
     
     <div class="post-body" itemprop="articleBody">
         <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
-<p>我们团队有一个Electron桌面应用需要我移植到安卓应用中，我分析之后认为本身桌面应用没有基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓替换electron模块</p>
+<p>我们团队有一个Electron桌面应用需要我移植到安卓应用中，分析之后我觉得本身桌面应用基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓模块替换electron模块</p>
 </blockquote>
+<span id="more"></span>
+
+
 <h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Android WebView组件是一个成熟的浏览器，作为子类实现，以将其嵌入到我们的Android应用程序中。</p>
 <h5 id="layout-xml嵌入方式"><a href="#layout-xml嵌入方式" class="headerlink" title="layout xml嵌入方式"></a>layout xml嵌入方式</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">WebView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/webview&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentTop</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentLeft</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -404,7 +404,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="http://returntmp.github.io/2023/04/04/Android-Webview/" title="Android-Webview">http://returntmp.github.io/2023/04/04/Android-Webview/</a>
+      <a href="https://returntmp.github.io/2023/04/04/Android-Webview/" title="Android-Webview">https://returntmp.github.io/2023/04/04/Android-Webview/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -418,6 +418,15 @@
 
         
 
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="Android学习笔记">
+                  Android学习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -448,17 +457,15 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">3k</span>
+    <span title="站点总字数">5k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">4 分钟</span>
+    <span title="站点阅读时长">8 分钟</span>
   </span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
 
     </div>
   </footer>
