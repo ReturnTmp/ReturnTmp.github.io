@@ -2,45 +2,45 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://example.com/2023/03/18/hello-world/</loc>
+    <loc>http://returntmp.github.io/2023/04/04/Android-Webview/</loc>
     
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/about/index.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
+    <lastmod>2023-04-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/categories/index.html</loc>
+    <loc>http://returntmp.github.io/index.html</loc>
     
-    <lastmod>2023-03-18</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/tags/index.html</loc>
-    
-    <lastmod>2023-03-18</lastmod>
+    <lastmod>2023-04-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://example.com/index.html</loc>
+    <loc>http://returntmp.github.io/categories/index.html</loc>
     
-    <lastmod>2023-03-18</lastmod>
+    <lastmod>2023-03-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://returntmp.github.io/about/index.html</loc>
+    
+    <lastmod>2023-03-21</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://returntmp.github.io/tags/index.html</loc>
+    
+    <lastmod>2023-03-21</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -48,12 +48,19 @@
   
 
   <url>
-    <loc>http://example.com/</loc>
-    <lastmod>2023-03-19</lastmod>
+    <loc>http://returntmp.github.io/</loc>
+    <lastmod>2023-04-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://returntmp.github.io/tags/Android/</loc>
+    <lastmod>2023-04-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 
   

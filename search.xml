@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/2023/03/18/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>Android-Webview</title>
+    <url>/2023/04/04/Android-Webview/</url>
+    <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+<p>我们团队有一个Electron桌面应用需要我移植到安卓应用中，我分析之后认为本身桌面应用没有基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓替换electron模块</p>
+</blockquote>
+<h4 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h4><p>Android WebView组件是一个成熟的浏览器，作为子类实现，以将其嵌入到我们的Android应用程序中。</p>
+<h5 id="layout-xml嵌入方式"><a href="#layout-xml嵌入方式" class="headerlink" title="layout xml嵌入方式"></a>layout xml嵌入方式</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">WebView</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:id</span>=<span class="string">&quot;@+id/webview&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentTop</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_alignParentLeft</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:layout_height</span>=<span class="string">&quot;match_parent&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onCreate</span><span class="params">(<span class="meta">@Nullable</span> Bundle savedInstanceState)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>.onCreate(savedInstanceState);</span><br><span class="line">    setContentView(R.layout.activity_main);</span><br><span class="line">    <span class="type">WebView</span> <span class="variable">webView</span> <span class="operator">=</span> (WebView) findViewById(R.id.webview);</span><br><span class="line">    webView.loadUrl(<span class="string">&quot;https://www.baidu.com&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<h5 id="关键"><a href="#关键" class="headerlink" title="关键"></a>关键</h5><ul>
+<li><strong>支持</strong> JavaScript：默认情况下，JavaScript 在 WebView 小部件中处于关闭状态。因此，包含javascript引用的网页将无法正常工作。要启用 java 脚本，需要在 Web 视图实例上调用以下代码片段：</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line">webView.getSettings().setJavaScriptEnabled(true);</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>添加权限</strong>：要在 WebView 中获取和加载 URL，我们需要添加从应用程序内访问互联网<a href="https://www.digitalocean.com/community/tutorials/android-runtime-permissions-example">的权限</a>，否则它将无法加载网页。需要在应用程序标记上方的文件中添加以下代码行，如下所示：<code>AndroidManifest.xml</code></li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;https://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">&quot;com.journaldev.webview&quot;</span> &gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">&quot;android.permission.INTERNET&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">application</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:allowBackup</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:icon</span>=<span class="string">&quot;@mipmap/ic_launcher&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">android:theme</span>=<span class="string">&quot;@style/AppTheme&quot;</span> &gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">android:label</span>=<span class="string">&quot;@string/app_name&quot;</span> &gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">                <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">application</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[]args)</span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Hello World&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<p>主要是添加<code>&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</code></p>
+<blockquote>
+<p>需要使用https协议，使用http就会报错，若是需要使用http协议，请进行如下配置</p>
+</blockquote>
+<p>相关命令：</p>
+<p>webView.getSettings().setAllowContentAccess(true)用于允许WebView在加载内容时访问其他资源的内容，例如地理位置、摄像头等等。如果你希望WebView能够访问这些资源，你需要将这个设置设置为true。默认情况下，这个设置是关闭的。</p>
+<p>webView.getSettings().setAllowFileAccess(true)用于允许WebView访问本地文件系统中的文件。如果你的应用程序需要在WebView中加载本地的HTML文件或者其他文件，你需要将这个设置设置为true。默认情况下，这个设置是关闭的，因为它可能会导致安全问题。</p>
+<p>android:usesCleartextTraffic&#x3D;”true”是一个AndroidManifest.xml文件中的属性，用于控制应用程序是否允许使用明文流量。</p>
+<p>在Android 9.0及以上版本中，默认情况下，应用程序不允许使用明文流量，只允许使用加密的HTTPS协议。这是为了保护用户的隐私和安全。但是，在一些特殊情况下，你可能需要允许应用程序使用明文流量，例如与某些旧版的服务器进行通信。</p>
+<p>为了允许应用程序使用明文流量，你可以在AndroidManifest.xml文件中添加android:usesCleartextTraffic&#x3D;”true”属性，允许使用明文流量可能会导致安全问题，因为所有的数据都是明文传输的，可能会被黑客窃取或篡改。</p>
+<h6 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h6><p><a href="https://developer.android.google.cn/reference/android/webkit/WebView">WebView  | Android Developers (google.cn)</a></p>
+<p><a href="https://www.digitalocean.com/community/tutorials/android-webview-example-tutorial">安卓网页视图示例教程 |数字海洋 (digitalocean.com)</a></p>
 ]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
   </entry>
 </search>
