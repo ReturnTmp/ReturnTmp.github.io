@@ -6,7 +6,7 @@
   <link href="https://returntmp.github.io/atom.xml" rel="self"/>
   
   <link href="https://returntmp.github.io/"/>
-  <updated>2023-04-05T04:21:53.316Z</updated>
+  <updated>2023-04-07T14:53:37.301Z</updated>
   <id>https://returntmp.github.io/</id>
   
   <author>
@@ -17,11 +17,43 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Android 配置 Jetpack Compose 环境</title>
+    <link href="https://returntmp.github.io/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/"/>
+    <id>https://returntmp.github.io/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</id>
+    <published>2023-04-07T13:21:20.000Z</published>
+    <updated>2023-04-07T14:53:37.301Z</updated>
+    
+    
+    <summary type="html">Android 配置 Jetpack Compose 环境
+记录配置Jetpack Compose环境的一些坑~
+
+直接创建kotlin项目或创建java项目后再配置均可
+
+根目录 build.gradle
+配置kotlin环境构建脚本
+buildscript {
+    ext.kotlin_version = &#39;1.4.32&#39;
+    dependencies {
+        classpath &quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;
+    }
+}
+
+
+注意：里面的kotlin版本需要和自己的 gradl</summary>
+    
+    
+    
+    
+    <category term="Android" scheme="https://returntmp.github.io/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Android学习笔记</title>
     <link href="https://returntmp.github.io/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://returntmp.github.io/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2023-04-04T04:53:12.000Z</published>
-    <updated>2023-04-05T04:21:53.316Z</updated>
+    <updated>2023-04-07T01:16:28.395Z</updated>
     
     
     <summary type="html">本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~

@@ -105,12 +105,70 @@
 
 <h5 id="引用系统资源："><a href="#引用系统资源：" class="headerlink" title="引用系统资源："></a>引用系统资源：</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">EditText</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:textColor</span>=<span class="string">&quot;@android:color/secondary_text_dark&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/hello&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h5 id="引用样式属性："><a href="#引用样式属性：" class="headerlink" title="引用样式属性："></a>引用样式属性：</h5><h5 id="访问原始文件"><a href="#访问原始文件" class="headerlink" title="访问原始文件"></a>访问原始文件</h5><p>尽管并不常见，但您可能会需要访问原始文件和目录。如果确有需要，将文件保存在 <code>res/</code> 中并没有用，因为从 <code>res/</code> 读取资源的唯一方法是使用资源 ID。您可以改为将资源保存在 <code>assets/</code> 目录中。</p>
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="访问原始文件"><a href="#访问原始文件" class="headerlink" title="访问原始文件"></a>访问原始文件</h5><p>尽管并不常见，但您可能会需要访问原始文件和目录。如果确有需要，将文件保存在 <code>res/</code> 中并没有用，因为从 <code>res/</code> 读取资源的唯一方法是使用资源 ID。您可以改为将资源保存在 <code>assets/</code> 目录中。</p>
 <p>保存在 <code>assets/</code> 目录中的文件没有资源 ID，因此您无法通过 <code>R</code> 类或在 XML 资源中引用它们。您可以改为采用类似常见文件系统的方式查询 <code>assets/</code> 目录中的文件，并利用 <code>AssetManager</code> 读取原始数据。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> assetManager.open(<span class="string">&quot;filename&quot;</span>);</span><br><span class="line"><span class="comment">// filename 默认是在assets目录下</span></span><br></pre></td></tr></table></figure>
 
 <p>不过，如果您只需要能够读取原始数据（例如视频文件或音频文件），则可将文件保存在 <code>res/raw/</code> 目录中，并利用 <code>openRawResource()</code> 读取字节流。</p>
-<h6 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h6><p><a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn">应用资源概览  | Android 开发者  | Android Developers (google.cn)</a></p>
+<h3 id="应用架构"><a href="#应用架构" class="headerlink" title="应用架构"></a>应用架构</h3><h4 id="界面层"><a href="#界面层" class="headerlink" title="界面层"></a>界面层</h4><h4 id="网域层"><a href="#网域层" class="headerlink" title="网域层"></a>网域层</h4><h4 id="数据层"><a href="#数据层" class="headerlink" title="数据层"></a>数据层</h4><h6 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h6><p><a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn">应用资源概览  | Android 开发者  | Android Developers (google.cn)</a></p>
+]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android 配置 Jetpack Compose 环境</title>
+    <url>/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h2 id="Android-配置-Jetpack-Compose-环境"><a href="#Android-配置-Jetpack-Compose-环境" class="headerlink" title="Android 配置 Jetpack Compose 环境"></a>Android 配置 Jetpack Compose 环境</h2><blockquote>
+<p>记录配置Jetpack Compose环境的一些坑~</p>
+</blockquote>
+<p>直接创建kotlin项目或创建java项目后再配置均可</p>
+<h5 id="根目录-build-gradle"><a href="#根目录-build-gradle" class="headerlink" title="根目录 build.gradle"></a>根目录 build.gradle</h5><h6 id="配置kotlin环境构建脚本"><a href="#配置kotlin环境构建脚本" class="headerlink" title="配置kotlin环境构建脚本"></a>配置kotlin环境构建脚本</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    ext.kotlin_version = <span class="string">&#x27;1.4.32&#x27;</span></span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>注意：里面的kotlin版本需要和自己的 gradle 版本 对应的Compose Complier版本适配，如果不适配，build时会提示适配版本，然后改为相应版本即可</p>
+</blockquote>
+<h6 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span> version <span class="string">&#x27;7.1.2&#x27;</span> apply <span class="literal">false</span></span><br><span class="line">    id <span class="string">&#x27;com.android.library&#x27;</span> version <span class="string">&#x27;7.1.2&#x27;</span> apply <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>apply false</code> 意味着这些插件不会被应用到当前项目中。但是，这里为这些插件指定版本号是有用的，因为在子项目中应用这些插件时，Gradle 将会根据指定的版本号下载和使用相应的插件。如果不指定版本号，Gradle 将会默认使用最新版本的插件，这可能会导致不可预期的问题。</p>
+<h4 id="app-子模块"><a href="#app-子模块" class="headerlink" title="app 子模块"></a>app 子模块</h4><h5 id="build-gradle-中添加"><a href="#build-gradle-中添加" class="headerlink" title="build.gradle 中添加"></a>build.gradle 中添加</h5><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;kotlin-android&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里面会指定添加插件kotlin-android的最新版本，但是没有指定版本可能会造成错误</p>
+</blockquote>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;kotlin-android&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">    id <span class="string">&#x27;org.jetbrains.kotlin.android&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面两种写法是影响作用相同，但是推荐使用第一种，因为它更加清晰和简洁，同时也便于维护和修改。第二种方式虽然也能实现同样的功能，但是需要指定更多的插件，并且代码看起来比较冗长。</p>
+</blockquote>
+<h6 id="Q-但是为什么使用apply时为什么没有指定”org-jetbrains“，这不会造成错误吗"><a href="#Q-但是为什么使用apply时为什么没有指定”org-jetbrains“，这不会造成错误吗" class="headerlink" title="Q:但是为什么使用apply时为什么没有指定”org.jetbrains“，这不会造成错误吗"></a>Q:但是为什么使用apply时为什么没有指定”org.jetbrains“，这不会造成错误吗</h6><p>在使用 <code>apply plugin</code> 声明插件时，通常可以省略掉插件 ID 中的 <code>org.jetbrains</code>，因为 Gradle 默认会搜索 <code>gradle.plugin.org.jetbrains</code> 命名空间下的插件，所以使用 <code>id &#39;kotlin-android&#39;</code> 或 <code>id &#39;org.jetbrains.kotlin.android&#39;</code> 都是可以的，因为 Gradle 会将它们都解析成 <code>gradle.plugin.org.jetbrains.kotlin.android</code>。</p>
+<p>实际上，Gradle 支持三种插件 ID 声明方式：<code>id &#39;pluginId&#39;</code>、<code>id &#39;namespace:pluginId&#39;</code> 和 <code>id &quot;namespace:pluginId&quot; version &quot;version&quot;</code>。其中第一种方式会自动搜索 <code>gradle.plugin</code> 和 <code>org.gradle.plugin</code> 命名空间下的插件，所以可以省略命名空间。</p>
+<h6 id="开启-Compose"><a href="#开启-Compose" class="headerlink" title="开启 Compose"></a>开启 Compose</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">	buildFeatures &#123;</span><br><span class="line">    	setCompose(<span class="literal">true</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    <span class="keyword">def</span> compose_version = <span class="string">&quot;1.0.4&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.ui:ui:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.material:material:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.ui:ui-tooling-preview:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.activity:activity-compose:1.3.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>若是需要使用@Preview还需添加</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">implementation <span class="string">&quot;androidx.compose.ui:ui-tooling:$compose_version&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="MainActivity-kt"><a href="#MainActivity-kt" class="headerlink" title="MainActivity.kt"></a>MainActivity.kt</h6><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> io.github.returntmp.dpfk</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle</span><br><span class="line"><span class="keyword">import</span> androidx.activity.ComponentActivity</span><br><span class="line"><span class="keyword">import</span> androidx.activity.compose.setContent</span><br><span class="line"><span class="keyword">import</span> androidx.compose.material.Text</span><br><span class="line"><span class="keyword">import</span> androidx.compose.runtime.Composable</span><br><span class="line"><span class="keyword">import</span> androidx.compose.ui.tooling.preview.Preview</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MainActivity</span> : <span class="type">ComponentActivity</span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContent &#123;</span><br><span class="line"><span class="comment">//            Text(&quot;Hello world!&quot;)</span></span><br><span class="line">            MessageCard(<span class="string">&quot;Android&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">MessageCard</span><span class="params">(name: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    Text(text = <span class="string">&quot;Hello <span class="variable">$name</span>!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Preview</span></span><br><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">PreviewMessageCard</span><span class="params">()</span></span> &#123;</span><br><span class="line">    MessageCard(<span class="string">&quot;Android&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>manifest.xml 添加启动activity配置</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>遇到问题，可以先clean下再rebuild</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230407221712258.png" alt="image-20230407221712258"></p>
+<p>或是直接清除缓存重启</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230407221758389.png" alt="image-20230407221758389"></p>
+<p>不行的话自行google~</p>
+<h6 id="之后教程大家看官网即可：Android-Compose-教程"><a href="#之后教程大家看官网即可：Android-Compose-教程" class="headerlink" title="之后教程大家看官网即可：Android Compose 教程 "></a>之后教程大家看官网即可：<a href="https://developer.android.google.cn/jetpack/compose/tutorial?hl=zh-cn">Android Compose 教程 </a></h6><p><em>当然国内用户build过慢可以换源或是科学上网，这里不赘述~</em></p>
 ]]></content>
       <tags>
         <tag>Android</tag>
