@@ -6,7 +6,7 @@
   <link href="https://returntmp.github.io/atom.xml" rel="self"/>
   
   <link href="https://returntmp.github.io/"/>
-  <updated>2023-04-07T15:35:31.281Z</updated>
+  <updated>2023-04-22T11:33:28.118Z</updated>
   <id>https://returntmp.github.io/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>vmware 部署 ubuntu20.4 关键点（持续补充中）</title>
+    <link href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/"/>
+    <id>https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</id>
+    <published>2023-04-19T08:17:04.000Z</published>
+    <updated>2023-04-22T11:33:28.118Z</updated>
+    
+    
+    <summary type="html">网络设置
+编辑虚拟机设置
+需要保证虚拟机为关机状态，否则无法编辑
+
+网络设置为NAT模式
+
+
+
+进入编辑中虚拟网络设置器，点击还原默认配置
+
+
+
+但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接
+
+完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客
+
+全屏设置
+执行sudo apt-get install open-vm-tools
+
+换源
+图形化界面
+相关链接：Ubuntu18图形界面换源
+
+命令行方式
+清</summary>
+    
+    
+    
+    
+    <category term="linux" scheme="https://returntmp.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>实时传输 Web 音频与视频</title>
+    <link href="https://returntmp.github.io/2023/04/11/%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93-Web-%E9%9F%B3%E9%A2%91%E4%B8%8E%E8%A7%86%E9%A2%91/"/>
+    <id>https://returntmp.github.io/2023/04/11/%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93-Web-%E9%9F%B3%E9%A2%91%E4%B8%8E%E8%A7%86%E9%A2%91/</id>
+    <published>2023-04-11T09:17:41.000Z</published>
+    <updated>2023-04-22T11:34:30.906Z</updated>
+    
+    
+    <summary type="html">实时传输 Web 音频与视频 - Web 开发者指南 | MDN (mozilla.org)
+
+信令与视频通话 - Web API 接口参考 | MDN (mozilla.org)</summary>
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Android 配置 Jetpack Compose 环境</title>
