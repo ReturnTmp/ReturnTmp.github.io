@@ -1,159 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Android 配置 Jetpack Compose 环境</title>
-    <url>/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h2 id="Android-配置-Jetpack-Compose-环境"><a href="#Android-配置-Jetpack-Compose-环境" class="headerlink" title="Android 配置 Jetpack Compose 环境"></a>Android 配置 Jetpack Compose 环境</h2><blockquote>
-<p>记录配置Jetpack Compose环境的一些坑~</p>
-</blockquote>
-<p>直接创建kotlin项目或创建java项目后再配置均可</p>
-<h5 id="根目录-build-gradle"><a href="#根目录-build-gradle" class="headerlink" title="根目录 build.gradle"></a>根目录 build.gradle</h5><h6 id="配置kotlin环境构建脚本"><a href="#配置kotlin环境构建脚本" class="headerlink" title="配置kotlin环境构建脚本"></a>配置kotlin环境构建脚本</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    ext.kotlin_version = <span class="string">&#x27;1.4.32&#x27;</span></span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>注意：里面的kotlin版本需要和自己的 gradle 版本 对应的Compose Complier版本适配，如果不适配，build时会提示适配版本，然后改为相应版本即可</p>
-</blockquote>
-<h6 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span> version <span class="string">&#x27;7.1.2&#x27;</span> apply <span class="literal">false</span></span><br><span class="line">    id <span class="string">&#x27;com.android.library&#x27;</span> version <span class="string">&#x27;7.1.2&#x27;</span> apply <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><code>apply false</code> 意味着这些插件不会被应用到当前项目中。但是，这里为这些插件指定版本号是有用的，因为在子项目中应用这些插件时，Gradle 将会根据指定的版本号下载和使用相应的插件。如果不指定版本号，Gradle 将会默认使用最新版本的插件，这可能会导致不可预期的问题。</p>
-<h4 id="app-子模块"><a href="#app-子模块" class="headerlink" title="app 子模块"></a>app 子模块</h4><h5 id="build-gradle-中添加"><a href="#build-gradle-中添加" class="headerlink" title="build.gradle 中添加"></a>build.gradle 中添加</h5><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;kotlin-android&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>这里面会指定添加插件kotlin-android的最新版本，但是没有指定版本可能会造成错误</p>
-</blockquote>
-<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;kotlin-android&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">    id <span class="string">&#x27;org.jetbrains.kotlin.android&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>上面两种写法是影响作用相同，但是推荐使用第一种，因为它更加清晰和简洁，同时也便于维护和修改。第二种方式虽然也能实现同样的功能，但是需要指定更多的插件，并且代码看起来比较冗长。</p>
-</blockquote>
-<h6 id="Q-但是为什么使用apply时为什么没有指定”org-jetbrains“，这不会造成错误吗"><a href="#Q-但是为什么使用apply时为什么没有指定”org-jetbrains“，这不会造成错误吗" class="headerlink" title="Q:但是为什么使用apply时为什么没有指定”org.jetbrains“，这不会造成错误吗"></a>Q:但是为什么使用apply时为什么没有指定”org.jetbrains“，这不会造成错误吗</h6><p>在使用 <code>apply plugin</code> 声明插件时，通常可以省略掉插件 ID 中的 <code>org.jetbrains</code>，因为 Gradle 默认会搜索 <code>gradle.plugin.org.jetbrains</code> 命名空间下的插件，所以使用 <code>id &#39;kotlin-android&#39;</code> 或 <code>id &#39;org.jetbrains.kotlin.android&#39;</code> 都是可以的，因为 Gradle 会将它们都解析成 <code>gradle.plugin.org.jetbrains.kotlin.android</code>。</p>
-<p>实际上，Gradle 支持三种插件 ID 声明方式：<code>id &#39;pluginId&#39;</code>、<code>id &#39;namespace:pluginId&#39;</code> 和 <code>id &quot;namespace:pluginId&quot; version &quot;version&quot;</code>。其中第一种方式会自动搜索 <code>gradle.plugin</code> 和 <code>org.gradle.plugin</code> 命名空间下的插件，所以可以省略命名空间。</p>
-<h6 id="开启-Compose"><a href="#开启-Compose" class="headerlink" title="开启 Compose"></a>开启 Compose</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">	buildFeatures &#123;</span><br><span class="line">    	setCompose(<span class="literal">true</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    <span class="keyword">def</span> compose_version = <span class="string">&quot;1.0.4&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.ui:ui:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.material:material:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.ui:ui-tooling-preview:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.activity:activity-compose:1.3.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>里面的1.0.4版本也需要试着看</p>
-<p>若是需要使用@Preview还需添加</p>
-<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">implementation <span class="string">&quot;androidx.compose.ui:ui-tooling:$compose_version&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h6 id="MainActivity-kt"><a href="#MainActivity-kt" class="headerlink" title="MainActivity.kt"></a>MainActivity.kt</h6><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> io.github.returntmp.dpfk</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle</span><br><span class="line"><span class="keyword">import</span> androidx.activity.ComponentActivity</span><br><span class="line"><span class="keyword">import</span> androidx.activity.compose.setContent</span><br><span class="line"><span class="keyword">import</span> androidx.compose.material.Text</span><br><span class="line"><span class="keyword">import</span> androidx.compose.runtime.Composable</span><br><span class="line"><span class="keyword">import</span> androidx.compose.ui.tooling.preview.Preview</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MainActivity</span> : <span class="type">ComponentActivity</span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContent &#123;</span><br><span class="line"><span class="comment">//            Text(&quot;Hello world!&quot;)</span></span><br><span class="line">            MessageCard(<span class="string">&quot;Android&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">MessageCard</span><span class="params">(name: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    Text(text = <span class="string">&quot;Hello <span class="variable">$name</span>!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Preview</span></span><br><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">PreviewMessageCard</span><span class="params">()</span></span> &#123;</span><br><span class="line">    MessageCard(<span class="string">&quot;Android&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>manifest.xml 添加启动activity配置</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>遇到问题，可以先clean下再rebuild</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230407221712258.png" alt="image-20230407221712258"></p>
-<p>或是直接清除缓存重启</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230407221758389.png" alt="image-20230407221758389"></p>
-<p>不行的话自行google~</p>
-<h6 id="之后教程大家看官网即可：Android-Compose-教程"><a href="#之后教程大家看官网即可：Android-Compose-教程" class="headerlink" title="之后教程大家看官网即可：Android Compose 教程 "></a>之后教程大家看官网即可：<a href="https://developer.android.google.cn/jetpack/compose/tutorial?hl=zh-cn">Android Compose 教程 </a></h6><p><em>当然国内用户build过慢可以换源或是科学上网，这里不赘述~</em></p>
-]]></content>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android学习笔记</title>
-    <url>/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<blockquote>
-<p>本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~</p>
-</blockquote>
-<h3 id="应用资源概览"><a href="#应用资源概览" class="headerlink" title="应用资源概览"></a>应用资源概览</h3><p>资源是指代码使用的附加文件和静态内容，例如位图、布局定义、界面字符串、动画说明等。将应用资源分离之后，您便可使用在项目的 <code>R</code> 类中生成的资源 ID 对其进行访问。</p>
-<h4 id="分组资源类型"><a href="#分组资源类型" class="headerlink" title="分组资源类型"></a>分组资源类型</h4><p>常见分组类型：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">MyProject/</span><br><span class="line">    src/</span><br><span class="line">        MyActivity.java</span><br><span class="line">    res/</span><br><span class="line">        drawable/</span><br><span class="line">            graphic.png</span><br><span class="line">        layout/</span><br><span class="line">            main.xml</span><br><span class="line">            info.xml</span><br><span class="line">        mipmap/</span><br><span class="line">            icon.png</span><br><span class="line">        values/</span><br><span class="line">            strings.xml</span><br></pre></td></tr></table></figure>
-
-<p><code>res/</code> 目录中支持的资源目录，详细请看：<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourceTypes">链接</a></p>
-<p><em>切勿将资源文件直接保存在 <code>res/</code> 目录内，否则会导致编译器错误</em></p>
-<h3 id="访问应用资源"><a href="#访问应用资源" class="headerlink" title="访问应用资源"></a>访问应用资源</h3><p>在应用中提供资源后，您可通过引用其资源 ID 来应用该资源。所有资源 ID 都在您项目的 <code>R</code> 类中进行定义，该类由 <code>aapt</code> 工具自动生成。</p>
-<p>编译应用时，<code>aapt</code> 会生成 <code>R</code> 类，其中包含 <code>res/</code> 目录中所有资源的资源 ID。每种类型的资源都有对应的 <code>R</code> 子类（例如，<code>R.drawable</code> 对应所有可绘制资源），且相应类型的每个资源都有对应的静态整数（例如 <code>R.drawable.icon</code>）。该整数是可用于检索资源的资源 ID。</p>
-<h4 id="访问资源两种方式："><a href="#访问资源两种方式：" class="headerlink" title="访问资源两种方式："></a>访问资源两种方式：</h4><ul>
-<li><p>在代码中</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R.string.hello</span><br></pre></td></tr></table></figure>
-
-<p><code>string</code> 为资源类型，<code>hello</code> 为资源名称。当您提供此格式的资源 ID 时，有许多 Android API 可以访问您的资源。请参阅<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourcesFromCode">在代码中访问资源</a>。</p>
-</li>
-<li><p>在 XML 中</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@string/hello</span><br></pre></td></tr></table></figure>
-
-<p><code>string</code> 为资源类型，<code>hello</code> 为资源名称。只要 XML 资源中的某处拥有您在资源中提供的值，您便可在该 XML 资源中使用此语法。请参阅<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourcesFromXml">在 XML 中访问资源</a>。</p>
-</li>
-</ul>
-<h5 id="特殊资源访问方式："><a href="#特殊资源访问方式：" class="headerlink" title="特殊资源访问方式："></a>特殊资源访问方式：</h5><p><a href="https://developer.android.google.cn/guide/topics/resources/string-resource?hl=zh-cn">字符串资源</a></p>
-<p>定义字符串、字符串数组和复数形式（且包括字符串格式和样式设置）。<br>保存在 <code>res/values/</code> 中，可通过 <code>R.string</code>、<code>R.array</code> 和 <code>R.plurals</code> 类访问。</p>
-<p><a href="https://developer.android.google.cn/guide/topics/resources/style-resource?hl=zh-cn">样式资源</a></p>
-<p>定义界面元素的外观和格式。<br>保存在 <code>res/values/</code> 中，可通过 <code>R.style</code> 类访问。</p>
-<h4 id="代码中访问资源"><a href="#代码中访问资源" class="headerlink" title="代码中访问资源"></a>代码中访问资源</h4><h5 id="findViewById"><a href="#findViewById" class="headerlink" title="findViewById"></a>findViewById</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">ImageView</span> <span class="variable">imageView</span> <span class="operator">=</span> (ImageView) findViewById(R.id.myimageview);</span><br><span class="line">imageView.setImageResource(R.drawable.myimage);</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">getWindow().setTitle(getResources().getText(R.string.main_title));</span><br><span class="line"><span class="comment">// R.string.main_title 返回的是一个资源ID，是一个int值，然后通过getResources()得到Resource对象，Resource调用getText方法（内置参数校验注解@StringRes，保证参数为资源ID）得到CharSequence接口，该接口是java中统一char类型访问的统一接口，之后通过setTitle设置window标题</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="在-XML-中访问资源"><a href="#在-XML-中访问资源" class="headerlink" title="在 XML 中访问资源"></a>在 XML 中访问资源</h4><h5 id="引用自己软件包中资源"><a href="#引用自己软件包中资源" class="headerlink" title="引用自己软件包中资源"></a>引用自己软件包中资源</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/submit&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="引用系统资源："><a href="#引用系统资源：" class="headerlink" title="引用系统资源："></a>引用系统资源：</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">EditText</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:textColor</span>=<span class="string">&quot;@android:color/secondary_text_dark&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/hello&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="访问原始文件"><a href="#访问原始文件" class="headerlink" title="访问原始文件"></a>访问原始文件</h5><p>尽管并不常见，但您可能会需要访问原始文件和目录。如果确有需要，将文件保存在 <code>res/</code> 中并没有用，因为从 <code>res/</code> 读取资源的唯一方法是使用资源 ID。您可以改为将资源保存在 <code>assets/</code> 目录中。</p>
-<p>保存在 <code>assets/</code> 目录中的文件没有资源 ID，因此您无法通过 <code>R</code> 类或在 XML 资源中引用它们。您可以改为采用类似常见文件系统的方式查询 <code>assets/</code> 目录中的文件，并利用 <code>AssetManager</code> 读取原始数据。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> assetManager.open(<span class="string">&quot;filename&quot;</span>);</span><br><span class="line"><span class="comment">// filename 默认是在assets目录下</span></span><br></pre></td></tr></table></figure>
-
-<p>不过，如果您只需要能够读取原始数据（例如视频文件或音频文件），则可将文件保存在 <code>res/raw/</code> 目录中，并利用 <code>openRawResource()</code> 读取字节流。</p>
-<h3 id="应用架构"><a href="#应用架构" class="headerlink" title="应用架构"></a>应用架构</h3><h4 id="界面层"><a href="#界面层" class="headerlink" title="界面层"></a>界面层</h4><h4 id="网域层"><a href="#网域层" class="headerlink" title="网域层"></a>网域层</h4><h4 id="数据层"><a href="#数据层" class="headerlink" title="数据层"></a>数据层</h4><h6 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h6><p><a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn">应用资源概览  | Android 开发者  | Android Developers (google.cn)</a></p>
-]]></content>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>vmware 部署 ubuntu20.4 关键点（持续补充中）</title>
-    <url>/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</url>
-    <content><![CDATA[<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><h5 id="编辑虚拟机设置"><a href="#编辑虚拟机设置" class="headerlink" title="编辑虚拟机设置"></a>编辑虚拟机设置</h5><blockquote>
-<p>需要保证虚拟机为关机状态，否则无法编辑</p>
-</blockquote>
-<p>网络设置为NAT模式</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230419164139586.png" alt="image-20230419164139586"></p>
-<p>进入编辑中虚拟网络设置器，点击还原默认配置</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png" alt="image-20230420093200219"></p>
-<p>但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接</p>
-<p><a href="https://blog.csdn.net/KRISNAT/article/details/124107032?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&utm_relevant_index=18">完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客</a></p>
-<h4 id="全屏设置"><a href="#全屏设置" class="headerlink" title="全屏设置"></a>全屏设置</h4><p>执行<code>sudo apt-get install open-vm-tools</code></p>
-<h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><h5 id="图形化界面"><a href="#图形化界面" class="headerlink" title="图形化界面"></a>图形化界面</h5><p>相关链接：<a href="https://blog.csdn.net/weixin_45484297/article/details/103005370">Ubuntu18图形界面换源</a></p>
-<h5 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h5><p>清华镜像仓库及指南（挑选适配自己版本的进行配置）：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
-<h4 id="配置-SSH"><a href="#配置-SSH" class="headerlink" title="配置 SSH"></a>配置 SSH</h4><p>安装<code>sudo apt-get install openssh-server -y &amp;&amp; sudo apt-get install openssh-client -y</code></p>
-<p>设置UFW防火墙允许ssh通过<code>sudo ufw allow ssh</code>或是直接禁用防火墙<code>sudo ufw disable</code></p>
-<p>设置ssh允许密码登录，执行<code>sudo vim /etc/ssh/ssh_config</code> 修改ssh客户端配置文件，添加 <code>PasswordAuthentication yes</code></p>
-<p>ssh连接，将 <strong>用户名</strong>（<code>username</code>）改为你的系统上的实际用户名，并将 <strong>地址</strong>（<code>address</code>）改为你服务器的 IP 地址。<code>ssh username@address</code></p>
-<p>查看ip：执行<code>ifconfig</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420102829615.png" alt="image-20230420102829615"></p>
-<p>相关命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br><span class="line"><span class="comment"># 关闭ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> ssh</span><br><span class="line"><span class="comment"># 单次开启ssh </span></span><br><span class="line">sudo systemctl start ssh</span><br><span class="line"><span class="comment"># 单次关闭ssh</span></span><br><span class="line">sudo systemctl stop ssh</span><br><span class="line"><span class="comment"># 查看ssh状态</span></span><br><span class="line">sudo systemctl status ssh</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>以上相关配置之前需要先执行<code>sudo apt update &amp;&amp; sudo apt upgrade</code> 并且最好切换到root用户</p>
-</blockquote>
-<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>ubuntu默认的root用户是没有固定密码的，它的密码是随机产生并且动态改变的，即每次开机都有一个新的root密码，如果想查看root密码，那么直接输入<code>sudo passwd root</code>设置的root密码即可。</p>
-<p>但是ubuntu使用Xftp、Xshell连接时，ssh服务器拒绝访问。一直显示输入密码，这是由于sshd的设置不允许root用户使用密码进行远程登录。</p>
-<p>保证ssh开启的情况下执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改ssh服务端配置文件</span></span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#PermitRootLogin prohibit-password 改为</span></span><br><span class="line">PermitRootLogin <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：最后需要执行<code>sudo systemctl restart ssh</code>重启才能使配置修改生效</p>
-</blockquote>
-<p><em>现在即可使用root用户进行远程ssh密码登录</em></p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android-Webview</title>
     <url>/2023/04/04/Android-Webview/</url>
     <content><![CDATA[<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
@@ -216,6 +63,159 @@
 ]]></content>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android学习笔记</title>
+    <url>/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<blockquote>
+<p>本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~</p>
+</blockquote>
+<h3 id="应用资源概览"><a href="#应用资源概览" class="headerlink" title="应用资源概览"></a>应用资源概览</h3><p>资源是指代码使用的附加文件和静态内容，例如位图、布局定义、界面字符串、动画说明等。将应用资源分离之后，您便可使用在项目的 <code>R</code> 类中生成的资源 ID 对其进行访问。</p>
+<h4 id="分组资源类型"><a href="#分组资源类型" class="headerlink" title="分组资源类型"></a>分组资源类型</h4><p>常见分组类型：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">MyProject/</span><br><span class="line">    src/</span><br><span class="line">        MyActivity.java</span><br><span class="line">    res/</span><br><span class="line">        drawable/</span><br><span class="line">            graphic.png</span><br><span class="line">        layout/</span><br><span class="line">            main.xml</span><br><span class="line">            info.xml</span><br><span class="line">        mipmap/</span><br><span class="line">            icon.png</span><br><span class="line">        values/</span><br><span class="line">            strings.xml</span><br></pre></td></tr></table></figure>
+
+<p><code>res/</code> 目录中支持的资源目录，详细请看：<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourceTypes">链接</a></p>
+<p><em>切勿将资源文件直接保存在 <code>res/</code> 目录内，否则会导致编译器错误</em></p>
+<h3 id="访问应用资源"><a href="#访问应用资源" class="headerlink" title="访问应用资源"></a>访问应用资源</h3><p>在应用中提供资源后，您可通过引用其资源 ID 来应用该资源。所有资源 ID 都在您项目的 <code>R</code> 类中进行定义，该类由 <code>aapt</code> 工具自动生成。</p>
+<p>编译应用时，<code>aapt</code> 会生成 <code>R</code> 类，其中包含 <code>res/</code> 目录中所有资源的资源 ID。每种类型的资源都有对应的 <code>R</code> 子类（例如，<code>R.drawable</code> 对应所有可绘制资源），且相应类型的每个资源都有对应的静态整数（例如 <code>R.drawable.icon</code>）。该整数是可用于检索资源的资源 ID。</p>
+<h4 id="访问资源两种方式："><a href="#访问资源两种方式：" class="headerlink" title="访问资源两种方式："></a>访问资源两种方式：</h4><ul>
+<li><p>在代码中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R.string.hello</span><br></pre></td></tr></table></figure>
+
+<p><code>string</code> 为资源类型，<code>hello</code> 为资源名称。当您提供此格式的资源 ID 时，有许多 Android API 可以访问您的资源。请参阅<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourcesFromCode">在代码中访问资源</a>。</p>
+</li>
+<li><p>在 XML 中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@string/hello</span><br></pre></td></tr></table></figure>
+
+<p><code>string</code> 为资源类型，<code>hello</code> 为资源名称。只要 XML 资源中的某处拥有您在资源中提供的值，您便可在该 XML 资源中使用此语法。请参阅<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourcesFromXml">在 XML 中访问资源</a>。</p>
+</li>
+</ul>
+<h5 id="特殊资源访问方式："><a href="#特殊资源访问方式：" class="headerlink" title="特殊资源访问方式："></a>特殊资源访问方式：</h5><p><a href="https://developer.android.google.cn/guide/topics/resources/string-resource?hl=zh-cn">字符串资源</a></p>
+<p>定义字符串、字符串数组和复数形式（且包括字符串格式和样式设置）。<br>保存在 <code>res/values/</code> 中，可通过 <code>R.string</code>、<code>R.array</code> 和 <code>R.plurals</code> 类访问。</p>
+<p><a href="https://developer.android.google.cn/guide/topics/resources/style-resource?hl=zh-cn">样式资源</a></p>
+<p>定义界面元素的外观和格式。<br>保存在 <code>res/values/</code> 中，可通过 <code>R.style</code> 类访问。</p>
+<h4 id="代码中访问资源"><a href="#代码中访问资源" class="headerlink" title="代码中访问资源"></a>代码中访问资源</h4><h5 id="findViewById"><a href="#findViewById" class="headerlink" title="findViewById"></a>findViewById</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">ImageView</span> <span class="variable">imageView</span> <span class="operator">=</span> (ImageView) findViewById(R.id.myimageview);</span><br><span class="line">imageView.setImageResource(R.drawable.myimage);</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">getWindow().setTitle(getResources().getText(R.string.main_title));</span><br><span class="line"><span class="comment">// R.string.main_title 返回的是一个资源ID，是一个int值，然后通过getResources()得到Resource对象，Resource调用getText方法（内置参数校验注解@StringRes，保证参数为资源ID）得到CharSequence接口，该接口是java中统一char类型访问的统一接口，之后通过setTitle设置window标题</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="在-XML-中访问资源"><a href="#在-XML-中访问资源" class="headerlink" title="在 XML 中访问资源"></a>在 XML 中访问资源</h4><h5 id="引用自己软件包中资源"><a href="#引用自己软件包中资源" class="headerlink" title="引用自己软件包中资源"></a>引用自己软件包中资源</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/submit&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="引用系统资源："><a href="#引用系统资源：" class="headerlink" title="引用系统资源："></a>引用系统资源：</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">EditText</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:textColor</span>=<span class="string">&quot;@android:color/secondary_text_dark&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/hello&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="访问原始文件"><a href="#访问原始文件" class="headerlink" title="访问原始文件"></a>访问原始文件</h5><p>尽管并不常见，但您可能会需要访问原始文件和目录。如果确有需要，将文件保存在 <code>res/</code> 中并没有用，因为从 <code>res/</code> 读取资源的唯一方法是使用资源 ID。您可以改为将资源保存在 <code>assets/</code> 目录中。</p>
+<p>保存在 <code>assets/</code> 目录中的文件没有资源 ID，因此您无法通过 <code>R</code> 类或在 XML 资源中引用它们。您可以改为采用类似常见文件系统的方式查询 <code>assets/</code> 目录中的文件，并利用 <code>AssetManager</code> 读取原始数据。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> assetManager.open(<span class="string">&quot;filename&quot;</span>);</span><br><span class="line"><span class="comment">// filename 默认是在assets目录下</span></span><br></pre></td></tr></table></figure>
+
+<p>不过，如果您只需要能够读取原始数据（例如视频文件或音频文件），则可将文件保存在 <code>res/raw/</code> 目录中，并利用 <code>openRawResource()</code> 读取字节流。</p>
+<h3 id="应用架构"><a href="#应用架构" class="headerlink" title="应用架构"></a>应用架构</h3><h4 id="界面层"><a href="#界面层" class="headerlink" title="界面层"></a>界面层</h4><h4 id="网域层"><a href="#网域层" class="headerlink" title="网域层"></a>网域层</h4><h4 id="数据层"><a href="#数据层" class="headerlink" title="数据层"></a>数据层</h4><h6 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h6><p><a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn">应用资源概览  | Android 开发者  | Android Developers (google.cn)</a></p>
+]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android 配置 Jetpack Compose 环境</title>
+    <url>/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<h2 id="Android-配置-Jetpack-Compose-环境"><a href="#Android-配置-Jetpack-Compose-环境" class="headerlink" title="Android 配置 Jetpack Compose 环境"></a>Android 配置 Jetpack Compose 环境</h2><blockquote>
+<p>记录配置Jetpack Compose环境的一些坑~</p>
+</blockquote>
+<p>直接创建kotlin项目或创建java项目后再配置均可</p>
+<h5 id="根目录-build-gradle"><a href="#根目录-build-gradle" class="headerlink" title="根目录 build.gradle"></a>根目录 build.gradle</h5><h6 id="配置kotlin环境构建脚本"><a href="#配置kotlin环境构建脚本" class="headerlink" title="配置kotlin环境构建脚本"></a>配置kotlin环境构建脚本</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    ext.kotlin_version = <span class="string">&#x27;1.4.32&#x27;</span></span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath <span class="string">&quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>注意：里面的kotlin版本需要和自己的 gradle 版本 对应的Compose Complier版本适配，如果不适配，build时会提示适配版本，然后改为相应版本即可</p>
+</blockquote>
+<h6 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span> version <span class="string">&#x27;7.1.2&#x27;</span> apply <span class="literal">false</span></span><br><span class="line">    id <span class="string">&#x27;com.android.library&#x27;</span> version <span class="string">&#x27;7.1.2&#x27;</span> apply <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>apply false</code> 意味着这些插件不会被应用到当前项目中。但是，这里为这些插件指定版本号是有用的，因为在子项目中应用这些插件时，Gradle 将会根据指定的版本号下载和使用相应的插件。如果不指定版本号，Gradle 将会默认使用最新版本的插件，这可能会导致不可预期的问题。</p>
+<h4 id="app-子模块"><a href="#app-子模块" class="headerlink" title="app 子模块"></a>app 子模块</h4><h5 id="build-gradle-中添加"><a href="#build-gradle-中添加" class="headerlink" title="build.gradle 中添加"></a>build.gradle 中添加</h5><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;kotlin-android&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里面会指定添加插件kotlin-android的最新版本，但是没有指定版本可能会造成错误</p>
+</blockquote>
+<h5 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h5><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">apply <span class="attr">plugin:</span> <span class="string">&#x27;kotlin-android&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">plugins &#123;</span><br><span class="line">    id <span class="string">&#x27;com.android.application&#x27;</span></span><br><span class="line">    id <span class="string">&#x27;org.jetbrains.kotlin.android&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上面两种写法是影响作用相同，但是推荐使用第一种，因为它更加清晰和简洁，同时也便于维护和修改。第二种方式虽然也能实现同样的功能，但是需要指定更多的插件，并且代码看起来比较冗长。</p>
+</blockquote>
+<h6 id="Q-但是为什么使用apply时为什么没有指定”org-jetbrains“，这不会造成错误吗"><a href="#Q-但是为什么使用apply时为什么没有指定”org-jetbrains“，这不会造成错误吗" class="headerlink" title="Q:但是为什么使用apply时为什么没有指定”org.jetbrains“，这不会造成错误吗"></a>Q:但是为什么使用apply时为什么没有指定”org.jetbrains“，这不会造成错误吗</h6><p>在使用 <code>apply plugin</code> 声明插件时，通常可以省略掉插件 ID 中的 <code>org.jetbrains</code>，因为 Gradle 默认会搜索 <code>gradle.plugin.org.jetbrains</code> 命名空间下的插件，所以使用 <code>id &#39;kotlin-android&#39;</code> 或 <code>id &#39;org.jetbrains.kotlin.android&#39;</code> 都是可以的，因为 Gradle 会将它们都解析成 <code>gradle.plugin.org.jetbrains.kotlin.android</code>。</p>
+<p>实际上，Gradle 支持三种插件 ID 声明方式：<code>id &#39;pluginId&#39;</code>、<code>id &#39;namespace:pluginId&#39;</code> 和 <code>id &quot;namespace:pluginId&quot; version &quot;version&quot;</code>。其中第一种方式会自动搜索 <code>gradle.plugin</code> 和 <code>org.gradle.plugin</code> 命名空间下的插件，所以可以省略命名空间。</p>
+<h6 id="开启-Compose"><a href="#开启-Compose" class="headerlink" title="开启 Compose"></a>开启 Compose</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">	buildFeatures &#123;</span><br><span class="line">    	setCompose(<span class="literal">true</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h6 id="导入依赖"><a href="#导入依赖" class="headerlink" title="导入依赖"></a>导入依赖</h6><figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">    <span class="keyword">def</span> compose_version = <span class="string">&quot;1.0.4&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.ui:ui:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.material:material:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.compose.ui:ui-tooling-preview:$compose_version&quot;</span></span><br><span class="line">    implementation <span class="string">&quot;androidx.activity:activity-compose:1.3.0&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>里面的1.0.4版本也需要试着看</p>
+<p>若是需要使用@Preview还需添加</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">implementation <span class="string">&quot;androidx.compose.ui:ui-tooling:$compose_version&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="MainActivity-kt"><a href="#MainActivity-kt" class="headerlink" title="MainActivity.kt"></a>MainActivity.kt</h6><figure class="highlight kotlin"><table><tr><td class="code"><pre><span class="line"><span class="keyword">package</span> io.github.returntmp.dpfk</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Bundle</span><br><span class="line"><span class="keyword">import</span> androidx.activity.ComponentActivity</span><br><span class="line"><span class="keyword">import</span> androidx.activity.compose.setContent</span><br><span class="line"><span class="keyword">import</span> androidx.compose.material.Text</span><br><span class="line"><span class="keyword">import</span> androidx.compose.runtime.Composable</span><br><span class="line"><span class="keyword">import</span> androidx.compose.ui.tooling.preview.Preview</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MainActivity</span> : <span class="type">ComponentActivity</span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onCreate</span><span class="params">(savedInstanceState: <span class="type">Bundle</span>?)</span></span> &#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState)</span><br><span class="line">        setContent &#123;</span><br><span class="line"><span class="comment">//            Text(&quot;Hello world!&quot;)</span></span><br><span class="line">            MessageCard(<span class="string">&quot;Android&quot;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">MessageCard</span><span class="params">(name: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">    Text(text = <span class="string">&quot;Hello <span class="variable">$name</span>!&quot;</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Preview</span></span><br><span class="line"><span class="meta">@Composable</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">PreviewMessageCard</span><span class="params">()</span></span> &#123;</span><br><span class="line">    MessageCard(<span class="string">&quot;Android&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>manifest.xml 添加启动activity配置</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">activity</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:name</span>=<span class="string">&quot;.MainActivity&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:exported</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.action.MAIN&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">&quot;android.intent.category.LAUNCHER&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">activity</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>遇到问题，可以先clean下再rebuild</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230407221712258.png" alt="image-20230407221712258"></p>
+<p>或是直接清除缓存重启</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230407221758389.png" alt="image-20230407221758389"></p>
+<p>不行的话自行google~</p>
+<h6 id="之后教程大家看官网即可：Android-Compose-教程"><a href="#之后教程大家看官网即可：Android-Compose-教程" class="headerlink" title="之后教程大家看官网即可：Android Compose 教程 "></a>之后教程大家看官网即可：<a href="https://developer.android.google.cn/jetpack/compose/tutorial?hl=zh-cn">Android Compose 教程 </a></h6><p><em>当然国内用户build过慢可以换源或是科学上网，这里不赘述~</em></p>
+]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>vmware 部署 ubuntu20.4 关键点（持续补充中）</title>
+    <url>/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</url>
+    <content><![CDATA[<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><h5 id="编辑虚拟机设置"><a href="#编辑虚拟机设置" class="headerlink" title="编辑虚拟机设置"></a>编辑虚拟机设置</h5><blockquote>
+<p>需要保证虚拟机为关机状态，否则无法编辑</p>
+</blockquote>
+<p>网络设置为NAT模式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230419164139586.png" alt="image-20230419164139586"></p>
+<p>进入编辑中虚拟网络设置器，点击还原默认配置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png" alt="image-20230420093200219"></p>
+<p>但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接</p>
+<p><a href="https://blog.csdn.net/KRISNAT/article/details/124107032?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&utm_relevant_index=18">完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客</a></p>
+<h4 id="全屏设置"><a href="#全屏设置" class="headerlink" title="全屏设置"></a>全屏设置</h4><p>执行<code>sudo apt-get install open-vm-tools</code></p>
+<h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><h5 id="图形化界面"><a href="#图形化界面" class="headerlink" title="图形化界面"></a>图形化界面</h5><p>相关链接：<a href="https://blog.csdn.net/weixin_45484297/article/details/103005370">Ubuntu18图形界面换源</a></p>
+<h5 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h5><p>清华镜像仓库及指南（挑选适配自己版本的进行配置）：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<h4 id="配置-SSH"><a href="#配置-SSH" class="headerlink" title="配置 SSH"></a>配置 SSH</h4><p>安装<code>sudo apt-get install openssh-server -y &amp;&amp; sudo apt-get install openssh-client -y</code></p>
+<p>设置UFW防火墙允许ssh通过<code>sudo ufw allow ssh</code>或是直接禁用防火墙<code>sudo ufw disable</code></p>
+<p>设置ssh允许密码登录，执行<code>sudo vim /etc/ssh/ssh_config</code> 修改ssh客户端配置文件，添加 <code>PasswordAuthentication yes</code></p>
+<p>ssh连接，将 <strong>用户名</strong>（<code>username</code>）改为你的系统上的实际用户名，并将 <strong>地址</strong>（<code>address</code>）改为你服务器的 IP 地址。<code>ssh username@address</code></p>
+<p>查看ip：执行<code>ifconfig</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420102829615.png" alt="image-20230420102829615"></p>
+<p>相关命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br><span class="line"><span class="comment"># 关闭ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> ssh</span><br><span class="line"><span class="comment"># 单次开启ssh </span></span><br><span class="line">sudo systemctl start ssh</span><br><span class="line"><span class="comment"># 单次关闭ssh</span></span><br><span class="line">sudo systemctl stop ssh</span><br><span class="line"><span class="comment"># 查看ssh状态</span></span><br><span class="line">sudo systemctl status ssh</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>以上相关配置之前需要先执行<code>sudo apt update &amp;&amp; sudo apt upgrade</code> 并且最好切换到root用户</p>
+</blockquote>
+<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>ubuntu默认的root用户是没有固定密码的，它的密码是随机产生并且动态改变的，即每次开机都有一个新的root密码，如果想查看root密码，那么直接输入<code>sudo passwd root</code>设置的root密码即可。</p>
+<p>但是ubuntu使用Xftp、Xshell连接时，ssh服务器拒绝访问。一直显示输入密码，这是由于sshd的设置不允许root用户使用密码进行远程登录。</p>
+<p>保证ssh开启的情况下执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改ssh服务端配置文件</span></span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#PermitRootLogin prohibit-password 改为</span></span><br><span class="line">PermitRootLogin <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：最后需要执行<code>sudo systemctl restart ssh</code>重启才能使配置修改生效</p>
+</blockquote>
+<p><em>现在即可使用root用户进行远程ssh密码登录</em></p>
+]]></content>
+      <tags>
+        <tag>linux</tag>
       </tags>
   </entry>
   <entry>
