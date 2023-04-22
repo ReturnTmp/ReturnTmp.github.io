@@ -66,49 +66,6 @@
       </tags>
   </entry>
   <entry>
-    <title>vmware 部署 ubuntu20.4 关键点（持续补充中）</title>
-    <url>/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</url>
-    <content><![CDATA[<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><h5 id="编辑虚拟机设置"><a href="#编辑虚拟机设置" class="headerlink" title="编辑虚拟机设置"></a>编辑虚拟机设置</h5><blockquote>
-<p>需要保证虚拟机为关机状态，否则无法编辑</p>
-</blockquote>
-<p>网络设置为NAT模式</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230419164139586.png" alt="image-20230419164139586"></p>
-<p>进入编辑中虚拟网络设置器，点击还原默认配置</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png" alt="image-20230420093200219"></p>
-<p>但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接</p>
-<p><a href="https://blog.csdn.net/KRISNAT/article/details/124107032?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&utm_relevant_index=18">完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客</a></p>
-<h4 id="全屏设置"><a href="#全屏设置" class="headerlink" title="全屏设置"></a>全屏设置</h4><p>执行<code>sudo apt-get install open-vm-tools</code></p>
-<h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><h5 id="图形化界面"><a href="#图形化界面" class="headerlink" title="图形化界面"></a>图形化界面</h5><p>相关链接：<a href="https://blog.csdn.net/weixin_45484297/article/details/103005370">Ubuntu18图形界面换源</a></p>
-<h5 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h5><p>清华镜像仓库及指南（挑选适配自己版本的进行配置）：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
-<h4 id="配置-SSH"><a href="#配置-SSH" class="headerlink" title="配置 SSH"></a>配置 SSH</h4><p>安装<code>sudo apt-get install openssh-server -y &amp;&amp; sudo apt-get install openssh-client -y</code></p>
-<p>设置UFW防火墙允许ssh通过<code>sudo ufw allow ssh</code>或是直接禁用防火墙<code>sudo ufw disable</code></p>
-<p>设置ssh允许密码登录，执行<code>sudo vim /etc/ssh/ssh_config</code> 修改ssh客户端配置文件，添加 <code>PasswordAuthentication yes</code></p>
-<p>ssh连接，将 <strong>用户名</strong>（<code>username</code>）改为你的系统上的实际用户名，并将 <strong>地址</strong>（<code>address</code>）改为你服务器的 IP 地址。<code>ssh username@address</code></p>
-<p>查看ip：执行<code>ifconfig</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420102829615.png" alt="image-20230420102829615"></p>
-<p>相关命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br><span class="line"><span class="comment"># 关闭ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> ssh</span><br><span class="line"><span class="comment"># 单次开启ssh </span></span><br><span class="line">sudo systemctl start ssh</span><br><span class="line"><span class="comment"># 单次关闭ssh</span></span><br><span class="line">sudo systemctl stop ssh</span><br><span class="line"><span class="comment"># 查看ssh状态</span></span><br><span class="line">sudo systemctl status ssh</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>以上相关配置之前需要先执行<code>sudo apt update &amp;&amp; sudo apt upgrade</code> 并且最好切换到root用户</p>
-</blockquote>
-<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>ubuntu默认的root用户是没有固定密码的，它的密码是随机产生并且动态改变的，即每次开机都有一个新的root密码，如果想查看root密码，那么直接输入<code>sudo passwd root</code>设置的root密码即可。</p>
-<p>但是ubuntu使用Xftp、Xshell连接时，ssh服务器拒绝访问。一直显示输入密码，这是由于sshd的设置不允许root用户使用密码进行远程登录。</p>
-<p>保证ssh开启的情况下执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改ssh服务端配置文件</span></span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#PermitRootLogin prohibit-password 改为</span></span><br><span class="line">PermitRootLogin <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：最后需要执行<code>sudo systemctl restart ssh</code>重启才能使配置修改生效</p>
-</blockquote>
-<p><em>现在即可使用root用户进行远程ssh密码登录</em></p>
-]]></content>
-      <tags>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android学习笔记</title>
     <url>/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<blockquote>
@@ -160,11 +117,47 @@
       </tags>
   </entry>
   <entry>
-    <title>实时传输 Web 音频与视频</title>
-    <url>/2023/04/11/%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93-Web-%E9%9F%B3%E9%A2%91%E4%B8%8E%E8%A7%86%E9%A2%91/</url>
-    <content><![CDATA[<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Audio_and_video_delivery/Live_streaming_web_audio_and_video#mp3_aac_ogg_vorbis">实时传输 Web 音频与视频 - Web 开发者指南 | MDN (mozilla.org)</a></p>
-<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebRTC_API/Signaling_and_video_calling">信令与视频通话 - Web API 接口参考 | MDN (mozilla.org)</a></p>
+    <title>vmware 部署 ubuntu20.4 关键点（持续补充中）</title>
+    <url>/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</url>
+    <content><![CDATA[<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><h5 id="编辑虚拟机设置"><a href="#编辑虚拟机设置" class="headerlink" title="编辑虚拟机设置"></a>编辑虚拟机设置</h5><blockquote>
+<p>需要保证虚拟机为关机状态，否则无法编辑</p>
+</blockquote>
+<p>网络设置为NAT模式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230419164139586.png" alt="image-20230419164139586"></p>
+<p>进入编辑中虚拟网络设置器，点击还原默认配置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png" alt="image-20230420093200219"></p>
+<p>但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接</p>
+<p><a href="https://blog.csdn.net/KRISNAT/article/details/124107032?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&utm_relevant_index=18">完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客</a></p>
+<h4 id="全屏设置"><a href="#全屏设置" class="headerlink" title="全屏设置"></a>全屏设置</h4><p>执行<code>sudo apt-get install open-vm-tools</code></p>
+<h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><h5 id="图形化界面"><a href="#图形化界面" class="headerlink" title="图形化界面"></a>图形化界面</h5><p>相关链接：<a href="https://blog.csdn.net/weixin_45484297/article/details/103005370">Ubuntu18图形界面换源</a></p>
+<h5 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h5><p>清华镜像仓库及指南（挑选适配自己版本的进行配置）：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<h4 id="配置-SSH"><a href="#配置-SSH" class="headerlink" title="配置 SSH"></a>配置 SSH</h4><p>安装<code>sudo apt-get install openssh-server -y &amp;&amp; sudo apt-get install openssh-client -y</code></p>
+<p>设置UFW防火墙允许ssh通过<code>sudo ufw allow ssh</code>或是直接禁用防火墙<code>sudo ufw disable</code></p>
+<p>设置ssh允许密码登录，执行<code>sudo vim /etc/ssh/ssh_config</code> 修改ssh客户端配置文件，添加 <code>PasswordAuthentication yes</code></p>
+<p>ssh连接，将 <strong>用户名</strong>（<code>username</code>）改为你的系统上的实际用户名，并将 <strong>地址</strong>（<code>address</code>）改为你服务器的 IP 地址。<code>ssh username@address</code></p>
+<p>查看ip：执行<code>ifconfig</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420102829615.png" alt="image-20230420102829615"></p>
+<p>相关命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br><span class="line"><span class="comment"># 关闭ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> ssh</span><br><span class="line"><span class="comment"># 单次开启ssh </span></span><br><span class="line">sudo systemctl start ssh</span><br><span class="line"><span class="comment"># 单次关闭ssh</span></span><br><span class="line">sudo systemctl stop ssh</span><br><span class="line"><span class="comment"># 查看ssh状态</span></span><br><span class="line">sudo systemctl status ssh</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>以上相关配置之前需要先执行<code>sudo apt update &amp;&amp; sudo apt upgrade</code> 并且最好切换到root用户</p>
+</blockquote>
+<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>ubuntu默认的root用户是没有固定密码的，它的密码是随机产生并且动态改变的，即每次开机都有一个新的root密码，如果想查看root密码，那么直接输入<code>sudo passwd root</code>设置的root密码即可。</p>
+<p>但是ubuntu使用Xftp、Xshell连接时，ssh服务器拒绝访问。一直显示输入密码，这是由于sshd的设置不允许root用户使用密码进行远程登录。</p>
+<p>保证ssh开启的情况下执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改ssh服务端配置文件</span></span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#PermitRootLogin prohibit-password 改为</span></span><br><span class="line">PermitRootLogin <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：最后需要执行<code>sudo systemctl restart ssh</code>重启才能使配置修改生效</p>
+</blockquote>
+<p><em>现在即可使用root用户进行远程ssh密码登录</em></p>
 ]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
   </entry>
   <entry>
     <title>Android 配置 Jetpack Compose 环境</title>
@@ -224,5 +217,12 @@
       <tags>
         <tag>Android</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>实时传输 Web 音频与视频</title>
+    <url>/2023/04/11/%E5%AE%9E%E6%97%B6%E4%BC%A0%E8%BE%93-Web-%E9%9F%B3%E9%A2%91%E4%B8%8E%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/Audio_and_video_delivery/Live_streaming_web_audio_and_video#mp3_aac_ogg_vorbis">实时传输 Web 音频与视频 - Web 开发者指南 | MDN (mozilla.org)</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/WebRTC_API/Signaling_and_video_calling">信令与视频通话 - Web API 接口参考 | MDN (mozilla.org)</a></p>
+]]></content>
   </entry>
 </search>
