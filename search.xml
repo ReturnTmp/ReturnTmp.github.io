@@ -66,57 +66,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Android学习笔记</title>
-    <url>/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<blockquote>
-<p>本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~</p>
-</blockquote>
-<h3 id="应用资源概览"><a href="#应用资源概览" class="headerlink" title="应用资源概览"></a>应用资源概览</h3><p>资源是指代码使用的附加文件和静态内容，例如位图、布局定义、界面字符串、动画说明等。将应用资源分离之后，您便可使用在项目的 <code>R</code> 类中生成的资源 ID 对其进行访问。</p>
-<h4 id="分组资源类型"><a href="#分组资源类型" class="headerlink" title="分组资源类型"></a>分组资源类型</h4><p>常见分组类型：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">MyProject/</span><br><span class="line">    src/</span><br><span class="line">        MyActivity.java</span><br><span class="line">    res/</span><br><span class="line">        drawable/</span><br><span class="line">            graphic.png</span><br><span class="line">        layout/</span><br><span class="line">            main.xml</span><br><span class="line">            info.xml</span><br><span class="line">        mipmap/</span><br><span class="line">            icon.png</span><br><span class="line">        values/</span><br><span class="line">            strings.xml</span><br></pre></td></tr></table></figure>
-
-<p><code>res/</code> 目录中支持的资源目录，详细请看：<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourceTypes">链接</a></p>
-<p><em>切勿将资源文件直接保存在 <code>res/</code> 目录内，否则会导致编译器错误</em></p>
-<h3 id="访问应用资源"><a href="#访问应用资源" class="headerlink" title="访问应用资源"></a>访问应用资源</h3><p>在应用中提供资源后，您可通过引用其资源 ID 来应用该资源。所有资源 ID 都在您项目的 <code>R</code> 类中进行定义，该类由 <code>aapt</code> 工具自动生成。</p>
-<p>编译应用时，<code>aapt</code> 会生成 <code>R</code> 类，其中包含 <code>res/</code> 目录中所有资源的资源 ID。每种类型的资源都有对应的 <code>R</code> 子类（例如，<code>R.drawable</code> 对应所有可绘制资源），且相应类型的每个资源都有对应的静态整数（例如 <code>R.drawable.icon</code>）。该整数是可用于检索资源的资源 ID。</p>
-<h4 id="访问资源两种方式："><a href="#访问资源两种方式：" class="headerlink" title="访问资源两种方式："></a>访问资源两种方式：</h4><ul>
-<li><p>在代码中</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R.string.hello</span><br></pre></td></tr></table></figure>
-
-<p><code>string</code> 为资源类型，<code>hello</code> 为资源名称。当您提供此格式的资源 ID 时，有许多 Android API 可以访问您的资源。请参阅<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourcesFromCode">在代码中访问资源</a>。</p>
-</li>
-<li><p>在 XML 中</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@string/hello</span><br></pre></td></tr></table></figure>
-
-<p><code>string</code> 为资源类型，<code>hello</code> 为资源名称。只要 XML 资源中的某处拥有您在资源中提供的值，您便可在该 XML 资源中使用此语法。请参阅<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourcesFromXml">在 XML 中访问资源</a>。</p>
-</li>
-</ul>
-<h5 id="特殊资源访问方式："><a href="#特殊资源访问方式：" class="headerlink" title="特殊资源访问方式："></a>特殊资源访问方式：</h5><p><a href="https://developer.android.google.cn/guide/topics/resources/string-resource?hl=zh-cn">字符串资源</a></p>
-<p>定义字符串、字符串数组和复数形式（且包括字符串格式和样式设置）。<br>保存在 <code>res/values/</code> 中，可通过 <code>R.string</code>、<code>R.array</code> 和 <code>R.plurals</code> 类访问。</p>
-<p><a href="https://developer.android.google.cn/guide/topics/resources/style-resource?hl=zh-cn">样式资源</a></p>
-<p>定义界面元素的外观和格式。<br>保存在 <code>res/values/</code> 中，可通过 <code>R.style</code> 类访问。</p>
-<h4 id="代码中访问资源"><a href="#代码中访问资源" class="headerlink" title="代码中访问资源"></a>代码中访问资源</h4><h5 id="findViewById"><a href="#findViewById" class="headerlink" title="findViewById"></a>findViewById</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">ImageView</span> <span class="variable">imageView</span> <span class="operator">=</span> (ImageView) findViewById(R.id.myimageview);</span><br><span class="line">imageView.setImageResource(R.drawable.myimage);</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">getWindow().setTitle(getResources().getText(R.string.main_title));</span><br><span class="line"><span class="comment">// R.string.main_title 返回的是一个资源ID，是一个int值，然后通过getResources()得到Resource对象，Resource调用getText方法（内置参数校验注解@StringRes，保证参数为资源ID）得到CharSequence接口，该接口是java中统一char类型访问的统一接口，之后通过setTitle设置window标题</span></span><br></pre></td></tr></table></figure>
-
-<h4 id="在-XML-中访问资源"><a href="#在-XML-中访问资源" class="headerlink" title="在 XML 中访问资源"></a>在 XML 中访问资源</h4><h5 id="引用自己软件包中资源"><a href="#引用自己软件包中资源" class="headerlink" title="引用自己软件包中资源"></a>引用自己软件包中资源</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/submit&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id="引用系统资源："><a href="#引用系统资源：" class="headerlink" title="引用系统资源："></a>引用系统资源：</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">EditText</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:textColor</span>=<span class="string">&quot;@android:color/secondary_text_dark&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/hello&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="访问原始文件"><a href="#访问原始文件" class="headerlink" title="访问原始文件"></a>访问原始文件</h5><p>尽管并不常见，但您可能会需要访问原始文件和目录。如果确有需要，将文件保存在 <code>res/</code> 中并没有用，因为从 <code>res/</code> 读取资源的唯一方法是使用资源 ID。您可以改为将资源保存在 <code>assets/</code> 目录中。</p>
-<p>保存在 <code>assets/</code> 目录中的文件没有资源 ID，因此您无法通过 <code>R</code> 类或在 XML 资源中引用它们。您可以改为采用类似常见文件系统的方式查询 <code>assets/</code> 目录中的文件，并利用 <code>AssetManager</code> 读取原始数据。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> assetManager.open(<span class="string">&quot;filename&quot;</span>);</span><br><span class="line"><span class="comment">// filename 默认是在assets目录下</span></span><br></pre></td></tr></table></figure>
-
-<p>不过，如果您只需要能够读取原始数据（例如视频文件或音频文件），则可将文件保存在 <code>res/raw/</code> 目录中，并利用 <code>openRawResource()</code> 读取字节流。</p>
-<h3 id="应用架构"><a href="#应用架构" class="headerlink" title="应用架构"></a>应用架构</h3><h4 id="界面层"><a href="#界面层" class="headerlink" title="界面层"></a>界面层</h4><h4 id="网域层"><a href="#网域层" class="headerlink" title="网域层"></a>网域层</h4><h4 id="数据层"><a href="#数据层" class="headerlink" title="数据层"></a>数据层</h4><h6 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h6><p><a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn">应用资源概览  | Android 开发者  | Android Developers (google.cn)</a></p>
-]]></content>
-      <tags>
-        <tag>Android</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android 配置 Jetpack Compose 环境</title>
     <url>/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<h2 id="Android-配置-Jetpack-Compose-环境"><a href="#Android-配置-Jetpack-Compose-环境" class="headerlink" title="Android 配置 Jetpack Compose 环境"></a>Android 配置 Jetpack Compose 环境</h2><blockquote>
@@ -170,6 +119,57 @@
 <p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230407221758389.png" alt="image-20230407221758389"></p>
 <p>不行的话自行google~</p>
 <h6 id="之后教程大家看官网即可：Android-Compose-教程"><a href="#之后教程大家看官网即可：Android-Compose-教程" class="headerlink" title="之后教程大家看官网即可：Android Compose 教程 "></a>之后教程大家看官网即可：<a href="https://developer.android.google.cn/jetpack/compose/tutorial?hl=zh-cn">Android Compose 教程 </a></h6><p><em>当然国内用户build过慢可以换源或是科学上网，这里不赘述~</em></p>
+]]></content>
+      <tags>
+        <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android学习笔记</title>
+    <url>/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<blockquote>
+<p>本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~</p>
+</blockquote>
+<h3 id="应用资源概览"><a href="#应用资源概览" class="headerlink" title="应用资源概览"></a>应用资源概览</h3><p>资源是指代码使用的附加文件和静态内容，例如位图、布局定义、界面字符串、动画说明等。将应用资源分离之后，您便可使用在项目的 <code>R</code> 类中生成的资源 ID 对其进行访问。</p>
+<h4 id="分组资源类型"><a href="#分组资源类型" class="headerlink" title="分组资源类型"></a>分组资源类型</h4><p>常见分组类型：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">MyProject/</span><br><span class="line">    src/</span><br><span class="line">        MyActivity.java</span><br><span class="line">    res/</span><br><span class="line">        drawable/</span><br><span class="line">            graphic.png</span><br><span class="line">        layout/</span><br><span class="line">            main.xml</span><br><span class="line">            info.xml</span><br><span class="line">        mipmap/</span><br><span class="line">            icon.png</span><br><span class="line">        values/</span><br><span class="line">            strings.xml</span><br></pre></td></tr></table></figure>
+
+<p><code>res/</code> 目录中支持的资源目录，详细请看：<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourceTypes">链接</a></p>
+<p><em>切勿将资源文件直接保存在 <code>res/</code> 目录内，否则会导致编译器错误</em></p>
+<h3 id="访问应用资源"><a href="#访问应用资源" class="headerlink" title="访问应用资源"></a>访问应用资源</h3><p>在应用中提供资源后，您可通过引用其资源 ID 来应用该资源。所有资源 ID 都在您项目的 <code>R</code> 类中进行定义，该类由 <code>aapt</code> 工具自动生成。</p>
+<p>编译应用时，<code>aapt</code> 会生成 <code>R</code> 类，其中包含 <code>res/</code> 目录中所有资源的资源 ID。每种类型的资源都有对应的 <code>R</code> 子类（例如，<code>R.drawable</code> 对应所有可绘制资源），且相应类型的每个资源都有对应的静态整数（例如 <code>R.drawable.icon</code>）。该整数是可用于检索资源的资源 ID。</p>
+<h4 id="访问资源两种方式："><a href="#访问资源两种方式：" class="headerlink" title="访问资源两种方式："></a>访问资源两种方式：</h4><ul>
+<li><p>在代码中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">R.string.hello</span><br></pre></td></tr></table></figure>
+
+<p><code>string</code> 为资源类型，<code>hello</code> 为资源名称。当您提供此格式的资源 ID 时，有许多 Android API 可以访问您的资源。请参阅<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourcesFromCode">在代码中访问资源</a>。</p>
+</li>
+<li><p>在 XML 中</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@string/hello</span><br></pre></td></tr></table></figure>
+
+<p><code>string</code> 为资源类型，<code>hello</code> 为资源名称。只要 XML 资源中的某处拥有您在资源中提供的值，您便可在该 XML 资源中使用此语法。请参阅<a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn#ResourcesFromXml">在 XML 中访问资源</a>。</p>
+</li>
+</ul>
+<h5 id="特殊资源访问方式："><a href="#特殊资源访问方式：" class="headerlink" title="特殊资源访问方式："></a>特殊资源访问方式：</h5><p><a href="https://developer.android.google.cn/guide/topics/resources/string-resource?hl=zh-cn">字符串资源</a></p>
+<p>定义字符串、字符串数组和复数形式（且包括字符串格式和样式设置）。<br>保存在 <code>res/values/</code> 中，可通过 <code>R.string</code>、<code>R.array</code> 和 <code>R.plurals</code> 类访问。</p>
+<p><a href="https://developer.android.google.cn/guide/topics/resources/style-resource?hl=zh-cn">样式资源</a></p>
+<p>定义界面元素的外观和格式。<br>保存在 <code>res/values/</code> 中，可通过 <code>R.style</code> 类访问。</p>
+<h4 id="代码中访问资源"><a href="#代码中访问资源" class="headerlink" title="代码中访问资源"></a>代码中访问资源</h4><h5 id="findViewById"><a href="#findViewById" class="headerlink" title="findViewById"></a>findViewById</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">ImageView</span> <span class="variable">imageView</span> <span class="operator">=</span> (ImageView) findViewById(R.id.myimageview);</span><br><span class="line">imageView.setImageResource(R.drawable.myimage);</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="Resource"><a href="#Resource" class="headerlink" title="Resource"></a>Resource</h5><figure class="highlight java"><table><tr><td class="code"><pre><span class="line">getWindow().setTitle(getResources().getText(R.string.main_title));</span><br><span class="line"><span class="comment">// R.string.main_title 返回的是一个资源ID，是一个int值，然后通过getResources()得到Resource对象，Resource调用getText方法（内置参数校验注解@StringRes，保证参数为资源ID）得到CharSequence接口，该接口是java中统一char类型访问的统一接口，之后通过setTitle设置window标题</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="在-XML-中访问资源"><a href="#在-XML-中访问资源" class="headerlink" title="在 XML 中访问资源"></a>在 XML 中访问资源</h4><h5 id="引用自己软件包中资源"><a href="#引用自己软件包中资源" class="headerlink" title="引用自己软件包中资源"></a>引用自己软件包中资源</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Button</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/submit&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="引用系统资源："><a href="#引用系统资源：" class="headerlink" title="引用系统资源："></a>引用系统资源：</h5><figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">EditText</span> <span class="attr">xmlns:android</span>=<span class="string">&quot;http://schemas.android.com/apk/res/android&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;fill_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:textColor</span>=<span class="string">&quot;@android:color/secondary_text_dark&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:text</span>=<span class="string">&quot;@string/hello&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id=""><a href="#" class="headerlink" title=""></a></h5><h5 id="访问原始文件"><a href="#访问原始文件" class="headerlink" title="访问原始文件"></a>访问原始文件</h5><p>尽管并不常见，但您可能会需要访问原始文件和目录。如果确有需要，将文件保存在 <code>res/</code> 中并没有用，因为从 <code>res/</code> 读取资源的唯一方法是使用资源 ID。您可以改为将资源保存在 <code>assets/</code> 目录中。</p>
+<p>保存在 <code>assets/</code> 目录中的文件没有资源 ID，因此您无法通过 <code>R</code> 类或在 XML 资源中引用它们。您可以改为采用类似常见文件系统的方式查询 <code>assets/</code> 目录中的文件，并利用 <code>AssetManager</code> 读取原始数据。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="type">InputStream</span> <span class="variable">inputStream</span> <span class="operator">=</span> assetManager.open(<span class="string">&quot;filename&quot;</span>);</span><br><span class="line"><span class="comment">// filename 默认是在assets目录下</span></span><br></pre></td></tr></table></figure>
+
+<p>不过，如果您只需要能够读取原始数据（例如视频文件或音频文件），则可将文件保存在 <code>res/raw/</code> 目录中，并利用 <code>openRawResource()</code> 读取字节流。</p>
+<h3 id="应用架构"><a href="#应用架构" class="headerlink" title="应用架构"></a>应用架构</h3><h4 id="界面层"><a href="#界面层" class="headerlink" title="界面层"></a>界面层</h4><h4 id="网域层"><a href="#网域层" class="headerlink" title="网域层"></a>网域层</h4><h4 id="数据层"><a href="#数据层" class="headerlink" title="数据层"></a>数据层</h4><h6 id="相关链接："><a href="#相关链接：" class="headerlink" title="相关链接："></a>相关链接：</h6><p><a href="https://developer.android.google.cn/guide/topics/resources/providing-resources?hl=zh-cn">应用资源概览  | Android 开发者  | Android Developers (google.cn)</a></p>
 ]]></content>
       <tags>
         <tag>Android</tag>
