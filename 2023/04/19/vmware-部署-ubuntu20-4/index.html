@@ -26,7 +26,7 @@
 
     <meta name="description" content="网络设置 编辑虚拟机设置 需要保证虚拟机为关机状态，否则无法编辑  网络设置为NAT模式    进入编辑中虚拟网络设置器，点击还原默认配置    但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接  完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vmware 部署 ubuntu20.4 关键点（持续补充中）">
+<meta property="og:title" content="vmware 部署 ubuntu20.04 关键点（持续补充中）">
 <meta property="og:url" content="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/index.html">
 <meta property="og:site_name" content="ReturnTmp">
 <meta property="og:description" content="网络设置 编辑虚拟机设置 需要保证虚拟机为关机状态，否则无法编辑  网络设置为NAT模式    进入编辑中虚拟网络设置器，点击还原默认配置    但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接  完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420102829615.png">
 <meta property="article:published_time" content="2023-04-19T08:17:04.000Z">
-<meta property="article:modified_time" content="2023-04-22T11:33:28.118Z">
+<meta property="article:modified_time" content="2023-04-23T02:36:30.503Z">
 <meta property="article:author" content="ReturnTmp">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -46,10 +46,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/","path":"2023/04/19/vmware-部署-ubuntu20-4/","title":"vmware 部署 ubuntu20.4 关键点（持续补充中）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/","path":"2023/04/19/vmware-部署-ubuntu20-4/","title":"vmware 部署 ubuntu20.04 关键点（持续补充中）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>vmware 部署 ubuntu20.4 关键点（持续补充中） | ReturnTmp</title>
+<title>vmware 部署 ubuntu20.04 关键点（持续补充中） | ReturnTmp</title>
   
 
 
@@ -256,12 +256,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="vmware 部署 ubuntu20.4 关键点（持续补充中） | ReturnTmp">
+      <meta itemprop="name" content="vmware 部署 ubuntu20.04 关键点（持续补充中） | ReturnTmp">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          vmware 部署 ubuntu20.4 关键点（持续补充中）
+          vmware 部署 ubuntu20.04 关键点（持续补充中）
         </h1>
 
         <div class="post-meta-container">
@@ -279,7 +279,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-22 19:33:28" itemprop="dateModified" datetime="2023-04-22T19:33:28+08:00">2023-04-22</time>
+      <time title="修改时间：2023-04-23 10:36:30" itemprop="dateModified" datetime="2023-04-23T10:36:30+08:00">2023-04-23</time>
     </span>
 
   
@@ -310,14 +310,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -337,6 +337,14 @@
 <p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png" alt="image-20230420093200219"></p>
 <p>但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/KRISNAT/article/details/124107032?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&utm_relevant_index=18">完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客</a></p>
+<p>之后卸载重装虚拟机和主机都可以ping通，但是重启之后使用<code>ifconfig</code>发现没有ens33网卡，需要重新配置并启动ens33，依次执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dhclient ens33 </span><br><span class="line">sudo ifconfig ens33</span><br></pre></td></tr></table></figure>
+
+<p>但是每次重启后ens33都需要重启（可能是因为我的vmwave安在外接磁盘中，断开即会使得网卡失效），因此需要写一个设置systemd开机自启动脚本</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create systemd service file</span></span><br><span class="line">sudo <span class="built_in">touch</span> /etc/systemd/system/dhclient.service</span><br><span class="line">sudo <span class="built_in">tee</span> /etc/systemd/system/dhclient.service &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=DHCP Client Service</span></span><br><span class="line"><span class="string">After=network.target</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">Type=simple</span></span><br><span class="line"><span class="string">ExecStart=/bin/bash -c &quot;sudo ifconfig ens33 up &amp;&amp; sudo dhclient ens33&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable and start dhclient service</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> dhclient.service</span><br><span class="line">sudo systemctl start dhclient.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print success message</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;dhclient service enabled and started with systemd&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <h4 id="全屏设置"><a href="#全屏设置" class="headerlink" title="全屏设置"></a>全屏设置</h4><p>执行<code>sudo apt-get install open-vm-tools</code></p>
 <h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><h5 id="图形化界面"><a href="#图形化界面" class="headerlink" title="图形化界面"></a>图形化界面</h5><p>相关链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45484297/article/details/103005370">Ubuntu18图形界面换源</a></p>
 <h5 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h5><p>清华镜像仓库及指南（挑选适配自己版本的进行配置）：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
@@ -411,7 +419,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/" title="vmware 部署 ubuntu20.4 关键点（持续补充中）">https://returntmp.github.io/2023/04/19/vmware-部署-ubuntu20-4/</a>
+      <a href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/" title="vmware 部署 ubuntu20.04 关键点（持续补充中）">https://returntmp.github.io/2023/04/19/vmware-部署-ubuntu20-4/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -470,7 +478,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">16 分钟</span>
+    <span title="站点阅读时长">17 分钟</span>
   </span>
 </div>
 <div class="busuanzi-count">

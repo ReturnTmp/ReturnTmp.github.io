@@ -6,7 +6,7 @@
   <link href="https://returntmp.github.io/atom.xml" rel="self"/>
   
   <link href="https://returntmp.github.io/"/>
-  <updated>2023-04-22T11:33:28.118Z</updated>
+  <updated>2023-04-23T02:36:30.503Z</updated>
   <id>https://returntmp.github.io/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>vmware 部署 ubuntu20.4 关键点（持续补充中）</title>
+    <title>vmware 部署 ubuntu20.04 关键点（持续补充中）</title>
     <link href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/"/>
     <id>https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</id>
     <published>2023-04-19T08:17:04.000Z</published>
-    <updated>2023-04-22T11:33:28.118Z</updated>
+    <updated>2023-04-23T02:36:30.503Z</updated>
     
     
     <summary type="html">网络设置
@@ -40,15 +40,9 @@
 
 完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客
 
-全屏设置
-执行sudo apt-get install open-vm-tools
+之后卸载重装虚拟机和主机都可以ping通，但是重启之后使用ifconfig发现没有ens33网卡，需要重新配置并启动ens33，依次执行：
 
-换源
-图形化界面
-相关链接：Ubuntu18图形界面换源
-
-命令行方式
-清</summary>
+sudo dhcl</summary>
     
     
     
