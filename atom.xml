@@ -6,7 +6,7 @@
   <link href="https://returntmp.github.io/atom.xml" rel="self"/>
   
   <link href="https://returntmp.github.io/"/>
-  <updated>2023-04-23T02:36:30.503Z</updated>
+  <updated>2023-05-11T12:01:09.400Z</updated>
   <id>https://returntmp.github.io/</id>
   
   <author>
@@ -17,37 +17,78 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>vmware 部署 ubuntu20.04 关键点（持续补充中）</title>
+    <title>Neovim 配置教程</title>
+    <link href="https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"/>
+    <id>https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</id>
+    <published>2023-05-01T08:40:14.000Z</published>
+    <updated>2023-05-11T12:01:09.400Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;环境：Ubuntu 20.04 &lt;/p&gt;
+&lt;p&gt;宿主机：windows （windows terminal）WSL2&lt;/p&gt;
+&lt;p&gt;NVIM：v0.10.0-dev&lt;/p&gt;
+&lt;p&gt;配置Neovim 需要保证流畅的github环境（以便于快速拉取插件），可以使用代理或是配置Github SSH key&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+    <category term="vim" scheme="https://returntmp.github.io/tags/vim/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 杂谈（Ubuntu）</title>
+    <link href="https://returntmp.github.io/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/"/>
+    <id>https://returntmp.github.io/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/</id>
+    <published>2023-04-24T06:50:54.000Z</published>
+    <updated>2023-05-11T12:00:10.263Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;linux 学习笔记 :）&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+    <category term="Linux" scheme="https://returntmp.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VMware 部署 ubuntu 关键点（持续补充中）</title>
     <link href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/"/>
     <id>https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</id>
     <published>2023-04-19T08:17:04.000Z</published>
-    <updated>2023-04-23T02:36:30.503Z</updated>
+    <updated>2023-05-11T13:11:58.815Z</updated>
     
     
-    <summary type="html">网络设置
-编辑虚拟机设置
-需要保证虚拟机为关机状态，否则无法编辑
-
-网络设置为NAT模式
-
-
-
-进入编辑中虚拟网络设置器，点击还原默认配置
-
-
-
-但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接
-
-完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客
-
-之后卸载重装虚拟机和主机都可以ping通，但是重启之后使用ifconfig发现没有ens33网卡，需要重新配置并启动ens33，依次执行：
-
-sudo dhcl</summary>
+    <summary type="html">&lt;div
+  style=&quot;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+  &quot;
+&gt;
+  &lt;div style=&quot;height: 100px; width: 200px&quot;&gt;
+    &lt;img
+      src=&quot;https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230511210038935.png&quot;
+      style=&quot;width: 100%; height: 100%&quot;
+    /&gt;
+  &lt;/div&gt;
+  &lt;div style=&quot;margin-left: 20px; margin-top: 5px; line-height: 10px&quot;&gt;
+    &lt;p&gt;本文主要是记录博主在使用配置VMware配置ubuntu20.04虚拟机中的关键点&lt;/p&gt;
+    &lt;p&gt;注意：本文不是零基础配置虚拟机的教程&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</summary>
     
     
     
     
-    <category term="linux" scheme="https://returntmp.github.io/tags/linux/"/>
+    <category term="Linux" scheme="https://returntmp.github.io/tags/Linux/"/>
     
   </entry>
   
@@ -56,25 +97,13 @@ sudo dhcl</summary>
     <link href="https://returntmp.github.io/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/"/>
     <id>https://returntmp.github.io/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</id>
     <published>2023-04-07T13:21:20.000Z</published>
-    <updated>2023-04-07T15:35:31.281Z</updated>
+    <updated>2023-05-11T12:03:20.925Z</updated>
     
     
-    <summary type="html">Android 配置 Jetpack Compose 环境
-记录配置Jetpack Compose环境的一些坑~
-
-直接创建kotlin项目或创建java项目后再配置均可
-
-根目录 build.gradle
-配置kotlin环境构建脚本
-buildscript {
-    ext.kotlin_version = &#39;1.4.32&#39;
-    dependencies {
-        classpath &quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;
-    }
-}
-
-
-注意：里面的kotlin版本需要和自己的 gradl</summary>
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;记录配置Jetpack Compose环境的一些坑~&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;直接创建kotlin项目或创建java项目后再配置均可&lt;/p&gt;</summary>
     
     
     
@@ -88,26 +117,12 @@ buildscript {
     <link href="https://returntmp.github.io/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>https://returntmp.github.io/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2023-04-04T04:53:12.000Z</published>
-    <updated>2023-04-07T01:16:28.395Z</updated>
+    <updated>2023-05-11T11:58:40.791Z</updated>
     
     
-    <summary type="html">本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~
-
-应用资源概览
-资源是指代码使用的附加文件和静态内容，例如位图、布局定义、界面字符串、动画说明等。将应用资源分离之后，您便可使用在项目的 R 类中生成的资源 ID 对其进行访问。
-
-分组资源类型
-常见分组类型：
-
-MyProject/
-    src/
-        MyActivity.java
-    res/
-        drawable/
-            graphic.png
-        layout/
-            main.xml
-            info.x</summary>
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     
@@ -121,20 +136,12 @@ MyProject/
     <link href="https://returntmp.github.io/2023/04/04/Android-Webview/"/>
     <id>https://returntmp.github.io/2023/04/04/Android-Webview/</id>
     <published>2023-04-04T02:41:26.000Z</published>
-    <updated>2023-04-05T13:30:27.130Z</updated>
+    <updated>2023-05-11T11:58:33.682Z</updated>
     
     
-    <summary type="html">前言
-我们团队有一个Electron桌面应用需要我移植到安卓应用中，分析之后我觉得本身桌面应用基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓模块替换electron模块
-
-介绍
-Android WebView组件是一个成熟的浏览器，作为子类实现，以将其嵌入到我们的Android应用程序中。
-
-layout xml嵌入方式
-&lt;WebView
-        android:id=&quot;@+id/webview&quot;
-        android:layout_alignParentTop=&quot;true&quot;
-        android:lay</summary>
+    <summary type="html">&lt;h4 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;我们团队有一个Electron桌面应用需要我移植到安卓应用中，分析之后我觉得本身桌面应用基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓模块替换electron模块&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     

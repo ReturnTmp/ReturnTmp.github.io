@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -15,14 +16,14 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta property="og:type" content="website">
 <meta property="og:title" content="ReturnTmp">
@@ -159,13 +160,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -232,6 +233,241 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.jpg">
+      <meta itemprop="name" content="ReturnTmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ReturnTmp">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | ReturnTmp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Neovim 配置教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-01 16:40:14" itemprop="dateCreated datePublished" datetime="2023-05-01T16:40:14+08:00">2023-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-11 20:01:09" itemprop="dateModified" datetime="2023-05-11T20:01:09+08:00">2023-05-11</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论数：</span>
+  
+    <a title="waline" href="/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>29k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>48 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>环境：Ubuntu 20.04 </p>
+<p>宿主机：windows （windows terminal）WSL2</p>
+<p>NVIM：v0.10.0-dev</p>
+<p>配置Neovim 需要保证流畅的github环境（以便于快速拉取插件），可以使用代理或是配置Github SSH key</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://returntmp.github.io/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.jpg">
+      <meta itemprop="name" content="ReturnTmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ReturnTmp">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | ReturnTmp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/" class="post-title-link" itemprop="url">Linux 杂谈（Ubuntu）</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-24 14:50:54" itemprop="dateCreated datePublished" datetime="2023-04-24T14:50:54+08:00">2023-04-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-11 20:00:10" itemprop="dateModified" datetime="2023-05-11T20:00:10+08:00">2023-05-11</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论数：</span>
+  
+    <a title="waline" href="/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>628</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>linux 学习笔记 :）</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      
+
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -250,7 +486,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/" class="post-title-link" itemprop="url">vmware 部署 ubuntu20.04 关键点（持续补充中）</a>
+          <a href="/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/" class="post-title-link" itemprop="url">VMware 部署 ubuntu 关键点（持续补充中）</a>
         </h2>
 
         <div class="post-meta-container">
@@ -268,7 +504,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-23 10:36:30" itemprop="dateModified" datetime="2023-04-23T10:36:30+08:00">2023-04-23</time>
+      <time title="修改时间：2023-05-11 21:11:58" itemprop="dateModified" datetime="2023-05-11T21:11:58+08:00">2023-05-11</time>
     </span>
 
   
@@ -292,14 +528,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
+      <span>2.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -310,25 +546,25 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          网络设置
-编辑虚拟机设置
-需要保证虚拟机为关机状态，否则无法编辑
-
-网络设置为NAT模式
-
-
-
-进入编辑中虚拟网络设置器，点击还原默认配置
-
-
-
-但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接
-
-完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客
-
-之后卸载重装虚拟机和主机都可以ping通，但是重启之后使用ifconfig发现没有ens33网卡，需要重新配置并启动ens33，依次执行：
-
-sudo dhcl
+          <div
+  style="
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+  "
+>
+  <div style="height: 100px; width: 200px">
+    <img
+      src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230511210038935.png"
+      style="width: 100%; height: 100%"
+    />
+  </div>
+  <div style="margin-left: 20px; margin-top: 5px; line-height: 10px">
+    <p>本文主要是记录博主在使用配置VMware配置ubuntu20.04虚拟机中的关键点</p>
+    <p>注意：本文不是零基础配置虚拟机的教程</p>
+  </div>
+</div>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/#more" rel="contents">
@@ -392,9 +628,15 @@ sudo dhcl
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-04-07 21:21:20 / 修改时间：23:35:31" itemprop="dateCreated datePublished" datetime="2023-04-07T21:21:20+08:00">2023-04-07</time>
+      <time title="创建时间：2023-04-07 21:21:20" itemprop="dateCreated datePublished" datetime="2023-04-07T21:21:20+08:00">2023-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-05-11 20:03:20" itemprop="dateModified" datetime="2023-05-11T20:03:20+08:00">2023-05-11</time>
     </span>
 
   
@@ -436,22 +678,10 @@ sudo dhcl
     
     
     <div class="post-body" itemprop="articleBody">
-          Android 配置 Jetpack Compose 环境
-记录配置Jetpack Compose环境的一些坑~
-
-直接创建kotlin项目或创建java项目后再配置均可
-
-根目录 build.gradle
-配置kotlin环境构建脚本
-buildscript {
-    ext.kotlin_version = '1.4.32'
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-
-注意：里面的kotlin版本需要和自己的 gradl
+          <blockquote>
+<p>记录配置Jetpack Compose环境的一些坑~</p>
+</blockquote>
+<p>直接创建kotlin项目或创建java项目后再配置均可</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/#more" rel="contents">
@@ -523,7 +753,7 @@ buildscript {
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-07 09:16:28" itemprop="dateModified" datetime="2023-04-07T09:16:28+08:00">2023-04-07</time>
+      <time title="修改时间：2023-05-11 19:58:40" itemprop="dateModified" datetime="2023-05-11T19:58:40+08:00">2023-05-11</time>
     </span>
 
   
@@ -565,23 +795,9 @@ buildscript {
     
     
     <div class="post-body" itemprop="articleBody">
-          本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~
-
-应用资源概览
-资源是指代码使用的附加文件和静态内容，例如位图、布局定义、界面字符串、动画说明等。将应用资源分离之后，您便可使用在项目的 R 类中生成的资源 ID 对其进行访问。
-
-分组资源类型
-常见分组类型：
-
-MyProject/
-    src/
-        MyActivity.java
-    res/
-        drawable/
-            graphic.png
-        layout/
-            main.xml
-            info.x
+          <blockquote>
+<p>本文需要有一定开发基础，对纯小白并不友好，仅作个人学习笔记，配置环境及安装应用省略~</p>
+</blockquote>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/04/Android%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#more" rel="contents">
@@ -653,7 +869,7 @@ MyProject/
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-05 21:30:27" itemprop="dateModified" datetime="2023-04-05T21:30:27+08:00">2023-04-05</time>
+      <time title="修改时间：2023-05-11 19:58:33" itemprop="dateModified" datetime="2023-05-11T19:58:33+08:00">2023-05-11</time>
     </span>
 
   
@@ -695,17 +911,9 @@ MyProject/
     
     
     <div class="post-body" itemprop="articleBody">
-          前言
-我们团队有一个Electron桌面应用需要我移植到安卓应用中，分析之后我觉得本身桌面应用基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓模块替换electron模块
-
-介绍
-Android WebView组件是一个成熟的浏览器，作为子类实现，以将其嵌入到我们的Android应用程序中。
-
-layout xml嵌入方式
-<WebView
-        android:id="@+id/webview"
-        android:layout_alignParentTop="true"
-        android:lay
+          <h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><blockquote>
+<p>我们团队有一个Electron桌面应用需要我移植到安卓应用中，分析之后我觉得本身桌面应用基本没有采用复杂框架，同时electron的原生模块并不多，所以选用直接内嵌webview，同时使用原生安卓模块替换electron模块</p>
+</blockquote>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2023/04/04/Android-Webview/#more" rel="contents">
@@ -754,13 +962,13 @@ layout xml嵌入方式
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">41k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">17 分钟</span>
+    <span title="站点阅读时长">1:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -786,6 +994,7 @@ layout xml嵌入方式
   </footer>
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>

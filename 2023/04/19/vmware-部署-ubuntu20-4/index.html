@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
 
 
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
@@ -15,29 +16,31 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/themes/blue/pace-theme-minimal.css">
   <script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="网络设置 编辑虚拟机设置 需要保证虚拟机为关机状态，否则无法编辑  网络设置为NAT模式    进入编辑中虚拟网络设置器，点击还原默认配置    但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接  完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟">
+    <meta name="description" content="本文主要是记录博主在使用配置VMware配置ubuntu20.04虚拟机中的关键点     注意：本文不是零基础配置虚拟机的教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vmware 部署 ubuntu20.04 关键点（持续补充中）">
+<meta property="og:title" content="VMware 部署 ubuntu 关键点（持续补充中）">
 <meta property="og:url" content="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/index.html">
 <meta property="og:site_name" content="ReturnTmp">
-<meta property="og:description" content="网络设置 编辑虚拟机设置 需要保证虚拟机为关机状态，否则无法编辑  网络设置为NAT模式    进入编辑中虚拟网络设置器，点击还原默认配置    但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接  完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟">
+<meta property="og:description" content="本文主要是记录博主在使用配置VMware配置ubuntu20.04虚拟机中的关键点     注意：本文不是零基础配置虚拟机的教程">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230419164139586.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420102829615.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230425161010662.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230424173759423.png">
 <meta property="article:published_time" content="2023-04-19T08:17:04.000Z">
-<meta property="article:modified_time" content="2023-04-23T02:36:30.503Z">
+<meta property="article:modified_time" content="2023-05-11T13:11:58.815Z">
 <meta property="article:author" content="ReturnTmp">
-<meta property="article:tag" content="linux">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230419164139586.png">
 
@@ -46,10 +49,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/","path":"2023/04/19/vmware-部署-ubuntu20-4/","title":"vmware 部署 ubuntu20.04 关键点（持续补充中）"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/","path":"2023/04/19/vmware-部署-ubuntu20-4/","title":"VMware 部署 ubuntu 关键点（持续补充中）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>vmware 部署 ubuntu20.04 关键点（持续补充中） | ReturnTmp</title>
+<title>VMware 部署 ubuntu 关键点（持续补充中） | ReturnTmp</title>
   
 
 
@@ -154,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">网络设置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">编辑虚拟机设置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">全屏设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%A2%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">换源</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2"><span class="nav-number">3.1.</span> <span class="nav-text">图形化界面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">命令行方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-SSH"><span class="nav-number">4.</span> <span class="nav-text">配置 SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">重置密码</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">网络设置</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">编辑虚拟机设置</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%8F%E8%AE%BE%E7%BD%AE"><span class="nav-number">2.</span> <span class="nav-text">全屏设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%A2%E6%BA%90"><span class="nav-number">3.</span> <span class="nav-text">换源</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E5%8C%96%E7%95%8C%E9%9D%A2"><span class="nav-number">3.1.</span> <span class="nav-text">图形化界面</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E6%96%B9%E5%BC%8F"><span class="nav-number">3.2.</span> <span class="nav-text">命令行方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-SSH"><span class="nav-number">4.</span> <span class="nav-text">配置 SSH</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E7%BD%AE%E5%AF%86%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">重置密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VMware-%E5%85%B3%E9%97%AD%E8%87%AA%E5%8A%A8%E7%86%84%E5%B1%8F"><span class="nav-number">6.</span> <span class="nav-text">VMware 关闭自动熄屏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEMiniconda%E7%8E%AF%E5%A2%83"><span class="nav-number">7.</span> <span class="nav-text">配置Miniconda环境</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%AE%98%E7%BD%91%EF%BC%9AMiniconda-%E2%80%94-conda-documentation"><span class="nav-number">7.0.1.</span> <span class="nav-text">官网：Miniconda — conda documentation</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E5%9B%BD%E5%86%85%E6%B8%85%E5%8D%8E%E6%BA%90"><span class="nav-number">7.0.2.</span> <span class="nav-text">切换国内清华源</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E9%BB%98%E8%AE%A4%E6%BA%90%EF%BC%9Aconda-config-remove-key-channels"><span class="nav-number">7.0.3.</span> <span class="nav-text">切换默认源：conda config --remove-key channels</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#pip-%E6%8D%A2%E6%BA%90"><span class="nav-number">7.0.4.</span> <span class="nav-text">pip 换源</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4%E5%AE%98%E6%96%B9%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3%EF%BC%9AGetting-started-with-conda-%E2%80%94-conda-0-0-0-dev0-placeholder-documentation"><span class="nav-number">7.0.5.</span> <span class="nav-text">常见命令官方使用文档：Getting started with conda — conda 0.0.0.dev0+placeholder documentation</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WSL-%E5%AE%89%E8%A3%85%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">WSL 安装问题</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#raw-githubusercontent-com-%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%EF%BC%9A%E8%A7%A3%E5%86%B3raw-githubusercontent-com%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98-%E5%93%87%E5%92%94%E5%90%9Bi%E7%9A%84%E5%8D%9A%E5%AE%A2-CSDN%E5%8D%9A%E5%AE%A2"><span class="nav-number">8.0.1.</span> <span class="nav-text">raw.githubusercontent.com 无法访问：解决raw.githubusercontent.com无法访问的问题_哇咔君i的博客-CSDN博客</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -169,13 +172,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -256,12 +259,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="vmware 部署 ubuntu20.04 关键点（持续补充中） | ReturnTmp">
+      <meta itemprop="name" content="VMware 部署 ubuntu 关键点（持续补充中） | ReturnTmp">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          vmware 部署 ubuntu20.04 关键点（持续补充中）
+          VMware 部署 ubuntu 关键点（持续补充中）
         </h1>
 
         <div class="post-meta-container">
@@ -279,7 +282,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-04-23 10:36:30" itemprop="dateModified" datetime="2023-04-23T10:36:30+08:00">2023-04-23</time>
+      <time title="修改时间：2023-05-11 21:11:58" itemprop="dateModified" datetime="2023-05-11T21:11:58+08:00">2023-05-11</time>
     </span>
 
   
@@ -310,14 +313,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
+      <span>2.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -328,7 +331,35 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><h5 id="编辑虚拟机设置"><a href="#编辑虚拟机设置" class="headerlink" title="编辑虚拟机设置"></a>编辑虚拟机设置</h5><blockquote>
+        <div
+  style="
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+  "
+>
+  <div style="height: 100px; width: 200px">
+    <img
+      src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230511210038935.png"
+      style="width: 100%; height: 100%"
+    />
+  </div>
+  <div style="margin-left: 20px; margin-top: 5px; line-height: 10px">
+    <p>本文主要是记录博主在使用配置VMware配置ubuntu20.04虚拟机中的关键点</p>
+    <p>注意：本文不是零基础配置虚拟机的教程</p>
+  </div>
+</div>
+
+
+
+
+
+
+
+<span id="more"></span>
+
+<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><h5 id="编辑虚拟机设置"><a href="#编辑虚拟机设置" class="headerlink" title="编辑虚拟机设置"></a>编辑虚拟机设置</h5><blockquote>
 <p>需要保证虚拟机为关机状态，否则无法编辑</p>
 </blockquote>
 <p>网络设置为NAT模式</p>
@@ -340,8 +371,16 @@
 <p>之后卸载重装虚拟机和主机都可以ping通，但是重启之后使用<code>ifconfig</code>发现没有ens33网卡，需要重新配置并启动ens33，依次执行：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dhclient ens33 </span><br><span class="line">sudo ifconfig ens33</span><br></pre></td></tr></table></figure>
 
-<p>但是每次重启后ens33都需要重启（可能是因为我的vmwave安在外接磁盘中，断开即会使得网卡失效），因此需要写一个设置systemd开机自启动脚本</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create systemd service file</span></span><br><span class="line">sudo <span class="built_in">touch</span> /etc/systemd/system/dhclient.service</span><br><span class="line">sudo <span class="built_in">tee</span> /etc/systemd/system/dhclient.service &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[Unit]</span></span><br><span class="line"><span class="string">Description=DHCP Client Service</span></span><br><span class="line"><span class="string">After=network.target</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Service]</span></span><br><span class="line"><span class="string">Type=simple</span></span><br><span class="line"><span class="string">ExecStart=/bin/bash -c &quot;sudo ifconfig ens33 up &amp;&amp; sudo dhclient ens33&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">[Install]</span></span><br><span class="line"><span class="string">WantedBy=multi-user.target</span></span><br><span class="line"><span class="string">EOF</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable and start dhclient service</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> dhclient.service</span><br><span class="line">sudo systemctl start dhclient.service</span><br><span class="line"></span><br><span class="line"><span class="comment"># Print success message</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;dhclient service enabled and started with systemd&quot;</span></span><br></pre></td></tr></table></figure>
+<p>但是每次重启后ens33都需要重启（可能是因为我的vmwave安在外接磁盘中，断开即会使得网卡失效），因此需要写一个设置脚本，并设置开机自启动</p>
+<p><code>cd /etc/init.d/ &amp;&amp; touch initens33.sh &amp;&amp; chmod +x initens33.sh &amp;&amp; vim initens33.sh </code>添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">sudo dhclient ens33</span><br><span class="line">sudo ifconfig ens33</span><br></pre></td></tr></table></figure>
+
+<p><code>vim /etc/rc.local</code>添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/etc/init.d/initens33.sh</span><br></pre></td></tr></table></figure>
+
+
+
+
 
 
 
@@ -371,7 +410,26 @@
 <p>注意：最后需要执行<code>sudo systemctl restart ssh</code>重启才能使配置修改生效</p>
 </blockquote>
 <p><em>现在即可使用root用户进行远程ssh密码登录</em></p>
+<h4 id="VMware-关闭自动熄屏"><a href="#VMware-关闭自动熄屏" class="headerlink" title="VMware 关闭自动熄屏"></a>VMware 关闭自动熄屏</h4><p>相关文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cuichongxin/article/details/108377721">vmwareworkstation的linux虚拟机关闭屏保【自动锁屏】</a></p>
+<h4 id="配置Miniconda环境"><a href="#配置Miniconda环境" class="headerlink" title="配置Miniconda环境"></a>配置Miniconda环境</h4><h6 id="官网：Miniconda-—-conda-documentation"><a href="#官网：Miniconda-—-conda-documentation" class="headerlink" title="官网：Miniconda — conda documentation"></a>官网：<a target="_blank" rel="noopener" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda — conda documentation</a></h6><p>下载安装脚本后执行<code>bash Miniconda3-latest-Linux-x86_64.sh</code>一直回车（遇到more可以使用空格翻页），遇到输入yes or no 输入yes回车</p>
+<h6 id="切换国内清华源"><a href="#切换国内清华源" class="headerlink" title="切换国内清华源"></a>切换国内清华源</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge </span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</span><br></pre></td></tr></table></figure>
 
+<h6 id="切换默认源：conda-config-remove-key-channels"><a href="#切换默认源：conda-config-remove-key-channels" class="headerlink" title="切换默认源：conda config --remove-key channels"></a>切换默认源：<code>conda config --remove-key channels</code></h6><h6 id="pip-换源"><a href="#pip-换源" class="headerlink" title="pip 换源"></a>pip 换源</h6><p>临时：<code>pip install ***  -i https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<p>永久：<code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230425161010662.png" alt="image-20230425161010662"></p>
+<p>最后执行<code>source .bashrc</code>激活环境</p>
+<p>这里讲下ubuntu中的环境变量配置，我们从miniconda的安装过程中可以看到环境变量配置到了<code>~/.bashrc</code>中</p>
+<ol>
+<li><code>~/.bashrc</code> 文件中，这个文件用于每次开启新的 Terminal 时被读取，可以将环境变量添加到末尾；</li>
+<li><code>~/.profile</code> 文件中，在登录系统时被读取，可以将环境变量添加到末尾；</li>
+<li><code>/etc/profile</code> 文件中，系统级环境变量可以将环境变量添加到末尾。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230424173759423.png" alt="image-20230424173759423"></p>
+<h6 id="常见命令官方使用文档：Getting-started-with-conda-—-conda-0-0-0-dev0-placeholder-documentation"><a href="#常见命令官方使用文档：Getting-started-with-conda-—-conda-0-0-0-dev0-placeholder-documentation" class="headerlink" title="常见命令官方使用文档：Getting started with conda — conda 0.0.0.dev0+placeholder documentation"></a>常见命令官方使用文档：<a target="_blank" rel="noopener" href="https://conda.io/projects/conda/en/latest/user-guide/getting-started.html">Getting started with conda — conda 0.0.0.dev0+placeholder documentation</a></h6><blockquote>
+<p>由于博主是因为实验中必须使用图形界面所以必须在vmware中配置，如果只是使用终端则推荐使用wsl</p>
+<p>官方教程及安装指南：<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands">WSL 的基本命令 | Microsoft Learn</a></p>
+</blockquote>
+<h4 id="WSL-安装问题"><a href="#WSL-安装问题" class="headerlink" title="WSL 安装问题"></a>WSL 安装问题</h4><h6 id="raw-githubusercontent-com-无法访问：解决raw-githubusercontent-com无法访问的问题-哇咔君i的博客-CSDN博客"><a href="#raw-githubusercontent-com-无法访问：解决raw-githubusercontent-com无法访问的问题-哇咔君i的博客-CSDN博客" class="headerlink" title="raw.githubusercontent.com 无法访问：解决raw.githubusercontent.com无法访问的问题_哇咔君i的博客-CSDN博客"></a>raw.githubusercontent.com 无法访问：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44293949/article/details/121863559">解决raw.githubusercontent.com无法访问的问题_哇咔君i的博客-CSDN博客</a></h6>
     </div>
 
     
@@ -419,7 +477,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/" title="vmware 部署 ubuntu20.04 关键点（持续补充中）">https://returntmp.github.io/2023/04/19/vmware-部署-ubuntu20-4/</a>
+      <a href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/" title="VMware 部署 ubuntu 关键点（持续补充中）">https://returntmp.github.io/2023/04/19/vmware-部署-ubuntu20-4/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -428,7 +486,7 @@
 </div>
 
           <div class="post-tags">
-              <a href="/tags/linux/" rel="tag"><i class="fa fa-tag"></i> linux</a>
+              <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
           </div>
 
         
@@ -440,6 +498,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/" rel="next" title="Linux 杂谈（Ubuntu）">
+                  Linux 杂谈（Ubuntu） <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -472,13 +533,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">10k</span>
+    <span title="站点总字数">41k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">17 分钟</span>
+    <span title="站点阅读时长">1:08</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -504,6 +565,7 @@
   </footer>
 
   
+  <script size="300" alpha="0.6" zIndex="-1" src="https://cdn.jsdelivr.net/npm/ribbon.js@1.0.2/dist/ribbon.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
 <script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
