@@ -356,7 +356,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">require(<span class="string">&quot;nvim-tree&quot;</span>).setup(&#123;</span><br><span class="line">  ...</span><br><span class="line">  on_attach = on_attach,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
 <p>问题解决~</p>
-<h4 id="顶部标签页和底部信息栏"><a href="#顶部标签页和底部信息栏" class="headerlink" title="顶部标签页和底部信息栏"></a>顶部标签页和底部信息栏</h4><p>相关插件：</p>
+<h3 id="顶部标签页和底部信息栏"><a href="#顶部标签页和底部信息栏" class="headerlink" title="顶部标签页和底部信息栏"></a>顶部标签页和底部信息栏</h3><p>相关插件：</p>
 <ul>
 <li><a href="https://github.com/akinsho/bufferline.nvim">akinsho&#x2F;bufferline.nvim: A snazzy bufferline for Neovim (github.com)</a></li>
 <li><a href="https://github.com/nvim-lualine/lualine.nvim">nvim-lualine&#x2F;lualine.nvim: A blazing fast and easy to configure neovim statusline plugin written in pure lua. (github.com)</a></li>
@@ -396,7 +396,7 @@
 
 
 
-<h4 id="模糊搜索快速查找文件"><a href="#模糊搜索快速查找文件" class="headerlink" title="模糊搜索快速查找文件"></a>模糊搜索快速查找文件</h4><p>相关插件：<a href="https://github.com/nvim-telescope/telescope.nvim">nvim-telescope&#x2F;telescope.nvim: Find, Filter, Preview, Pick. All lua, all the time. (github.com)</a> 	</p>
+<h3 id="模糊搜索快速查找文件"><a href="#模糊搜索快速查找文件" class="headerlink" title="模糊搜索快速查找文件"></a>模糊搜索快速查找文件</h3><p>相关插件：<a href="https://github.com/nvim-telescope/telescope.nvim">nvim-telescope&#x2F;telescope.nvim: Find, Filter, Preview, Pick. All lua, all the time. (github.com)</a> 	</p>
 <p><code>lua/plugins.lua</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-- telescope （新增）</span><br><span class="line">use &#123; <span class="string">&#x27;nvim-telescope/telescope.nvim&#x27;</span>, requires = &#123; <span class="string">&quot;nvim-lua/plenary.nvim&quot;</span> &#125; &#125;</span><br></pre></td></tr></table></figure>
 
@@ -456,7 +456,7 @@
 
 
 
-<h4 id="自定义启动页与项目列表"><a href="#自定义启动页与项目列表" class="headerlink" title="自定义启动页与项目列表"></a>自定义启动页与项目列表</h4><p>当我们在命令行中输入 <code>nvim</code> 不带任何路径并敲击回车的时候，就会打开这个界面，通常我们会在这个界面中配置最常用功能，比如打开最近编辑过的文件，快速打开项目文件夹，快速修改快捷键等。</p>
+<h3 id="自定义启动页与项目列表"><a href="#自定义启动页与项目列表" class="headerlink" title="自定义启动页与项目列表"></a>自定义启动页与项目列表</h3><p>当我们在命令行中输入 <code>nvim</code> 不带任何路径并敲击回车的时候，就会打开这个界面，通常我们会在这个界面中配置最常用功能，比如打开最近编辑过的文件，快速打开项目文件夹，快速修改快捷键等。</p>
 <p>使用官方配置的图像：	<a href="https://github.com/nvimdev/dashboard-nvim/wiki/Ascii-Header-Text">Ascii Header Text · nvimdev&#x2F;dashboard-nvim Wiki (github.com)</a></p>
 <p>使用字体生成器：[Text to ASCII Art Generator (TAAG) (patorjk.com)](<a href="http://patorjk.com/software/taag/#p=display&f=ANSI">http://patorjk.com/software/taag/#p=display&amp;f=ANSI</a> Shadow&amp;t&#x3D;rettmp)</p>
 <p>同样 plugins.lua 中添加：</p>
@@ -488,7 +488,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/root/.config/nvim</span><br></pre></td></tr></table></figure>
 
 <p>以后的话可以方便编写nvim项目配置 :)</p>
-<h4 id="语法高亮安装及配置"><a href="#语法高亮安装及配置" class="headerlink" title="语法高亮安装及配置"></a>语法高亮安装及配置</h4><p>相关插件：<a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter&#x2F;nvim-treesitter: Nvim Treesitter configurations and abstraction layer (github.com)</a></p>
+<h3 id="语法高亮安装及配置"><a href="#语法高亮安装及配置" class="headerlink" title="语法高亮安装及配置"></a>语法高亮安装及配置</h3><p>相关插件：<a href="https://github.com/nvim-treesitter/nvim-treesitter">nvim-treesitter&#x2F;nvim-treesitter: Nvim Treesitter configurations and abstraction layer (github.com)</a></p>
 <p>添加插件</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-- treesitter （新增）</span><br><span class="line">use(&#123; <span class="string">&quot;nvim-treesitter/nvim-treesitter&quot;</span>, run = <span class="string">&quot;:TSUpdate&quot;</span> &#125;)</span><br></pre></td></tr></table></figure>
 
@@ -528,7 +528,7 @@
 
 <p>执行<code>:TSModuleInfo</code>查看是否成功</p>
 <p>如果出现问题先执行<code>TSUpdate</code>看是否可以解决，无法解决查看官方issues或wiki</p>
-<h4 id="LSP-基础配置"><a href="#LSP-基础配置" class="headerlink" title="LSP 基础配置"></a>LSP 基础配置</h4><p>目的：实现类似IDE的智能提示、语法检查和解析、悬停文档等交互体验</p>
+<h3 id="LSP-基础配置"><a href="#LSP-基础配置" class="headerlink" title="LSP 基础配置"></a>LSP 基础配置</h3><p>目的：实现类似IDE的智能提示、语法检查和解析、悬停文档等交互体验</p>
 <p>定义：<strong>LSP</strong>(Language Server Protocol) 语言服务协议，该协议定义了在编辑器或IDE与语言服务器之间使用的协议，该语言服务器提供了例如自动补全，转到定义，查找所有引用等的功能；语言服务器索引格式的目标是支持在开发工具中进行丰富的代码导航或者一个无需本地源码副本的WebUI。</p>
 <h5 id="开启-neovim-内置LSP"><a href="#开启-neovim-内置LSP" class="headerlink" title="开启 neovim 内置LSP"></a>开启 neovim 内置LSP</h5><p>执行<code>:h lsp</code>查看quick start，里面的步骤如下</p>
 <ul>
@@ -596,7 +596,7 @@
 <blockquote>
 <p>这里记录下：使用:verbose map可以查看所有生效的快捷键</p>
 </blockquote>
-<h4 id="基于-LSP-代码补全及自定义代码段"><a href="#基于-LSP-代码补全及自定义代码段" class="headerlink" title="基于 LSP 代码补全及自定义代码段"></a>基于 LSP 代码补全及自定义代码段</h4><h5 id="相关插件：hrsh7th-x2F-nvim-cmp-A-completion-plugin-for-neovim-coded-in-Lua-github-com"><a href="#相关插件：hrsh7th-x2F-nvim-cmp-A-completion-plugin-for-neovim-coded-in-Lua-github-com" class="headerlink" title="相关插件：hrsh7th&#x2F;nvim-cmp: A completion plugin for neovim coded in Lua. (github.com)"></a>相关插件：<a href="https://github.com/hrsh7th/nvim-cmp">hrsh7th&#x2F;nvim-cmp: A completion plugin for neovim coded in Lua. (github.com)</a></h5><h5 id="相关概念："><a href="#相关概念：" class="headerlink" title="相关概念："></a>相关概念：</h5><ol>
+<h3 id="基于-LSP-代码补全及自定义代码段"><a href="#基于-LSP-代码补全及自定义代码段" class="headerlink" title="基于 LSP 代码补全及自定义代码段"></a>基于 LSP 代码补全及自定义代码段</h3><h5 id="相关插件：hrsh7th-x2F-nvim-cmp-A-completion-plugin-for-neovim-coded-in-Lua-github-com"><a href="#相关插件：hrsh7th-x2F-nvim-cmp-A-completion-plugin-for-neovim-coded-in-Lua-github-com" class="headerlink" title="相关插件：hrsh7th&#x2F;nvim-cmp: A completion plugin for neovim coded in Lua. (github.com)"></a>相关插件：<a href="https://github.com/hrsh7th/nvim-cmp">hrsh7th&#x2F;nvim-cmp: A completion plugin for neovim coded in Lua. (github.com)</a></h5><h5 id="相关概念："><a href="#相关概念：" class="headerlink" title="相关概念："></a>相关概念：</h5><ol>
 <li><p>补全引擎</p>
 <p>补全引擎就是为 Neovim 提供代码补全核心功能的插件，比如 nvim-cmp</p>
 </li>
@@ -632,7 +632,7 @@
 
 
 
-<h4 id="LSP-功能增强"><a href="#LSP-功能增强" class="headerlink" title="LSP 功能增强"></a>LSP 功能增强</h4><p>UI 插件，同时 lspage还可以自定义快捷键，对于我自己而言我认为有些地方文字更加直观，如果有些朋友需要美化可自行查找</p>
+<h3 id="LSP-功能增强"><a href="#LSP-功能增强" class="headerlink" title="LSP 功能增强"></a>LSP 功能增强</h3><p>UI 插件，同时 lspage还可以自定义快捷键，对于我自己而言我认为有些地方文字更加直观，如果有些朋友需要美化可自行查找</p>
 <h5 id="弹窗显示错误"><a href="#弹窗显示错误" class="headerlink" title="弹窗显示错误"></a>弹窗显示错误</h5><blockquote>
 <p>当一行代码很长的时候，右侧的提示文字就会显示不全</p>
 </blockquote>
@@ -698,7 +698,7 @@
 <p>格式化之后里面的空格就都变成了”^I”, 原本应该是“·”的</p>
 </blockquote>
 <p>直接将<code>basic.lua</code>文件中设置<code>vim.o.listchars = &quot;space:·,tab:··&quot;</code>或是设置<code>vim.o.list = false</code></p>
-<h4 id="前端开发必要配置"><a href="#前端开发必要配置" class="headerlink" title="前端开发必要配置"></a>前端开发必要配置</h4><h5 id="配置语法高亮"><a href="#配置语法高亮" class="headerlink" title="配置语法高亮"></a>配置语法高亮</h5><p>执行<code>:TSInstall css scss json html vue javascript typescript</code></p>
+<h3 id="前端开发必要配置"><a href="#前端开发必要配置" class="headerlink" title="前端开发必要配置"></a>前端开发必要配置</h3><h5 id="配置语法高亮"><a href="#配置语法高亮" class="headerlink" title="配置语法高亮"></a>配置语法高亮</h5><p>执行<code>:TSInstall css scss json html vue javascript typescript</code></p>
 <p>执行<code>:TSInstallInfo</code>查看安装情况</p>
 <h5 id="配置-LSP"><a href="#配置-LSP" class="headerlink" title="配置 LSP"></a>配置 LSP</h5><p><code>lua/lsp/setup.lua</code> </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mason_config.setup(&#123;</span><br><span class="line">    ensure_installed = &#123;<span class="string">&quot;lua_ls&quot;</span>, <span class="string">&quot;html&quot;</span>, <span class="string">&quot;cssls&quot;</span>&#125;</span><br><span class="line">&#125;)</span><br><span class="line">...</span><br><span class="line"><span class="built_in">local</span> servers = &#123;</span><br><span class="line">    lua_ls = require(<span class="string">&quot;lsp.config.lua&quot;</span>),</span><br><span class="line">    -- 新增</span><br><span class="line">    html = require(<span class="string">&quot;lsp.config.html&quot;</span>),</span><br><span class="line">    cssls = require(<span class="string">&quot;lsp.config.css&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -802,7 +802,7 @@
 <p>code_actions.gitsigns 没有安装可以注释掉</p>
 </blockquote>
 <p>使用<code>&lt;leader&gt;ca</code>调用 Code Action 自动修复快捷键  </p>
-<h4 id="Rust-开发配置"><a href="#Rust-开发配置" class="headerlink" title="Rust 开发配置"></a>Rust 开发配置</h4><p>前文已安装rust环境，此处不赘述</p>
+<h3 id="Rust-开发配置"><a href="#Rust-开发配置" class="headerlink" title="Rust 开发配置"></a>Rust 开发配置</h3><p>前文已安装rust环境，此处不赘述</p>
 <h5 id="语法高亮"><a href="#语法高亮" class="headerlink" title="语法高亮"></a>语法高亮</h5><p><code>plugin-config/nvim-treesitter.lua</code>中的ensure_installed中添加”rust”</p>
 <p>或是执行<code>:TSInstall rust</code></p>
 <h5 id="代码提示"><a href="#代码提示" class="headerlink" title="代码提示"></a>代码提示</h5><p><code>lsp/setup.lua</code></p>
@@ -830,7 +830,7 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">-- rustfmt</span><br><span class="line">formatting.rustfmt,</span><br></pre></td></tr></table></figure>
 
 <p>filetypes中添加<code>&quot;rust&quot;</code></p>
-<h4 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h4><h5 id="自动补全括号"><a href="#自动补全括号" class="headerlink" title="自动补全括号"></a>自动补全括号</h5><p>插件仓库：<a href="https://github.com/windwp/nvim-autopairs">windwp&#x2F;nvim-autopairs: autopairs for neovim written by lua (github.com)</a></p>
+<h3 id="其他配置"><a href="#其他配置" class="headerlink" title="其他配置"></a>其他配置</h3><h5 id="自动补全括号"><a href="#自动补全括号" class="headerlink" title="自动补全括号"></a>自动补全括号</h5><p>插件仓库：<a href="https://github.com/windwp/nvim-autopairs">windwp&#x2F;nvim-autopairs: autopairs for neovim written by lua (github.com)</a></p>
 <p>引入插件</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">use(<span class="string">&quot;windwp/nvim-autopairs&quot;</span>)</span><br></pre></td></tr></table></figure>
 
@@ -877,7 +877,7 @@
 <li><code>cs&lt;from&gt;&lt;to&gt;</code></li>
 <li><code>ys&#123;motion&#125;&#123;char&#125;</code></li>
 </ul>
-<p>我在推送仓库时频繁遇到<code>GnuTLS recv error (-110)</code></p>
+<h5 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h5><p>我在推送仓库时频繁遇到<code>GnuTLS recv error (-110)</code></p>
 <p>解决链接：<a href="https://stackoverflow.com/questions/52529639/gnutls-recv-error-110-the-tls-connection-was-non-properly-terminated#">git - GnuTLS recv error (-110)</a></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">set</span> -e</span><br><span class="line">sudo apt-get install build-essential fakeroot dpkg-dev -y</span><br><span class="line">sudo apt-get build-dep git -y</span><br><span class="line">sudo apt-get install libcurl4-openssl-dev -y</span><br><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">mkdir</span> source-git</span><br><span class="line"><span class="built_in">cd</span> source-git/</span><br><span class="line">apt-get <span class="built_in">source</span> git</span><br><span class="line"><span class="built_in">cd</span> git-2.*.*/</span><br><span class="line">sed -i -- <span class="string">&#x27;s/libcurl4-gnutls-dev/libcurl4-openssl-dev/&#x27;</span> ./debian/control</span><br><span class="line">sed -i -- <span class="string">&#x27;/TEST\s*=\s*test/d&#x27;</span> ./debian/rules</span><br><span class="line">dpkg-buildpackage -rfakeroot -b -uc -us</span><br><span class="line">sudo dpkg -i ../git_*ubuntu*.deb</span><br></pre></td></tr></table></figure>
 
@@ -887,14 +887,14 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git remote set-url origin https://&lt;your_token&gt;@github.com/&lt;USERNAME&gt;/&lt;REPO&gt;.git</span><br></pre></td></tr></table></figure>
 
 <p>最后即可免密推送</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>对我自己而言，配置的这些功能虽然少，但是暂时够用，如果追求更多的功能，可以直接用小册作者的仓库，或是其他优秀仓库</p>
+<p>其实我觉得其实作为个人使用来说，没有特殊需求的情况下不是很推荐自己配置，只需要看懂本篇博客，然后可以做到更改别人写好的配置即可</p>
 <p>本篇博客示例配置仓库：<a href="https://github.com/ReturnTmp/rettmp-nvim">ReturnTmp&#x2F;rettmp-nvim</a></p>
-<p>对我自己而言，配置的这些功能虽然少，但是暂时够用，如果追求更多的功能，可以直接看小册作者的仓库，或是其他优秀仓库</p>
 <p>掘金小册作者仓库：<a href="https://github.com/nshen/learn-neovim-lua">https://github.com/nshen/learn-neovim-lua</a></p>
 <blockquote>
 <p>注意：v2分支是neovim 8.0+适用</p>
 </blockquote>
 <p>或是直接使用作者的新仓库：<a href="https://github.com/nshen/InsisVim">nshen&#x2F;InsisVim: 🗃 An out-of-the-box Neovim IDE solution that setup development environment in an incredibly simple way. (github.com)</a></p>
-<p>其实作为个人使用来说，不是很推荐自己配置，只需要看懂本篇博客，然后可以做到更改别人写好的配置即可</p>
 <blockquote>
 <p>除了小册作者的配置仓库，这里再推荐一个优秀Neovim配置仓库：<a href="https://github.com/ayamir/nvimdots">ayamir&#x2F;nvimdots: A well configured and structured Neovim. (github.com)</a></p>
 </blockquote>
