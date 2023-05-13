@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Linux 杂谈（Ubuntu）</title>
-    <url>/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/</url>
-    <content><![CDATA[<blockquote>
-<p>linux 学习笔记 :）</p>
-</blockquote>
-<span id="more"></span>
-
-
-
-<h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><p>&#x2F;bin - 存放基本命令文件，通常包含一些基本的系统管理员和普通用户使用的程序，如ls, cp, mv等。</p>
-<p>&#x2F;home - 存放用户的家目录，新添加的每个用户都有一个独立的目录。</p>
-<p>&#x2F;lib - 存放系统共享库和内核模块，系统运行时基于这些库进行动态链接。</p>
-<p>&#x2F;media - 存放可移动媒体设备的挂载点。</p>
-<p>&#x2F;mnt - 存放临时挂载的文件系统。</p>
-<p>&#x2F;opt - 存放可以选择安装的软件和应用程序。</p>
-<p>&#x2F;proc - 存放内存中的虚拟文件系统，在访问该目录下的文件时，可以获取系统运行时的关键参数。</p>
-<p>&#x2F;root - 根用户的家目录。</p>
-<p>&#x2F;run - 运行时数据，如系统启动后运行的进程，网络信息等。</p>
-<p>&#x2F;sbin - 存放管理员使用的系统管理命令。</p>
-<p>&#x2F;srv - 存放相关的服务数据，如网站数据，FTP服务器数据等。</p>
-<p>&#x2F;sys - 存放系统设备文件树，是Linux中的虚拟文件系统。</p>
-<p>&#x2F;tmp - 存放临时文件，通常由系统或应用程序创建。</p>
-<p>&#x2F;usr - 存放应用程序和相关数据，如应用程序、库、源代码等。</p>
-<ul>
-<li>&#x2F;usr&#x2F;bin：系统用户使用的应用程序。</li>
-<li>&#x2F;usr&#x2F;sbin：超级用户使用的比较高级的管理程序和系统守护程序。</li>
-<li>&#x2F;usr&#x2F;src：内核源代码默认的放置目录。</li>
-</ul>
-<p>&#x2F;var - 存放系统运行时记录，如日志文件、缓冲文件等。</p>
-<p><img src="C:\Users\86150\AppData\Roaming\Typora\typora-user-images\image-20230424150914606.png" alt="image-20230424150914606"></p>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android 配置 Jetpack Compose 环境</title>
     <url>/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</url>
     <content><![CDATA[<blockquote>
@@ -95,6 +59,42 @@
 ]]></content>
       <tags>
         <tag>Android</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux 杂谈（Ubuntu）</title>
+    <url>/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/</url>
+    <content><![CDATA[<blockquote>
+<p>linux 学习笔记 :）</p>
+</blockquote>
+<span id="more"></span>
+
+
+
+<h4 id="文件系统"><a href="#文件系统" class="headerlink" title="文件系统"></a>文件系统</h4><p>&#x2F;bin - 存放基本命令文件，通常包含一些基本的系统管理员和普通用户使用的程序，如ls, cp, mv等。</p>
+<p>&#x2F;home - 存放用户的家目录，新添加的每个用户都有一个独立的目录。</p>
+<p>&#x2F;lib - 存放系统共享库和内核模块，系统运行时基于这些库进行动态链接。</p>
+<p>&#x2F;media - 存放可移动媒体设备的挂载点。</p>
+<p>&#x2F;mnt - 存放临时挂载的文件系统。</p>
+<p>&#x2F;opt - 存放可以选择安装的软件和应用程序。</p>
+<p>&#x2F;proc - 存放内存中的虚拟文件系统，在访问该目录下的文件时，可以获取系统运行时的关键参数。</p>
+<p>&#x2F;root - 根用户的家目录。</p>
+<p>&#x2F;run - 运行时数据，如系统启动后运行的进程，网络信息等。</p>
+<p>&#x2F;sbin - 存放管理员使用的系统管理命令。</p>
+<p>&#x2F;srv - 存放相关的服务数据，如网站数据，FTP服务器数据等。</p>
+<p>&#x2F;sys - 存放系统设备文件树，是Linux中的虚拟文件系统。</p>
+<p>&#x2F;tmp - 存放临时文件，通常由系统或应用程序创建。</p>
+<p>&#x2F;usr - 存放应用程序和相关数据，如应用程序、库、源代码等。</p>
+<ul>
+<li>&#x2F;usr&#x2F;bin：系统用户使用的应用程序。</li>
+<li>&#x2F;usr&#x2F;sbin：超级用户使用的比较高级的管理程序和系统守护程序。</li>
+<li>&#x2F;usr&#x2F;src：内核源代码默认的放置目录。</li>
+</ul>
+<p>&#x2F;var - 存放系统运行时记录，如日志文件、缓冲文件等。</p>
+<p><img src="C:\Users\86150\AppData\Roaming\Typora\typora-user-images\image-20230424150914606.png" alt="image-20230424150914606"></p>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -652,7 +652,7 @@
 
 
 
-<h4 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h4><p>之前<code>lua/keybindings.lua</code>定义过格式化快捷键</p>
+<h3 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h3><p>之前<code>lua/keybindings.lua</code>定义过格式化快捷键</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mapbuf(<span class="string">&quot;n&quot;</span>, <span class="string">&quot;&lt;leader&gt;f&quot;</span>, <span class="string">&quot;&lt;cmd&gt;lua vim.lsp.buf.format(&#123; bufnr = bufnr &#125;)&lt;CR&gt;&quot;</span>, opt)</span><br></pre></td></tr></table></figure>
 
 <p>但是你会发现格式化不起作用，这是因为使用的 Lua Language Server 并没有实现格式化功能。</p>
