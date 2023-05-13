@@ -408,7 +408,7 @@
 <p>解决方案：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 20.04 安装 repgrep</span></span><br><span class="line">sudo apt install ripgrep</span><br><span class="line"><span class="comment"># 18.04 安装 repgrep</span></span><br><span class="line">sudo add-apt-repository ppa:x4121/ripgrep</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt install ripgrep</span><br><span class="line"><span class="comment"># 安装 fd</span></span><br><span class="line">npm install -g fd-find</span><br></pre></td></tr></table></figure>
 
-<h4 id="配置-node-环境"><a href="#配置-node-环境" class="headerlink" title="配置 node 环境"></a>配置 node 环境</h4><h6 id="node"><a href="#node" class="headerlink" title="node"></a>node</h6><p>配置源，需要哪个版本可以将16替换为相应版本</p>
+<h4 id="配置-node-环境"><a href="#配置-node-环境" class="headerlink" title="配置 node 环境"></a>配置 node 环境</h4><h5 id="node"><a href="#node" class="headerlink" title="node"></a>node</h5><p>配置源，需要哪个版本可以将16替换为相应版本</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -</span><br></pre></td></tr></table></figure>
 
 <p>安装</p>
@@ -417,7 +417,7 @@
 <p>如果不想要自己配置指定版本源的情况下，可以直接执行</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt update -y</span><br><span class="line">sudo apt install nodejs npm</span><br></pre></td></tr></table></figure>
 
-<h6 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h6><p>官网：<a href="https://github.com/nvm-sh/nvm">nvm-sh&#x2F;nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions (github.com)</a></p>
+<h5 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h5><p>官网：<a href="https://github.com/nvm-sh/nvm">nvm-sh&#x2F;nvm: Node Version Manager - POSIX-compliant bash script to manage multiple active node.js versions (github.com)</a></p>
 <p>git clone nvm仓库时遇到如下错误</p>
 <blockquote>
 <p>GnuTLS recv error (-110): The TLS connection 。。。</p>
