@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://returntmp.github.io/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/</loc>
+    
+    <lastmod>2023-05-13</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</loc>
     
     <lastmod>2023-05-13</lastmod>
@@ -81,14 +90,14 @@
   </url>
   
   <url>
-    <loc>https://returntmp.github.io/tags/vim/</loc>
+    <loc>https://returntmp.github.io/tags/Linux/</loc>
     <lastmod>2023-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://returntmp.github.io/tags/Linux/</loc>
+    <loc>https://returntmp.github.io/tags/vim/</loc>
     <lastmod>2023-05-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
