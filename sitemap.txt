@@ -6,6 +6,6 @@ https://returntmp.github.io/about/index.html
 https://returntmp.github.io/categories/index.html
 https://returntmp.github.io/tags/index.html
 https://returntmp.github.io/
-https://returntmp.github.io/tags/Linux/
 https://returntmp.github.io/tags/Android/
+https://returntmp.github.io/tags/Linux/
 https://returntmp.github.io/tags/vim/
