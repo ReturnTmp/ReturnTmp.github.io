@@ -61,6 +61,89 @@
       </tags>
   </entry>
   <entry>
+    <title>VMware 配置 ubuntu20.04虚拟机踩坑笔记（持续补充中）</title>
+    <url>/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</url>
+    <content><![CDATA[<blockquote>
+<p>VMware配置ubuntu20.04虚拟机踩坑笔记 </p>
+</blockquote>
+<span id="more"></span>
+
+<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><h5 id="编辑虚拟机设置"><a href="#编辑虚拟机设置" class="headerlink" title="编辑虚拟机设置"></a>编辑虚拟机设置</h5><blockquote>
+<p>需要保证虚拟机为关机状态，否则无法编辑</p>
+</blockquote>
+<p>网络设置为NAT模式</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230419164139586.png" alt="image-20230419164139586"></p>
+<p>进入编辑中虚拟网络设置器，点击还原默认配置</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png" alt="image-20230420093200219"></p>
+<p>但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接</p>
+<p><a href="https://blog.csdn.net/KRISNAT/article/details/124107032?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&utm_relevant_index=18">完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客</a></p>
+<p>之后卸载重装虚拟机和主机都可以ping通，但是重启之后使用<code>ifconfig</code>发现没有ens33网卡，需要重新配置并启动ens33，依次执行：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dhclient ens33 </span><br><span class="line">sudo ifconfig ens33</span><br></pre></td></tr></table></figure>
+
+<p>但是每次重启后ens33都需要重启（可能是因为我的vmwave安在外接磁盘中，断开即会使得网卡失效），因此需要写一个设置脚本，并设置开机自启动</p>
+<p><code>cd /etc/init.d/ &amp;&amp; touch initens33.sh &amp;&amp; chmod +x initens33.sh &amp;&amp; vim initens33.sh </code>添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">sudo dhclient ens33</span><br><span class="line">sudo ifconfig ens33</span><br></pre></td></tr></table></figure>
+
+<p><code>vim /etc/rc.local</code>添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/etc/init.d/initens33.sh</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h4 id="全屏设置"><a href="#全屏设置" class="headerlink" title="全屏设置"></a>全屏设置</h4><p>执行<code>sudo apt-get install open-vm-tools</code></p>
+<h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><h5 id="图形化界面"><a href="#图形化界面" class="headerlink" title="图形化界面"></a>图形化界面</h5><p>相关链接：<a href="https://blog.csdn.net/weixin_45484297/article/details/103005370">Ubuntu18图形界面换源</a></p>
+<h5 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h5><p>清华镜像仓库及指南（挑选适配自己版本的进行配置）：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<h4 id="配置-SSH"><a href="#配置-SSH" class="headerlink" title="配置 SSH"></a>配置 SSH</h4><p>安装<code>sudo apt-get install openssh-server -y &amp;&amp; sudo apt-get install openssh-client -y</code></p>
+<p>设置UFW防火墙允许ssh通过<code>sudo ufw allow ssh</code>或是直接禁用防火墙<code>sudo ufw disable</code></p>
+<p>设置ssh允许密码登录，执行<code>sudo vim /etc/ssh/ssh_config</code> 修改ssh客户端配置文件，添加 <code>PasswordAuthentication yes</code></p>
+<p>ssh连接，将 <strong>用户名</strong>（<code>username</code>）改为你的系统上的实际用户名，并将 <strong>地址</strong>（<code>address</code>）改为你服务器的 IP 地址。<code>ssh username@address</code></p>
+<p>查看ip：执行<code>ifconfig</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420102829615.png" alt="image-20230420102829615"></p>
+<p>相关命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br><span class="line"><span class="comment"># 关闭ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> ssh</span><br><span class="line"><span class="comment"># 单次开启ssh </span></span><br><span class="line">sudo systemctl start ssh</span><br><span class="line"><span class="comment"># 单次关闭ssh</span></span><br><span class="line">sudo systemctl stop ssh</span><br><span class="line"><span class="comment"># 查看ssh状态</span></span><br><span class="line">sudo systemctl status ssh</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>以上相关配置之前需要先执行<code>sudo apt update &amp;&amp; sudo apt upgrade</code> 并且最好切换到root用户</p>
+</blockquote>
+<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>ubuntu默认的root用户是没有固定密码的，它的密码是随机产生并且动态改变的，即每次开机都有一个新的root密码，如果想查看root密码，那么直接输入<code>sudo passwd root</code>设置的root密码即可。</p>
+<p>但是ubuntu使用Xftp、Xshell连接时，ssh服务器拒绝访问。一直显示输入密码，这是由于sshd的设置不允许root用户使用密码进行远程登录。</p>
+<p>保证ssh开启的情况下执行</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改ssh服务端配置文件</span></span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#PermitRootLogin prohibit-password 改为</span></span><br><span class="line">PermitRootLogin <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：最后需要执行<code>sudo systemctl restart ssh</code>重启才能使配置修改生效</p>
+</blockquote>
+<p><em>现在即可使用root用户进行远程ssh密码登录</em></p>
+<h4 id="VMware-关闭自动熄屏"><a href="#VMware-关闭自动熄屏" class="headerlink" title="VMware 关闭自动熄屏"></a>VMware 关闭自动熄屏</h4><p>相关文章：<a href="https://blog.csdn.net/cuichongxin/article/details/108377721">vmwareworkstation的linux虚拟机关闭屏保【自动锁屏】</a></p>
+<h4 id="配置Miniconda环境"><a href="#配置Miniconda环境" class="headerlink" title="配置Miniconda环境"></a>配置Miniconda环境</h4><h6 id="官网：Miniconda-—-conda-documentation"><a href="#官网：Miniconda-—-conda-documentation" class="headerlink" title="官网：Miniconda — conda documentation"></a>官网：<a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda — conda documentation</a></h6><p>下载安装脚本后执行<code>bash Miniconda3-latest-Linux-x86_64.sh</code>一直回车（遇到more可以使用空格翻页），遇到输入yes or no 输入yes回车</p>
+<h6 id="切换国内清华源"><a href="#切换国内清华源" class="headerlink" title="切换国内清华源"></a>切换国内清华源</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge </span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</span><br></pre></td></tr></table></figure>
+
+<h6 id="切换默认源：conda-config-remove-key-channels"><a href="#切换默认源：conda-config-remove-key-channels" class="headerlink" title="切换默认源：conda config --remove-key channels"></a>切换默认源：<code>conda config --remove-key channels</code></h6><h6 id="pip-换源"><a href="#pip-换源" class="headerlink" title="pip 换源"></a>pip 换源</h6><p>临时：<code>pip install ***  -i https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<p>永久：<code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230425161010662.png" alt="image-20230425161010662"></p>
+<p>最后执行<code>source .bashrc</code>激活环境</p>
+<p>这里讲下ubuntu中的环境变量配置，我们从miniconda的安装过程中可以看到环境变量配置到了<code>~/.bashrc</code>中</p>
+<ol>
+<li><code>~/.bashrc</code> 文件中，这个文件用于每次开启新的 Terminal 时被读取，可以将环境变量添加到末尾；</li>
+<li><code>~/.profile</code> 文件中，在登录系统时被读取，可以将环境变量添加到末尾；</li>
+<li><code>/etc/profile</code> 文件中，系统级环境变量可以将环境变量添加到末尾。</li>
+</ol>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230424173759423.png" alt="image-20230424173759423"></p>
+<h6 id="常见命令官方使用文档：Getting-started-with-conda-—-conda-0-0-0-dev0-placeholder-documentation"><a href="#常见命令官方使用文档：Getting-started-with-conda-—-conda-0-0-0-dev0-placeholder-documentation" class="headerlink" title="常见命令官方使用文档：Getting started with conda — conda 0.0.0.dev0+placeholder documentation"></a>常见命令官方使用文档：<a href="https://conda.io/projects/conda/en/latest/user-guide/getting-started.html">Getting started with conda — conda 0.0.0.dev0+placeholder documentation</a></h6><blockquote>
+<p>由于博主是因为实验中必须使用图形界面所以必须在vmware中配置，如果只是使用终端则推荐使用wsl</p>
+<p>官方教程及安装指南：<a href="https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands">WSL 的基本命令 | Microsoft Learn</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Neovim 配置教程</title>
     <url>/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<blockquote>
@@ -812,89 +895,6 @@
 ]]></content>
       <tags>
         <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>VMware 配置 ubuntu20.04虚拟机踩坑笔记（持续补充中）</title>
-    <url>/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</url>
-    <content><![CDATA[<blockquote>
-<p>VMware配置ubuntu20.04虚拟机踩坑笔记 </p>
-</blockquote>
-<span id="more"></span>
-
-<h4 id="网络设置"><a href="#网络设置" class="headerlink" title="网络设置"></a>网络设置</h4><h5 id="编辑虚拟机设置"><a href="#编辑虚拟机设置" class="headerlink" title="编辑虚拟机设置"></a>编辑虚拟机设置</h5><blockquote>
-<p>需要保证虚拟机为关机状态，否则无法编辑</p>
-</blockquote>
-<p>网络设置为NAT模式</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230419164139586.png" alt="image-20230419164139586"></p>
-<p>进入编辑中虚拟网络设置器，点击还原默认配置</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420093200219.png" alt="image-20230420093200219"></p>
-<p>但是因为博主将vmware移动过磁盘并且卸载重装过，所以注册表和磁盘中出现残留，导致没有vmnet8的网络适配器，进行上述操作后仍旧无法联网，所以直接彻底清除后再下载，以下是相关链接</p>
-<p><a href="https://blog.csdn.net/KRISNAT/article/details/124107032?spm=1001.2101.3001.6650.10&utm_medium=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~BlogCommendFromBaidu~Rate-10-124107032-blog-114172527.235%5Ev31%5Epc_relevant_default_base3&utm_relevant_index=18">完美解决VMware安装后没有VMnet1和VMnet8的问题_虚拟机没有vment1和8-CSDN博客</a></p>
-<p>之后卸载重装虚拟机和主机都可以ping通，但是重启之后使用<code>ifconfig</code>发现没有ens33网卡，需要重新配置并启动ens33，依次执行：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo dhclient ens33 </span><br><span class="line">sudo ifconfig ens33</span><br></pre></td></tr></table></figure>
-
-<p>但是每次重启后ens33都需要重启（可能是因为我的vmwave安在外接磁盘中，断开即会使得网卡失效），因此需要写一个设置脚本，并设置开机自启动</p>
-<p><code>cd /etc/init.d/ &amp;&amp; touch initens33.sh &amp;&amp; chmod +x initens33.sh &amp;&amp; vim initens33.sh </code>添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">sudo dhclient ens33</span><br><span class="line">sudo ifconfig ens33</span><br></pre></td></tr></table></figure>
-
-<p><code>vim /etc/rc.local</code>添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/etc/init.d/initens33.sh</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<h4 id="全屏设置"><a href="#全屏设置" class="headerlink" title="全屏设置"></a>全屏设置</h4><p>执行<code>sudo apt-get install open-vm-tools</code></p>
-<h4 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h4><h5 id="图形化界面"><a href="#图形化界面" class="headerlink" title="图形化界面"></a>图形化界面</h5><p>相关链接：<a href="https://blog.csdn.net/weixin_45484297/article/details/103005370">Ubuntu18图形界面换源</a></p>
-<h5 id="命令行方式"><a href="#命令行方式" class="headerlink" title="命令行方式"></a>命令行方式</h5><p>清华镜像仓库及指南（挑选适配自己版本的进行配置）：<a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">ubuntu | 镜像站使用帮助 | 清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
-<h4 id="配置-SSH"><a href="#配置-SSH" class="headerlink" title="配置 SSH"></a>配置 SSH</h4><p>安装<code>sudo apt-get install openssh-server -y &amp;&amp; sudo apt-get install openssh-client -y</code></p>
-<p>设置UFW防火墙允许ssh通过<code>sudo ufw allow ssh</code>或是直接禁用防火墙<code>sudo ufw disable</code></p>
-<p>设置ssh允许密码登录，执行<code>sudo vim /etc/ssh/ssh_config</code> 修改ssh客户端配置文件，添加 <code>PasswordAuthentication yes</code></p>
-<p>ssh连接，将 <strong>用户名</strong>（<code>username</code>）改为你的系统上的实际用户名，并将 <strong>地址</strong>（<code>address</code>）改为你服务器的 IP 地址。<code>ssh username@address</code></p>
-<p>查看ip：执行<code>ifconfig</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230420102829615.png" alt="image-20230420102829615"></p>
-<p>相关命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 开启ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">enable</span> ssh</span><br><span class="line"><span class="comment"># 关闭ssh开机自启动</span></span><br><span class="line">sudo systemctl <span class="built_in">disable</span> ssh</span><br><span class="line"><span class="comment"># 单次开启ssh </span></span><br><span class="line">sudo systemctl start ssh</span><br><span class="line"><span class="comment"># 单次关闭ssh</span></span><br><span class="line">sudo systemctl stop ssh</span><br><span class="line"><span class="comment"># 查看ssh状态</span></span><br><span class="line">sudo systemctl status ssh</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>以上相关配置之前需要先执行<code>sudo apt update &amp;&amp; sudo apt upgrade</code> 并且最好切换到root用户</p>
-</blockquote>
-<h4 id="重置密码"><a href="#重置密码" class="headerlink" title="重置密码"></a>重置密码</h4><p>ubuntu默认的root用户是没有固定密码的，它的密码是随机产生并且动态改变的，即每次开机都有一个新的root密码，如果想查看root密码，那么直接输入<code>sudo passwd root</code>设置的root密码即可。</p>
-<p>但是ubuntu使用Xftp、Xshell连接时，ssh服务器拒绝访问。一直显示输入密码，这是由于sshd的设置不允许root用户使用密码进行远程登录。</p>
-<p>保证ssh开启的情况下执行</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 修改ssh服务端配置文件</span></span><br><span class="line">sudo vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#PermitRootLogin prohibit-password 改为</span></span><br><span class="line">PermitRootLogin <span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>注意：最后需要执行<code>sudo systemctl restart ssh</code>重启才能使配置修改生效</p>
-</blockquote>
-<p><em>现在即可使用root用户进行远程ssh密码登录</em></p>
-<h4 id="VMware-关闭自动熄屏"><a href="#VMware-关闭自动熄屏" class="headerlink" title="VMware 关闭自动熄屏"></a>VMware 关闭自动熄屏</h4><p>相关文章：<a href="https://blog.csdn.net/cuichongxin/article/details/108377721">vmwareworkstation的linux虚拟机关闭屏保【自动锁屏】</a></p>
-<h4 id="配置Miniconda环境"><a href="#配置Miniconda环境" class="headerlink" title="配置Miniconda环境"></a>配置Miniconda环境</h4><h6 id="官网：Miniconda-—-conda-documentation"><a href="#官网：Miniconda-—-conda-documentation" class="headerlink" title="官网：Miniconda — conda documentation"></a>官网：<a href="https://docs.conda.io/en/latest/miniconda.html">Miniconda — conda documentation</a></h6><p>下载安装脚本后执行<code>bash Miniconda3-latest-Linux-x86_64.sh</code>一直回车（遇到more可以使用空格翻页），遇到输入yes or no 输入yes回车</p>
-<h6 id="切换国内清华源"><a href="#切换国内清华源" class="headerlink" title="切换国内清华源"></a>切换国内清华源</h6><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/</span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge </span><br><span class="line">conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/</span><br></pre></td></tr></table></figure>
-
-<h6 id="切换默认源：conda-config-remove-key-channels"><a href="#切换默认源：conda-config-remove-key-channels" class="headerlink" title="切换默认源：conda config --remove-key channels"></a>切换默认源：<code>conda config --remove-key channels</code></h6><h6 id="pip-换源"><a href="#pip-换源" class="headerlink" title="pip 换源"></a>pip 换源</h6><p>临时：<code>pip install ***  -i https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
-<p>永久：<code>pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</code></p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230425161010662.png" alt="image-20230425161010662"></p>
-<p>最后执行<code>source .bashrc</code>激活环境</p>
-<p>这里讲下ubuntu中的环境变量配置，我们从miniconda的安装过程中可以看到环境变量配置到了<code>~/.bashrc</code>中</p>
-<ol>
-<li><code>~/.bashrc</code> 文件中，这个文件用于每次开启新的 Terminal 时被读取，可以将环境变量添加到末尾；</li>
-<li><code>~/.profile</code> 文件中，在登录系统时被读取，可以将环境变量添加到末尾；</li>
-<li><code>/etc/profile</code> 文件中，系统级环境变量可以将环境变量添加到末尾。</li>
-</ol>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230424173759423.png" alt="image-20230424173759423"></p>
-<h6 id="常见命令官方使用文档：Getting-started-with-conda-—-conda-0-0-0-dev0-placeholder-documentation"><a href="#常见命令官方使用文档：Getting-started-with-conda-—-conda-0-0-0-dev0-placeholder-documentation" class="headerlink" title="常见命令官方使用文档：Getting started with conda — conda 0.0.0.dev0+placeholder documentation"></a>常见命令官方使用文档：<a href="https://conda.io/projects/conda/en/latest/user-guide/getting-started.html">Getting started with conda — conda 0.0.0.dev0+placeholder documentation</a></h6><blockquote>
-<p>由于博主是因为实验中必须使用图形界面所以必须在vmware中配置，如果只是使用终端则推荐使用wsl</p>
-<p>官方教程及安装指南：<a href="https://learn.microsoft.com/zh-cn/windows/wsl/basic-commands">WSL 的基本命令 | Microsoft Learn</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
