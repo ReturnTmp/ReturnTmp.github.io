@@ -6,7 +6,7 @@
   <link href="https://returntmp.github.io/atom.xml" rel="self"/>
   
   <link href="https://returntmp.github.io/"/>
-  <updated>2023-05-13T02:44:23.760Z</updated>
+  <updated>2023-05-14T09:40:58.899Z</updated>
   <id>https://returntmp.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"/>
     <id>https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</id>
     <published>2023-05-01T08:40:14.000Z</published>
-    <updated>2023-05-13T02:44:23.760Z</updated>
+    <updated>2023-05-14T09:40:58.899Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -39,51 +39,16 @@
   </entry>
   
   <entry>
-    <title>Linux 杂谈（Ubuntu）</title>
-    <link href="https://returntmp.github.io/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/"/>
-    <id>https://returntmp.github.io/2023/04/24/Linux-%E6%9D%82%E8%B0%88%EF%BC%88Ubuntu%EF%BC%89/</id>
-    <published>2023-04-24T06:50:54.000Z</published>
-    <updated>2023-05-13T00:13:30.788Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;linux 学习笔记 :）&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    
-    <category term="Linux" scheme="https://returntmp.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VMware 部署 ubuntu 关键点（持续补充中）</title>
+    <title>VMware 配置 ubuntu20.04虚拟机踩坑笔记（持续补充中）</title>
     <link href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/"/>
     <id>https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</id>
     <published>2023-04-19T08:17:04.000Z</published>
-    <updated>2023-05-11T13:11:58.815Z</updated>
+    <updated>2023-05-29T08:35:07.681Z</updated>
     
     
-    <summary type="html">&lt;div
-  style=&quot;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    flex-wrap: wrap;
-  &quot;
-&gt;
-  &lt;div style=&quot;height: 100px; width: 200px&quot;&gt;
-    &lt;img
-      src=&quot;https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230511210038935.png&quot;
-      style=&quot;width: 100%; height: 100%&quot;
-    /&gt;
-  &lt;/div&gt;
-  &lt;div style=&quot;margin-left: 20px; margin-top: 5px; line-height: 10px&quot;&gt;
-    &lt;p&gt;本文主要是记录博主在使用配置VMware配置ubuntu20.04虚拟机中的关键点&lt;/p&gt;
-    &lt;p&gt;注意：本文不是零基础配置虚拟机的教程&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</summary>
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;VMware配置ubuntu20.04虚拟机踩坑笔记 &lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     
@@ -97,13 +62,12 @@
     <link href="https://returntmp.github.io/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/"/>
     <id>https://returntmp.github.io/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</id>
     <published>2023-04-07T13:21:20.000Z</published>
-    <updated>2023-05-11T12:03:20.925Z</updated>
+    <updated>2023-05-29T08:35:02.078Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;记录配置Jetpack Compose环境的一些坑~&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;直接创建kotlin项目或创建java项目后再配置均可&lt;/p&gt;</summary>
+&lt;p&gt;Android开发配置Jetpack Compose环境踩坑笔记​&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     
