@@ -25,23 +25,33 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="ReturnTmp">
-<meta property="og:url" content="https://returntmp.github.io/index.html">
+    <meta name="description" content="Tmux简介官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。 此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。 官网地址：tmux&#x2F;tmux: tmux source code (github.com) 基本用法安装# Ubuntu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置工具篇（tmux+ranger+lazygit）">
+<meta property="og:url" content="https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="ReturnTmp">
+<meta property="og:description" content="Tmux简介官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。 此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。 官网地址：tmux&#x2F;tmux: tmux source code (github.com) 基本用法安装# Ubuntu">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523160429119.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523164316992.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523171348133.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523222702767.png">
+<meta property="article:published_time" content="2023-05-16T04:57:18.000Z">
+<meta property="article:modified_time" content="2023-05-29T08:24:47.190Z">
 <meta property="article:author" content="ReturnTmp">
+<meta property="article:tag" content="env">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523160429119.png">
 
 
-<link rel="canonical" href="https://returntmp.github.io/">
+<link rel="canonical" href="https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/","path":"2023/05/16/优雅配置工作环境/","title":"配置工具篇（tmux+ranger+lazygit）"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>ReturnTmp</title>
+<title>配置工具篇（tmux+ranger+lazygit） | ReturnTmp</title>
   
 
 
@@ -72,7 +82,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">ReturnTmp</h1>
+      <p class="site-title">ReturnTmp</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Hello World</p>
@@ -132,7 +142,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -146,6 +156,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tmux"><span class="nav-number">1.</span> <span class="nav-text">Tmux</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E7%BC%80%E9%94%AE"><span class="nav-number">1.2.3.</span> <span class="nav-text">前缀键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="nav-number">1.3.</span> <span class="nav-text">会话管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E4%BC%9A%E8%AF%9D"><span class="nav-number">1.3.1.</span> <span class="nav-text">新建会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E7%A6%BB%E4%BC%9A%E8%AF%9D"><span class="nav-number">1.3.2.</span> <span class="nav-text">分离会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A5%E5%85%A5%E4%BC%9A%E8%AF%9D"><span class="nav-number">1.3.3.</span> <span class="nav-text">接入会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%80%E6%AD%BB%E4%BC%9A%E8%AF%9D"><span class="nav-number">1.3.4.</span> <span class="nav-text">杀死会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E4%BC%9A%E8%AF%9D"><span class="nav-number">1.3.5.</span> <span class="nav-text">切换会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E4%BC%9A%E8%AF%9D"><span class="nav-number">1.3.6.</span> <span class="nav-text">重命名会话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.3.7.</span> <span class="nav-text">会话快捷键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E7%AE%80%E6%B5%81%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">最简流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E6%A0%BC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.5.</span> <span class="nav-text">窗格操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%92%E5%88%86%E7%AA%97%E6%A0%BC"><span class="nav-number">1.5.1.</span> <span class="nav-text">划分窗格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E5%85%89%E6%A0%87"><span class="nav-number">1.5.2.</span> <span class="nav-text">移动光标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E6%8D%A2%E7%AA%97%E6%A0%BC%E4%BD%8D%E7%BD%AE"><span class="nav-number">1.5.3.</span> <span class="nav-text">交换窗格位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AA%97%E6%A0%BC%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.5.4.</span> <span class="nav-text">窗格快捷键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E7%AE%A1%E7%90%86"><span class="nav-number">1.6.</span> <span class="nav-text">窗口管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E7%AA%97%E5%8F%A3"><span class="nav-number">1.6.1.</span> <span class="nav-text">新建窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%87%E6%8D%A2%E7%AA%97%E5%8F%A3"><span class="nav-number">1.6.2.</span> <span class="nav-text">切换窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D%E7%AA%97%E5%8F%A3"><span class="nav-number">1.6.3.</span> <span class="nav-text">重命名窗口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AA%97%E5%8F%A3%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">1.6.4.</span> <span class="nav-text">窗口快捷键</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4"><span class="nav-number">1.7.</span> <span class="nav-text">其他命令</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ranger"><span class="nav-number">2.</span> <span class="nav-text">Ranger</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">2.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">2.3.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.4.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%9B%BE%E6%A0%87"><span class="nav-number">2.5.</span> <span class="nav-text">配置图标</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-number">2.5.0.0.1.</span> <span class="nav-text">效果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91%E5%99%A8"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">配置文本编辑器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">2.6.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">2.7.</span> <span class="nav-text">文件管理器操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8E%B7%E5%BE%97%E5%B8%AE%E5%8A%A9"><span class="nav-number">2.8.</span> <span class="nav-text">获得帮助</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4"><span class="nav-number">2.9.</span> <span class="nav-text">删除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA"><span class="nav-number">2.10.</span> <span class="nav-text">新建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%91%BD%E5%90%8D"><span class="nav-number">2.11.</span> <span class="nav-text">重命名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6"><span class="nav-number">2.12.</span> <span class="nav-text">复制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AA%E5%88%87"><span class="nav-number">2.13.</span> <span class="nav-text">剪切</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%98%E8%B4%B4"><span class="nav-number">2.14.</span> <span class="nav-text">粘贴</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2"><span class="nav-number">2.15.</span> <span class="nav-text">搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%8F%92%E4%BB%B6"><span class="nav-number">2.15.1.</span> <span class="nav-text">相关插件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LazyGit"><span class="nav-number">3.</span> <span class="nav-text">LazyGit</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B-2"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-2"><span class="nav-number">3.2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ubuntu"><span class="nav-number">3.2.0.0.1.</span> <span class="nav-text">ubuntu</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -220,16 +231,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -243,13 +255,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ReturnTmp">
+      <meta itemprop="name" content="配置工具篇（tmux+ranger+lazygit） | ReturnTmp">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/" class="post-title-link" itemprop="url">配置工具篇（tmux+ranger+lazygit）</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          配置工具篇（tmux+ranger+lazygit）
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -270,6 +282,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
   
   <span class="post-meta-item">
     
@@ -308,7 +327,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
+        <h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
 <p>此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。</p>
 <p>官网地址：<a target="_blank" rel="noopener" href="https://github.com/tmux/tmux">tmux&#x2F;tmux: tmux source code (github.com)</a></p>
 <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu 或 Debian</span></span><br><span class="line">$ sudo apt-get install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 或 Fedora</span></span><br><span class="line">$ sudo yum install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac</span></span><br><span class="line">$ brew install tmux</span><br></pre></td></tr></table></figure>
@@ -762,7 +781,6 @@
 <p><a target="_blank" rel="noopener" href="https://www.zssnp.top/2021/06/03/ranger/#post-comment">https://www.zssnp.top/2021/06/03/ranger/#post-comment</a></p>
 </blockquote>
 
-      
     </div>
 
     
@@ -771,297 +789,68 @@
       
 
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
+    <footer class="post-footer"><div class="post-widgets">
+    <div
+      class="social-share"
       
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://returntmp.github.io/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/profile.jpg">
-      <meta itemprop="name" content="ReturnTmp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ReturnTmp">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ReturnTmp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/" class="post-title-link" itemprop="url">优雅提交 Git Commit Message</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-05-15 09:54:27" itemprop="dateCreated datePublished" datetime="2023-05-15T09:54:27+08:00">2023-05-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-05-23 23:31:12" itemprop="dateModified" datetime="2023-05-23T23:31:12+08:00">2023-05-23</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">评论数：</span>
-  
-    <a title="waline" href="/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a target="_blank" rel="noopener" href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
-<p>message 样例：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Type</p>
-<p>：必须是下列之一</p>
-<ul>
-<li><strong>feat</strong>：一个新功能</li>
-<li><strong>fix</strong>：bug修复</li>
-<li><strong>docs</strong>：编辑文档</li>
-<li><strong>style</strong>：不影响代码含义的更改(空格、格式、缺少分号等，不是css的更改)</li>
-<li><strong>refactor</strong>：既不修复bug也不添加特性的代码更改</li>
-<li><strong>perf</strong>：提高性能的代码更改</li>
-<li><strong>test</strong>：添加缺失的或纠正现有的测试</li>
-<li><strong>chore</strong>：对构建过程或辅助工具和库(如文档生成)的更改</li>
-</ul>
-</li>
-<li><p><strong>Subject</strong>：主题包含对变更的简洁描述</p>
-</li>
-<li><p><strong>Body</strong>：具体的修改内容，可以包括与之前的对比</p>
-</li>
-<li><p><strong>Footer</strong>：通常是 BREAKING CHANGE 或修复的 issue 链接</p>
-</li>
-</ul>
-<h1 id="规范工具"><a href="#规范工具" class="headerlink" title="规范工具"></a>规范工具</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>commitizen git commit 格式化工具, 为我们提供标准化的 commit 信息。 帮助我们统一项目commit ， 便于信息的回溯或日志的生成。# commit message 格式</p>
-<p>commitizen 只是提供一个commit 格式化或交互工具, 最终需要输出符合 commit 规则的信息给 git， 所以需要线了解 commit 格式规则</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
-
-<p>package.json中添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="string">&quot;commit&quot;</span>: <span class="string">&quot;git-cz&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;commitizen&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;path&quot;</span>: <span class="string">&quot;./node_modules/cz-conventional-changelog&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="自定义-Adapter"><a href="#自定义-Adapter" class="headerlink" title="自定义 Adapter"></a>自定义 Adapter</h3><p>如果 Angular 的规范不符合我们的实际，同样我们也可以通过 <a target="_blank" rel="noopener" href="https://github.com/leonardoanalista/cz-customizable">cz-customizable</a> 定制一套符合自己或者团队的规范。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D cz-customizable</span><br></pre></td></tr></table></figure>
-
-<p>同时package.json需要修改</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node_modules/cz-customizable&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>之后对应项目目录下创建 .cz-config.js 文件，用来维护自己的格式</p>
-<p>官网中有对应的样例配置文件：<a target="_blank" rel="noopener" href="https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js">cz-customizable&#x2F;cz-config-EXAMPLE.js at master · leoforfree&#x2F;cz-customizable · GitHub</a></p>
-<h3 id="校验-Message"><a href="#校验-Message" class="headerlink" title="校验 Message"></a>校验 Message</h3><h5 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h5><p>可以做到如果不符合校验规范，就会直接拒绝 commit 请求</p>
-<h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Angular 团队的规范</span></span><br><span class="line">npm install -D @commitlint/config-conventional @commitlint/cli</span><br><span class="line"><span class="comment"># 自定义规范</span></span><br><span class="line">npm install -D commitlint-config-cz @commitlint/cli</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>在项目目录下创建配置文件 .commitlintrc.js</p>
-<p>Angular 团队的规范</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;&#x27;</span>@commitlint/config-conventional<span class="string">&#x27;&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="自定义规范"><a href="#自定义规范" class="headerlink" title="自定义规范"></a>自定义规范</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  extends: [</span><br><span class="line">    <span class="string">&#x27;cz&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  rules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Husky"><a href="#Husky" class="headerlink" title="Husky"></a>Husky</h3><p>在做前端工程化时husky可以说是一个必不可少的工具。husky可以让我们向项目中方便添加git hooks。</p>
-<p>官方链接：<a target="_blank" rel="noopener" href="https://github.com/typicode/husky">typicode&#x2F;husky: Git hooks made easy 🐶 woof! (github.com)</a></p>
-<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -D husky</span><br></pre></td></tr></table></figure>
-
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>package.json中添加：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;husky&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      ...<span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-
-<p>或者在 .huskyrc 文件中</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
+      
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
     </div>
+  </div>
+  <script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js"></script><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
 
-    
-    
-    
-      
 
+          
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ReturnTmp
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/" title="配置工具篇（tmux+ranger+lazygit）">https://returntmp.github.io/2023/05/16/优雅配置工作环境/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
+          <div class="post-tags">
+              <a href="/tags/env/" rel="tag"><i class="fa fa-tag"></i> env</a>
+          </div>
 
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/profile.jpg">
-      <meta itemprop="name" content="ReturnTmp">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ReturnTmp">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | ReturnTmp">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">Neovim 配置教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2023-05-01 16:40:14" itemprop="dateCreated datePublished" datetime="2023-05-01T16:40:14+08:00">2023-05-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-05-14 17:40:58" itemprop="dateModified" datetime="2023-05-14T17:40:58+08:00">2023-05-14</time>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">评论数：</span>
-  
-    <a title="waline" href="/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>62k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1:44</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <blockquote>
-<p>环境：Ubuntu 20.04 </p>
-<p>宿主机：windows （windows terminal）WSL2</p>
-<p>NVIM：v0.10.0-dev</p>
-<p>配置Neovim 需要保证流畅的github环境（以便于快速拉取插件），可以使用代理或是配置Github SSH key</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      
-
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/" rel="prev" title="优雅提交 Git Commit Message">
+                  <i class="fa fa-chevron-left"></i> 优雅提交 Git Commit Message
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -1070,6 +859,8 @@
 
 
 
+
+    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -1141,7 +932,7 @@
 
 
 
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

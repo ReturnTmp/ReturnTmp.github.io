@@ -6,7 +6,7 @@
   <link href="https://returntmp.github.io/atom.xml" rel="self"/>
   
   <link href="https://returntmp.github.io/"/>
-  <updated>2023-05-14T09:40:58.899Z</updated>
+  <updated>2023-05-29T08:24:47.190Z</updated>
   <id>https://returntmp.github.io/</id>
   
   <author>
@@ -15,6 +15,50 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>配置工具篇（tmux+ranger+lazygit）</title>
+    <link href="https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/"/>
+    <id>https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</id>
+    <published>2023-05-16T04:57:18.000Z</published>
+    <updated>2023-05-29T08:24:47.190Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Tmux&quot;&gt;&lt;a href=&quot;#Tmux&quot; class=&quot;headerlink&quot; title=&quot;Tmux&quot;&gt;&lt;/a&gt;Tmux&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="env" scheme="https://returntmp.github.io/tags/env/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>优雅提交 Git Commit Message</title>
+    <link href="https://returntmp.github.io/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/"/>
+    <id>https://returntmp.github.io/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</id>
+    <published>2023-05-15T01:54:27.000Z</published>
+    <updated>2023-05-23T15:31:12.598Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;Message-规范&quot;&gt;&lt;a href=&quot;#Message-规范&quot; class=&quot;headerlink&quot; title=&quot;Message 规范&quot;&gt;&lt;/a&gt;Message 规范&lt;/h1&gt;&lt;p&gt;那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 &lt;code&gt;git</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Neovim 配置教程</title>
@@ -35,44 +79,6 @@
     
     
     <category term="vim" scheme="https://returntmp.github.io/tags/vim/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>VMware 配置 ubuntu20.04虚拟机踩坑笔记（持续补充中）</title>
-    <link href="https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/"/>
-    <id>https://returntmp.github.io/2023/04/19/vmware-%E9%83%A8%E7%BD%B2-ubuntu20-4/</id>
-    <published>2023-04-19T08:17:04.000Z</published>
-    <updated>2023-05-29T08:35:07.681Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;VMware配置ubuntu20.04虚拟机踩坑笔记 &lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    
-    <category term="Linux" scheme="https://returntmp.github.io/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Android 配置 Jetpack Compose 环境</title>
-    <link href="https://returntmp.github.io/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/"/>
-    <id>https://returntmp.github.io/2023/04/07/Android%E9%85%8D%E7%BD%AEJetpack-Compose%E7%8E%AF%E5%A2%83/</id>
-    <published>2023-04-07T13:21:20.000Z</published>
-    <updated>2023-05-29T08:35:02.078Z</updated>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;Android开发配置Jetpack Compose环境踩坑笔记​&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    
-    <category term="Android" scheme="https://returntmp.github.io/tags/Android/"/>
     
   </entry>
   
