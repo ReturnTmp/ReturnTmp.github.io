@@ -6,7 +6,7 @@
   <link href="https://returntmp.github.io/atom.xml" rel="self"/>
   
   <link href="https://returntmp.github.io/"/>
-  <updated>2023-05-29T08:24:47.190Z</updated>
+  <updated>2023-05-30T08:24:39.006Z</updated>
   <id>https://returntmp.github.io/</id>
   
   <author>
@@ -21,16 +21,15 @@
     <link href="https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/"/>
     <id>https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</id>
     <published>2023-05-16T04:57:18.000Z</published>
-    <updated>2023-05-29T08:24:47.190Z</updated>
+    <updated>2023-05-30T08:24:39.006Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Tmux&quot;&gt;&lt;a href=&quot;#Tmux&quot; class=&quot;headerlink&quot; title=&quot;Tmux&quot;&gt;&lt;/a&gt;Tmux&lt;/h1&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot;</summary>
-        
-      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;tmux 可以管理多个会话和任务，在一个终端窗口中同时运行多个命令行程序&lt;/p&gt;
+&lt;p&gt;ranger 可以帮助你在命令行下进行文件管理和操作&lt;/p&gt;
+&lt;p&gt;lazygit 提供了一个简化的界面来管理 Git 仓库，可以提高你在命令行环境下的工作效率和操作便捷性。&lt;/p&gt;
+&lt;p&gt;本文主要将详细讲解如何配置（tmux+ranger+lazygit），希望可以帮助大家&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     
@@ -44,19 +43,17 @@
     <link href="https://returntmp.github.io/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/"/>
     <id>https://returntmp.github.io/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</id>
     <published>2023-05-15T01:54:27.000Z</published>
-    <updated>2023-05-23T15:31:12.598Z</updated>
+    <updated>2023-05-30T08:22:50.120Z</updated>
     
     
-      
-      
-        
-        
-    <summary type="html">&lt;h1 id=&quot;Message-规范&quot;&gt;&lt;a href=&quot;#Message-规范&quot; class=&quot;headerlink&quot; title=&quot;Message 规范&quot;&gt;&lt;/a&gt;Message 规范&lt;/h1&gt;&lt;p&gt;那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 &lt;code&gt;git</summary>
-        
-      
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
     
     
     
+    
+    <category term="env" scheme="https://returntmp.github.io/tags/env/"/>
     
   </entry>
   

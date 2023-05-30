@@ -25,19 +25,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Tmux简介官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。 此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。 官网地址：tmux&#x2F;tmux: tmux source code (github.com) 基本用法安装# Ubuntu">
+    <meta name="description" content="tmux 可以管理多个会话和任务，在一个终端窗口中同时运行多个命令行程序 ranger 可以帮助你在命令行下进行文件管理和操作 lazygit 提供了一个简化的界面来管理 Git 仓库，可以提高你在命令行环境下的工作效率和操作便捷性。 本文主要将详细讲解如何配置（tmux+ranger+lazygit），希望可以帮助大家">
 <meta property="og:type" content="article">
 <meta property="og:title" content="配置工具篇（tmux+ranger+lazygit）">
 <meta property="og:url" content="https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="ReturnTmp">
-<meta property="og:description" content="Tmux简介官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。 此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。 官网地址：tmux&#x2F;tmux: tmux source code (github.com) 基本用法安装# Ubuntu">
+<meta property="og:description" content="tmux 可以管理多个会话和任务，在一个终端窗口中同时运行多个命令行程序 ranger 可以帮助你在命令行下进行文件管理和操作 lazygit 提供了一个简化的界面来管理 Git 仓库，可以提高你在命令行环境下的工作效率和操作便捷性。 本文主要将详细讲解如何配置（tmux+ranger+lazygit），希望可以帮助大家">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523160429119.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523164316992.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523171348133.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523222702767.png">
 <meta property="article:published_time" content="2023-05-16T04:57:18.000Z">
-<meta property="article:modified_time" content="2023-05-29T08:24:47.190Z">
+<meta property="article:modified_time" content="2023-05-30T08:24:39.006Z">
 <meta property="article:author" content="ReturnTmp">
 <meta property="article:tag" content="env">
 <meta name="twitter:card" content="summary">
@@ -278,7 +278,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-05-29 16:24:47" itemprop="dateModified" datetime="2023-05-29T16:24:47+08:00">2023-05-29</time>
+      <time title="修改时间：2023-05-30 16:24:39" itemprop="dateModified" datetime="2023-05-30T16:24:39+08:00">2023-05-30</time>
     </span>
 
   
@@ -309,7 +309,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6k</span>
+      <span>6.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -327,7 +327,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
+        <blockquote>
+<p>tmux 可以管理多个会话和任务，在一个终端窗口中同时运行多个命令行程序</p>
+<p>ranger 可以帮助你在命令行下进行文件管理和操作</p>
+<p>lazygit 提供了一个简化的界面来管理 Git 仓库，可以提高你在命令行环境下的工作效率和操作便捷性。</p>
+<p>本文主要将详细讲解如何配置（tmux+ranger+lazygit），希望可以帮助大家</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
 <p>此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。</p>
 <p>官网地址：<a target="_blank" rel="noopener" href="https://github.com/tmux/tmux">tmux&#x2F;tmux: tmux source code (github.com)</a></p>
 <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu 或 Debian</span></span><br><span class="line">$ sudo apt-get install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 或 Fedora</span></span><br><span class="line">$ sudo yum install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac</span></span><br><span class="line">$ brew install tmux</span><br></pre></td></tr></table></figure>
@@ -881,13 +889,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">70k</span>
+    <span title="站点总字数">71k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">1:57</span>
+    <span title="站点阅读时长">1:58</span>
   </span>
 </div>
 <div class="busuanzi-count">

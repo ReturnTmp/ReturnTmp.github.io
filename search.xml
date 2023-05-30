@@ -3,16 +3,25 @@
   <entry>
     <title>优雅提交 Git Commit Message</title>
     <url>/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</url>
-    <content><![CDATA[<h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
+    <content><![CDATA[<blockquote>
+<p>commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><blockquote>
+<p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
+</blockquote>
 <p>message 样例：</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><p>Type</p>
-<p>：必须是下列之一</p>
+<li><p>Type：必须是下列之一</p>
 <ul>
 <li><strong>feat</strong>：一个新功能</li>
-<li><strong>fix</strong>：bug修复</li>
+</ul>
+</li>
+<li><p><strong>fix</strong>：bug修复</p>
+<ul>
 <li><strong>docs</strong>：编辑文档</li>
 <li><strong>style</strong>：不影响代码含义的更改(空格、格式、缺少分号等，不是css的更改)</li>
 <li><strong>refactor</strong>：既不修复bug也不添加特性的代码更改</li>
@@ -67,11 +76,22 @@
 
 <p>或者在 .huskyrc 文件中</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>env</tag>
+      </tags>
   </entry>
   <entry>
     <title>配置工具篇（tmux+ranger+lazygit）</title>
     <url>/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
+    <content><![CDATA[<blockquote>
+<p>tmux 可以管理多个会话和任务，在一个终端窗口中同时运行多个命令行程序</p>
+<p>ranger 可以帮助你在命令行下进行文件管理和操作</p>
+<p>lazygit 提供了一个简化的界面来管理 Git 仓库，可以提高你在命令行环境下的工作效率和操作便捷性。</p>
+<p>本文主要将详细讲解如何配置（tmux+ranger+lazygit），希望可以帮助大家</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
 <p>此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。</p>
 <p>官网地址：<a href="https://github.com/tmux/tmux">tmux&#x2F;tmux: tmux source code (github.com)</a></p>
 <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu 或 Debian</span></span><br><span class="line">$ sudo apt-get install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 或 Fedora</span></span><br><span class="line">$ sudo yum install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac</span></span><br><span class="line">$ brew install tmux</span><br></pre></td></tr></table></figure>
