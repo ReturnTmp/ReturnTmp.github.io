@@ -1,106 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hackthebox 学习笔记</title>
-    <url>/2023/06/06/Hackthebox-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h3 id="网络不稳定解决方案"><a href="#网络不稳定解决方案" class="headerlink" title="网络不稳定解决方案"></a>网络不稳定解决方案</h3><p><code>.ovpn</code>文件更改</p>
-<p>更改<code>proto udp</code>为<code>proto tcp</code><br>更改<code>remote &#123;serverAddressHere&#125; 1337</code>为<code>remote &#123;serverAddressHere&#125; 443</code><br>更改<code>&lt;tls-auth&gt;</code>为<code>&lt;tls-crypt&gt;</code><br>更改<code>&lt;/tls-auth&gt;</code>为<code>&lt;/tls-crypt&gt;</code></p>
-<h3 id="SUID-提权方式"><a href="#SUID-提权方式" class="headerlink" title="SUID 提权方式"></a>SUID 提权方式</h3><h4 id="可提权命令"><a href="#可提权命令" class="headerlink" title="可提权命令"></a>可提权命令</h4><p>Nmap、Vim、find、Bash、More、Less、Nano、cp</p>
-<p>添加suid权限，示例如下</p>
-<blockquote>
-<p>chmod `which find`</p>
-</blockquote>
-<h4 id="查找suid可执行文件"><a href="#查找suid可执行文件" class="headerlink" title="查找suid可执行文件"></a>查找suid可执行文件</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">find / -user root -perm -4000 -<span class="built_in">print</span> 2&gt;/dev/null</span><br><span class="line">find / -perm -u=s -<span class="built_in">type</span> f 2&gt;/dev/null</span><br><span class="line">find / -user root -perm -4000 -<span class="built_in">exec</span> <span class="built_in">ls</span> -ldb &#123;&#125; \; </span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h4><p>find `which find` -exec whoami ;</p>
-<h4 id="交互式-shell"><a href="#交互式-shell" class="headerlink" title="交互式 shell"></a>交互式 shell</h4><p>find `which find` -exec ‘&#x2F;bin&#x2F;sh’ -p ;</p>
-<p>在 suid find 提权过程中，使用 -exec 参数来执行 &#x2F;bin&#x2F;sh 命令时，如果使用 -p 参数，则可以获取一个以 root 权限运行的交互式 shell。</p>
-<p>这是因为，在 Linux 系统中，-p 参数通常用于启动一个 POSIX 兼容的 shell，并将其设置为特权 shell。当使用 -p 参数启动 shell 时，将使用该 shell 的有效用户 ID（EUID）作为特权用户 ID，而不是使用真实用户 ID（UID）。由于在 suid find 提权过程中，find 命令的 EUID 已经被设置为 root 用户的 UID，因此使用 -p 参数启动 shell 时，将获取一个以 root 权限运行的交互式 shell。</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>优雅提交 Git Commit Message</title>
-    <url>/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</url>
-    <content><![CDATA[<blockquote>
-<p>commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><blockquote>
-<p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
-</blockquote>
-<p>message 样例：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Type：必须是下列之一</p>
-<ul>
-<li><strong>feat</strong>：一个新功能</li>
-</ul>
-</li>
-<li><p><strong>fix</strong>：bug修复</p>
-<ul>
-<li><strong>docs</strong>：编辑文档</li>
-<li><strong>style</strong>：不影响代码含义的更改(空格、格式、缺少分号等，不是css的更改)</li>
-<li><strong>refactor</strong>：既不修复bug也不添加特性的代码更改</li>
-<li><strong>perf</strong>：提高性能的代码更改</li>
-<li><strong>test</strong>：添加缺失的或纠正现有的测试</li>
-<li><strong>chore</strong>：对构建过程或辅助工具和库(如文档生成)的更改</li>
-</ul>
-</li>
-<li><p><strong>Subject</strong>：主题包含对变更的简洁描述</p>
-</li>
-<li><p><strong>Body</strong>：具体的修改内容，可以包括与之前的对比</p>
-</li>
-<li><p><strong>Footer</strong>：通常是 BREAKING CHANGE 或修复的 issue 链接</p>
-</li>
-</ul>
-<h1 id="规范工具"><a href="#规范工具" class="headerlink" title="规范工具"></a>规范工具</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>commitizen git commit 格式化工具, 为我们提供标准化的 commit 信息。 帮助我们统一项目commit ， 便于信息的回溯或日志的生成。# commit message 格式</p>
-<p>commitizen 只是提供一个commit 格式化或交互工具, 最终需要输出符合 commit 规则的信息给 git， 所以需要线了解 commit 格式规则</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
-
-<p>package.json中添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="string">&quot;commit&quot;</span>: <span class="string">&quot;git-cz&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;commitizen&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;path&quot;</span>: <span class="string">&quot;./node_modules/cz-conventional-changelog&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="自定义-Adapter"><a href="#自定义-Adapter" class="headerlink" title="自定义 Adapter"></a>自定义 Adapter</h3><p>如果 Angular 的规范不符合我们的实际，同样我们也可以通过 <a href="https://github.com/leonardoanalista/cz-customizable">cz-customizable</a> 定制一套符合自己或者团队的规范。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D cz-customizable</span><br></pre></td></tr></table></figure>
-
-<p>同时package.json需要修改</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node_modules/cz-customizable&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>之后对应项目目录下创建 .cz-config.js 文件，用来维护自己的格式</p>
-<p>官网中有对应的样例配置文件：<a href="https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js">cz-customizable&#x2F;cz-config-EXAMPLE.js at master · leoforfree&#x2F;cz-customizable · GitHub</a></p>
-<h3 id="校验-Message"><a href="#校验-Message" class="headerlink" title="校验 Message"></a>校验 Message</h3><h5 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h5><p>可以做到如果不符合校验规范，就会直接拒绝 commit 请求</p>
-<h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Angular 团队的规范</span></span><br><span class="line">npm install -D @commitlint/config-conventional @commitlint/cli</span><br><span class="line"><span class="comment"># 自定义规范</span></span><br><span class="line">npm install -D commitlint-config-cz @commitlint/cli</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>在项目目录下创建配置文件 .commitlintrc.js</p>
-<p>Angular 团队的规范</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;&#x27;</span>@commitlint/config-conventional<span class="string">&#x27;&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="自定义规范"><a href="#自定义规范" class="headerlink" title="自定义规范"></a>自定义规范</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  extends: [</span><br><span class="line">    <span class="string">&#x27;cz&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  rules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Husky"><a href="#Husky" class="headerlink" title="Husky"></a>Husky</h3><p>在做前端工程化时husky可以说是一个必不可少的工具。husky可以让我们向项目中方便添加git hooks。</p>
-<p>官方链接：<a href="https://github.com/typicode/husky">typicode&#x2F;husky: Git hooks made easy 🐶 woof! (github.com)</a></p>
-<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -D husky</span><br></pre></td></tr></table></figure>
-
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>package.json中添加：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;husky&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      ...<span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-
-<p>或者在 .huskyrc 文件中</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>env</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Neovim 配置教程</title>
     <url>/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<blockquote>
@@ -1324,11 +1224,83 @@
       </tags>
   </entry>
   <entry>
-    <title>提高打字速度笔记</title>
-    <url>/2023/06/01/%E6%8F%90%E9%AB%98%E6%89%93%E5%AD%97%E9%80%9F%E5%BA%A6%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p><a href="https://zhuanlan.zhihu.com/p/567020879">如何练习提高打字速度，35wpm到100+wpm之旅 - 知乎 (zhihu.com)</a></p>
-<p><a href="https://www.speedtyper.dev/">SpeedTyper.dev | Typing practice for programmers</a></p>
-<p><a href="https://monkeytype.com/">Monkeytype | A minimalistic, customizable typing test</a></p>
-]]></content>
+    <title>优雅提交 Git Commit Message</title>
+    <url>/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</url>
+    <content><![CDATA[<blockquote>
+<p>commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><blockquote>
+<p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
+</blockquote>
+<p>message 样例：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Type：必须是下列之一</p>
+<ul>
+<li><strong>feat</strong>：一个新功能</li>
+</ul>
+</li>
+<li><p><strong>fix</strong>：bug修复</p>
+<ul>
+<li><strong>docs</strong>：编辑文档</li>
+<li><strong>style</strong>：不影响代码含义的更改(空格、格式、缺少分号等，不是css的更改)</li>
+<li><strong>refactor</strong>：既不修复bug也不添加特性的代码更改</li>
+<li><strong>perf</strong>：提高性能的代码更改</li>
+<li><strong>test</strong>：添加缺失的或纠正现有的测试</li>
+<li><strong>chore</strong>：对构建过程或辅助工具和库(如文档生成)的更改</li>
+</ul>
+</li>
+<li><p><strong>Subject</strong>：主题包含对变更的简洁描述</p>
+</li>
+<li><p><strong>Body</strong>：具体的修改内容，可以包括与之前的对比</p>
+</li>
+<li><p><strong>Footer</strong>：通常是 BREAKING CHANGE 或修复的 issue 链接</p>
+</li>
+</ul>
+<h1 id="规范工具"><a href="#规范工具" class="headerlink" title="规范工具"></a>规范工具</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>commitizen git commit 格式化工具, 为我们提供标准化的 commit 信息。 帮助我们统一项目commit ， 便于信息的回溯或日志的生成。# commit message 格式</p>
+<p>commitizen 只是提供一个commit 格式化或交互工具, 最终需要输出符合 commit 规则的信息给 git， 所以需要线了解 commit 格式规则</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
+
+<p>package.json中添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="string">&quot;commit&quot;</span>: <span class="string">&quot;git-cz&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;commitizen&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;path&quot;</span>: <span class="string">&quot;./node_modules/cz-conventional-changelog&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="自定义-Adapter"><a href="#自定义-Adapter" class="headerlink" title="自定义 Adapter"></a>自定义 Adapter</h3><p>如果 Angular 的规范不符合我们的实际，同样我们也可以通过 <a href="https://github.com/leonardoanalista/cz-customizable">cz-customizable</a> 定制一套符合自己或者团队的规范。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D cz-customizable</span><br></pre></td></tr></table></figure>
+
+<p>同时package.json需要修改</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node_modules/cz-customizable&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后对应项目目录下创建 .cz-config.js 文件，用来维护自己的格式</p>
+<p>官网中有对应的样例配置文件：<a href="https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js">cz-customizable&#x2F;cz-config-EXAMPLE.js at master · leoforfree&#x2F;cz-customizable · GitHub</a></p>
+<h3 id="校验-Message"><a href="#校验-Message" class="headerlink" title="校验 Message"></a>校验 Message</h3><h5 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h5><p>可以做到如果不符合校验规范，就会直接拒绝 commit 请求</p>
+<h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Angular 团队的规范</span></span><br><span class="line">npm install -D @commitlint/config-conventional @commitlint/cli</span><br><span class="line"><span class="comment"># 自定义规范</span></span><br><span class="line">npm install -D commitlint-config-cz @commitlint/cli</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>在项目目录下创建配置文件 .commitlintrc.js</p>
+<p>Angular 团队的规范</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;&#x27;</span>@commitlint/config-conventional<span class="string">&#x27;&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="自定义规范"><a href="#自定义规范" class="headerlink" title="自定义规范"></a>自定义规范</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  extends: [</span><br><span class="line">    <span class="string">&#x27;cz&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  rules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Husky"><a href="#Husky" class="headerlink" title="Husky"></a>Husky</h3><p>在做前端工程化时husky可以说是一个必不可少的工具。husky可以让我们向项目中方便添加git hooks。</p>
+<p>官方链接：<a href="https://github.com/typicode/husky">typicode&#x2F;husky: Git hooks made easy 🐶 woof! (github.com)</a></p>
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -D husky</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>package.json中添加：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;husky&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      ...<span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p>或者在 .huskyrc 文件中</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>env</tag>
+      </tags>
   </entry>
 </search>
