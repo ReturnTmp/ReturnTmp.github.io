@@ -1,5 +1,5 @@
 :root {
-  --body-bg-color: #f5f7f9;
+  --body-bg-color: #eee;
   --content-bg-color: #fff;
   --card-bg-color: #f5f5f5;
   --text-color: #555;
@@ -2696,7 +2696,7 @@ mark.search-keyword {
 .header-inner {
   background: var(--content-bg-color);
   border-radius: initial;
-  box-shadow: initial;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
   width: 240px;
 }
 @media (max-width: 991px) {
@@ -2872,7 +2872,7 @@ mark.search-keyword {
 .sidebar-inner {
   background: var(--content-bg-color);
   border-radius: initial;
-  box-shadow: initial;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
   box-sizing: border-box;
   color: var(--text-color);
 }
@@ -2919,25 +2919,86 @@ mark.search-keyword {
 .links-of-author-item a:hover {
   background: var(--body-bg-color);
 }
-.main-inner {
+.main-inner > .sub-menu,
+.main-inner > .post-block,
+.main-inner > .tabs-comment,
+.main-inner > .comments,
+.main-inner > .pagination {
   background: var(--content-bg-color);
-  box-shadow: initial;
-  padding: 40px;
+  border-radius: initial;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
 }
-@media (max-width: 991px) {
-  .main-inner {
-    padding: 20px;
+.main-inner > .sub-menu:not(:first-child):not(.sub-menu),
+.main-inner > .post-block:not(:first-child):not(.sub-menu),
+.main-inner > .tabs-comment:not(:first-child):not(.sub-menu),
+.main-inner > .comments:not(:first-child):not(.sub-menu),
+.main-inner > .pagination:not(:first-child):not(.sub-menu) {
+  border-radius: initial;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12), 0 -1px 0.5px 0 rgba(0,0,0,0.09);
+  margin-top: 12px;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .main-inner > .sub-menu:not(:first-child):not(.sub-menu),
+  .main-inner > .post-block:not(:first-child):not(.sub-menu),
+  .main-inner > .tabs-comment:not(:first-child):not(.sub-menu),
+  .main-inner > .comments:not(:first-child):not(.sub-menu),
+  .main-inner > .pagination:not(:first-child):not(.sub-menu) {
+    margin-top: 10px;
   }
 }
-.sub-menu {
-  border-bottom: 1px solid #ddd;
+@media (max-width: 767px) {
+  .main-inner > .sub-menu:not(:first-child):not(.sub-menu),
+  .main-inner > .post-block:not(:first-child):not(.sub-menu),
+  .main-inner > .tabs-comment:not(:first-child):not(.sub-menu),
+  .main-inner > .comments:not(:first-child):not(.sub-menu),
+  .main-inner > .pagination:not(:first-child):not(.sub-menu) {
+    margin-top: 8px;
+  }
 }
-.post-block:first-of-type {
-  padding-top: 40px;
+.post-block,
+.comments {
+  padding: 40px;
+}
+.post-eof {
+  display: none;
+}
+.pagination {
+  border-top: initial;
+  padding: 10px 0;
+}
+.post-body h1,
+.post-body h2 {
+  border-bottom: 1px solid #eee;
+}
+.post-body h3 {
+  border-bottom: 1px dotted #eee;
+}
+@media (min-width: 768px) and (max-width: 991px) {
+  .main-inner {
+    padding: 10px;
+  }
+  .posts-expand .post-button {
+    margin-top: 20px;
+  }
+  .post-block {
+    padding: 20px;
+  }
+  .comments {
+    padding: 10px 20px;
+  }
 }
 @media (max-width: 767px) {
-  .pagination {
-    margin-bottom: 10px;
+  .main-inner {
+    padding: 8px;
+  }
+  .posts-expand .post-button {
+    margin: 12px 0;
+  }
+  .post-block {
+    padding: 12px;
+  }
+  .comments {
+    padding: 10px 12px;
   }
 }
 .my-csdn {
@@ -3037,4 +3098,22 @@ body {
 }
 :root {
   --content-bg-color: rgba(255,255,255,0.902);
+}
+.main-inner {
+  background-color: rgba(0,0,0,0);
+  padding: 0px 40px 40px 40px;
+}
+.main-inner > .post-block:not(:first-child):not(.sub-menu) {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 20px;
+  border-radius: 30px 30px 30px 30px;
+  box-shadow: 8px 7px 2px 0 rgba(0,0,0,0.12), 7px 4px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
+}
+.main-inner > .post-block {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 20px;
+  border-radius: 30px 30px 30px 30px;
+  box-shadow: 8px 7px 2px 0 rgba(0,0,0,0.12), 7px 4px 1px -2px rgba(0,0,0,0.06), 0 1px 5px 0 rgba(0,0,0,0.12);
 }

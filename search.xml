@@ -1,6 +1,555 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>优雅提交 Git Commit Message</title>
+    <url>/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</url>
+    <content><![CDATA[<blockquote>
+<p>commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><blockquote>
+<p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
+</blockquote>
+<p>message 样例：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Type：必须是下列之一</p>
+<ul>
+<li><strong>feat</strong>：一个新功能</li>
+</ul>
+</li>
+<li><p><strong>fix</strong>：bug修复</p>
+<ul>
+<li><strong>docs</strong>：编辑文档</li>
+<li><strong>style</strong>：不影响代码含义的更改(空格、格式、缺少分号等，不是css的更改)</li>
+<li><strong>refactor</strong>：既不修复bug也不添加特性的代码更改</li>
+<li><strong>perf</strong>：提高性能的代码更改</li>
+<li><strong>test</strong>：添加缺失的或纠正现有的测试</li>
+<li><strong>chore</strong>：对构建过程或辅助工具和库(如文档生成)的更改</li>
+</ul>
+</li>
+<li><p><strong>Subject</strong>：主题包含对变更的简洁描述</p>
+</li>
+<li><p><strong>Body</strong>：具体的修改内容，可以包括与之前的对比</p>
+</li>
+<li><p><strong>Footer</strong>：通常是 BREAKING CHANGE 或修复的 issue 链接</p>
+</li>
+</ul>
+<h1 id="规范工具"><a href="#规范工具" class="headerlink" title="规范工具"></a>规范工具</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>commitizen git commit 格式化工具, 为我们提供标准化的 commit 信息。 帮助我们统一项目commit ， 便于信息的回溯或日志的生成。# commit message 格式</p>
+<p>commitizen 只是提供一个commit 格式化或交互工具, 最终需要输出符合 commit 规则的信息给 git， 所以需要线了解 commit 格式规则</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
+
+<p>package.json中添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="string">&quot;commit&quot;</span>: <span class="string">&quot;git-cz&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;commitizen&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;path&quot;</span>: <span class="string">&quot;./node_modules/cz-conventional-changelog&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="自定义-Adapter"><a href="#自定义-Adapter" class="headerlink" title="自定义 Adapter"></a>自定义 Adapter</h3><p>如果 Angular 的规范不符合我们的实际，同样我们也可以通过 <a href="https://github.com/leonardoanalista/cz-customizable">cz-customizable</a> 定制一套符合自己或者团队的规范。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D cz-customizable</span><br></pre></td></tr></table></figure>
+
+<p>同时package.json需要修改</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node_modules/cz-customizable&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后对应项目目录下创建 .cz-config.js 文件，用来维护自己的格式</p>
+<p>官网中有对应的样例配置文件：<a href="https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js">cz-customizable&#x2F;cz-config-EXAMPLE.js at master · leoforfree&#x2F;cz-customizable · GitHub</a></p>
+<h3 id="校验-Message"><a href="#校验-Message" class="headerlink" title="校验 Message"></a>校验 Message</h3><h5 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h5><p>可以做到如果不符合校验规范，就会直接拒绝 commit 请求</p>
+<h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Angular 团队的规范</span></span><br><span class="line">npm install -D @commitlint/config-conventional @commitlint/cli</span><br><span class="line"><span class="comment"># 自定义规范</span></span><br><span class="line">npm install -D commitlint-config-cz @commitlint/cli</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>在项目目录下创建配置文件 .commitlintrc.js</p>
+<p>Angular 团队的规范</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;&#x27;</span>@commitlint/config-conventional<span class="string">&#x27;&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="自定义规范"><a href="#自定义规范" class="headerlink" title="自定义规范"></a>自定义规范</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  extends: [</span><br><span class="line">    <span class="string">&#x27;cz&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  rules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Husky"><a href="#Husky" class="headerlink" title="Husky"></a>Husky</h3><p>在做前端工程化时husky可以说是一个必不可少的工具。husky可以让我们向项目中方便添加git hooks。</p>
+<p>官方链接：<a href="https://github.com/typicode/husky">typicode&#x2F;husky: Git hooks made easy 🐶 woof! (github.com)</a></p>
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -D husky</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>package.json中添加：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;husky&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      ...<span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p>或者在 .huskyrc 文件中</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>env</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>配置工具篇（tmux+ranger+lazygit）</title>
+    <url>/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</url>
+    <content><![CDATA[<blockquote>
+<p>tmux 可以管理多个会话和任务，在一个终端窗口中同时运行多个命令行程序</p>
+<p>ranger 可以帮助你在命令行下进行文件管理和操作</p>
+<p>lazygit 提供了一个简化的界面来管理 Git 仓库，可以提高你在命令行环境下的工作效率和操作便捷性。</p>
+<p>本文主要将详细讲解如何配置（tmux+ranger+lazygit），希望可以帮助大家</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
+<p>此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。</p>
+<p>官网地址：<a href="https://github.com/tmux/tmux">tmux&#x2F;tmux: tmux source code (github.com)</a></p>
+<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu 或 Debian</span></span><br><span class="line">$ sudo apt-get install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 或 Fedora</span></span><br><span class="line">$ sudo yum install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac</span></span><br><span class="line">$ brew install tmux</span><br></pre></td></tr></table></figure>
+
+<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></table></figure>
+
+<p>上面命令会启动 Tmux 窗口，底部有一个状态栏。状态栏的左侧是窗口信息（编号和名称），右侧是系统信息。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523160429119.png" alt="image-20230523160429119"></p>
+<p>按下<code>Ctrl+d</code>或者显式输入<code>exit</code>命令，就可以退出 Tmux 窗口。</p>
+<h3 id="前缀键"><a href="#前缀键" class="headerlink" title="前缀键"></a>前缀键</h3><p>Tmux 窗口有大量的快捷键。所有快捷键都要通过前缀键唤起。默认的前缀键是<code>Ctrl+b</code>，即先按下<code>Ctrl+b</code>，快捷键才会生效。</p>
+<p>举例来说，帮助命令的快捷键是<code>Ctrl+b ?</code>。它的用法是，在 Tmux 窗口中，先按下<code>Ctrl+b</code>，再按下<code>?</code>，就会显示帮助信息。</p>
+<p>然后，按下 ESC 键或<code>q</code>键，就可以退出帮助。</p>
+<h2 id="会话管理"><a href="#会话管理" class="headerlink" title="会话管理"></a>会话管理</h2><h3 id="新建会话"><a href="#新建会话" class="headerlink" title="新建会话"></a>新建会话</h3><p>第一个启动的 Tmux 窗口，编号是<code>0</code>，第二个窗口的编号是<code>1</code>，以此类推。这些窗口对应的会话，就是 0 号会话、1 号会话。</p>
+<p>使用编号区分会话，不太直观，更好的方法是为会话起名。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux new -s &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="分离会话"><a href="#分离会话" class="headerlink" title="分离会话"></a>分离会话</h3><p> Tmux 窗口中，按下<code>Ctrl+b d</code>或者输入<code>tmux detach</code>命令，就会将当前会话与窗口分离。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux detach</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。</p>
+<p><code>tmux ls</code>命令可以查看当前所有的 Tmux 会话。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux <span class="built_in">ls</span></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">$ tmux list-session</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="接入会话"><a href="#接入会话" class="headerlink" title="接入会话"></a>接入会话</h3><p><code>tmux attach</code>命令用于重新接入某个已存在的会话。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用会话编号</span></span><br><span class="line">$ tmux attach -t 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用会话名称</span></span><br><span class="line">$ tmux attach -t &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="杀死会话"><a href="#杀死会话" class="headerlink" title="杀死会话"></a>杀死会话</h3><p><code>tmux kill-session</code>命令用于杀死某个会话。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用会话编号</span></span><br><span class="line">$ tmux kill-session -t 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用会话名称</span></span><br><span class="line">$ tmux kill-session -t &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="切换会话"><a href="#切换会话" class="headerlink" title="切换会话"></a>切换会话</h3><p><code>tmux switch</code>命令用于切换会话。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用会话编号</span></span><br><span class="line">$ tmux switch -t 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用会话名称</span></span><br><span class="line">$ tmux switch -t &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="重命名会话"><a href="#重命名会话" class="headerlink" title="重命名会话"></a>重命名会话</h3><p><code>tmux rename-session</code>命令用于重命名会话。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux rename-session -t 0 &lt;new-name&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>上面命令将0号会话重命名。</p>
+<h3 id="会话快捷键"><a href="#会话快捷键" class="headerlink" title="会话快捷键"></a>会话快捷键</h3><p>下面是一些会话相关的快捷键。</p>
+<blockquote>
+<ul>
+<li><code>Ctrl+b d</code>：分离当前会话。</li>
+<li><code>Ctrl+b s</code>：列出所有会话。</li>
+<li><code>Ctrl+b $</code>：重命名当前会话。</li>
+</ul>
+</blockquote>
+<h2 id="最简流程"><a href="#最简流程" class="headerlink" title="最简流程"></a>最简流程</h2><ol>
+<li>新建会话<code>tmux new -s my_session</code>。</li>
+<li>在 Tmux 窗口运行所需的程序。</li>
+<li>按下快捷键<code>Ctrl+b d</code>将会话分离。</li>
+<li>下次使用时，重新连接到会话<code>tmux attach-session -t my_session</code>。</li>
+</ol>
+<h2 id="窗格操作"><a href="#窗格操作" class="headerlink" title="窗格操作"></a>窗格操作</h2><h3 id="划分窗格"><a href="#划分窗格" class="headerlink" title="划分窗格"></a>划分窗格</h3><p><code>tmux split-window</code>命令用来划分窗格。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 划分上下两个窗格</span></span><br><span class="line">$ tmux split-window</span><br><span class="line"></span><br><span class="line"><span class="comment"># 划分左右两个窗格</span></span><br><span class="line">$ tmux split-window -h</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h3><p><code>tmux select-pane</code>命令用来移动光标位置。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 光标切换到上方窗格</span></span><br><span class="line">$ tmux select-pane -U</span><br><span class="line"></span><br><span class="line"><span class="comment"># 光标切换到下方窗格</span></span><br><span class="line">$ tmux select-pane -D</span><br><span class="line"></span><br><span class="line"><span class="comment"># 光标切换到左边窗格</span></span><br><span class="line">$ tmux select-pane -L</span><br><span class="line"></span><br><span class="line"><span class="comment"># 光标切换到右边窗格</span></span><br><span class="line">$ tmux select-pane -R</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="交换窗格位置"><a href="#交换窗格位置" class="headerlink" title="交换窗格位置"></a>交换窗格位置</h3><p><code>tmux swap-pane</code>命令用来交换窗格位置。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当前窗格上移</span></span><br><span class="line">$ tmux swap-pane -U</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前窗格下移</span></span><br><span class="line">$ tmux swap-pane -D</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="窗格快捷键"><a href="#窗格快捷键" class="headerlink" title="窗格快捷键"></a>窗格快捷键</h3><p>下面是一些窗格操作的快捷键。</p>
+<blockquote>
+<ul>
+<li><code>Ctrl+b %</code>：划分左右两个窗格。</li>
+<li><code>Ctrl+b &quot;</code>：划分上下两个窗格。</li>
+<li><code>Ctrl+b &lt;arrow key&gt;</code>：光标切换到其他窗格。<code>&lt;arrow key&gt;</code>是指向要切换到的窗格的方向键，比如切换到下方窗格，就按方向键<code>↓</code>。</li>
+<li><code>Ctrl+b ;</code>：光标切换到上一个窗格。</li>
+<li><code>Ctrl+b o</code>：光标切换到下一个窗格。</li>
+<li><code>Ctrl+b &#123;</code>：当前窗格与上一个窗格交换位置。</li>
+<li><code>Ctrl+b &#125;</code>：当前窗格与下一个窗格交换位置。</li>
+<li><code>Ctrl+b Ctrl+o</code>：所有窗格向前移动一个位置，第一个窗格变成最后一个窗格。</li>
+<li><code>Ctrl+b Alt+o</code>：所有窗格向后移动一个位置，最后一个窗格变成第一个窗格。</li>
+<li><code>Ctrl+b x</code>：关闭当前窗格。</li>
+<li><code>Ctrl+b !</code>：将当前窗格拆分为一个独立窗口。</li>
+<li><code>Ctrl+b z</code>：当前窗格全屏显示，再使用一次会变回原来大小。</li>
+<li><code>Ctrl+b Ctrl+&lt;arrow key&gt;</code>：按箭头方向调整窗格大小。</li>
+<li><code>Ctrl+b q</code>：显示窗格编号。</li>
+</ul>
+</blockquote>
+<h2 id="窗口管理"><a href="#窗口管理" class="headerlink" title="窗口管理"></a>窗口管理</h2><p>除了将一个窗口划分成多个窗格，Tmux 也允许新建多个窗口。</p>
+<h3 id="新建窗口"><a href="#新建窗口" class="headerlink" title="新建窗口"></a>新建窗口</h3><p><code>tmux new-window</code>命令用来创建新窗口。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux new-window</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个指定名称的窗口</span></span><br><span class="line">$ tmux new-window -n &lt;window-name&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="切换窗口"><a href="#切换窗口" class="headerlink" title="切换窗口"></a>切换窗口</h3><p><code>tmux select-window</code>命令用来切换窗口。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到指定编号的窗口</span></span><br><span class="line">$ tmux select-window -t &lt;window-number&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到指定名称的窗口</span></span><br><span class="line">$ tmux select-window -t &lt;window-name&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="重命名窗口"><a href="#重命名窗口" class="headerlink" title="重命名窗口"></a>重命名窗口</h3><p><code>tmux rename-window</code>命令用于为当前窗口起名（或重命名）。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux rename-window &lt;new-name&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="窗口快捷键"><a href="#窗口快捷键" class="headerlink" title="窗口快捷键"></a>窗口快捷键</h3><p>下面是一些窗口操作的快捷键。</p>
+<blockquote>
+<ul>
+<li><code>Ctrl+b c</code>：创建一个新窗口，状态栏会显示多个窗口的信息。</li>
+<li><code>Ctrl+b p</code>：切换到上一个窗口（按照状态栏上的顺序）。</li>
+<li><code>Ctrl+b n</code>：切换到下一个窗口。</li>
+<li><code>Ctrl+b &lt;number&gt;</code>：切换到指定编号的窗口，其中的<code>&lt;number&gt;</code>是状态栏上的窗口编号。</li>
+<li><code>Ctrl+b w</code>：从列表中选择窗口。</li>
+<li><code>Ctrl+b ,</code>：窗口重命名。</li>
+</ul>
+</blockquote>
+<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><p>下面是一些其他命令。</p>
+<blockquote>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列出所有快捷键，及其对应的 Tmux 命令</span></span><br><span class="line">$ tmux list-keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有 Tmux 命令及其参数</span></span><br><span class="line">$ tmux list-commands</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出当前所有 Tmux 会话的信息</span></span><br><span class="line">$ tmux info</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载当前的 Tmux 配置</span></span><br><span class="line">$ tmux source-file ~/.tmux.conf</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="Ranger"><a href="#Ranger" class="headerlink" title="Ranger"></a>Ranger</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>官方解释：ranger是一个带有VI密钥绑定的控制台文件管理器。它提供了一个简洁美观的curses界面，并提供了目录层次结构视图。它配备了rifle，这是一种文件启动器，能够自动找出要用于何种文件类型的程序。</p>
+<p>官房链接：<a href="https://github.com/ranger/ranger">ranger&#x2F;ranger: A VIM-inspired filemanager for the console (github.com)</a></p>
+<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>ubuntu 安装命令如下</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install ranger</span><br></pre></td></tr></table></figure>
+
+<p>最终在终端下输入ranger即可打开程序了</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523164316992.png" alt="image-20230523164316992"></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>使用<code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>来进行光标的移动,来穿越在不同的文件夹中</p>
+<p>使用<code>q</code>进行退出程序,使用<code>S</code>来进行当前光标所在的文件夹中(进入文件夹后终端下执行<code>exit</code>命令重新回到ranger程序当中去)</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>使用<code>ranger --copy-config=all</code>将在<code>~/.config/ranger</code>中生成一系列配置文件</p>
+<ul>
+<li>rc.conf 常用于设置选项和绑定快捷键.(最常用)</li>
+<li>scope.sh 常用于设置文件的预览方式</li>
+<li>rifle.conf 常用于设置使用那个软件来打开文件</li>
+<li>commands.py python文件,增强和改进ranger的各种功能</li>
+</ul>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ranger --copy-config=all</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>rc.conf</code>-选项设置和快捷键</li>
+<li><code>commands.py</code>-能通过<code>:</code>执行的命令</li>
+<li><code>commands_full.py</code>-全套命令</li>
+<li><code>rifle.conf</code>-指定不同类型的文件的默认打开程序</li>
+<li><code>scope.conf</code>-负责各种文件预览</li>
+</ul>
+<p>注意：如果要使用<code>~/.config/ranger</code>目录下的配置生效，需要把<code>RANGER_LOAD_DEFAULT_RC</code>变量设置为<code>false</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export RANGER_LOAD_DEFAULT_RC=false&quot;</span>&gt;&gt;~/.bashrc</span><br><span class="line"></span><br><span class="line">zsh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export RANGER_LOAD_DEFAULT_RC=false&quot;</span>&gt;&gt;~/.zshrc</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>可选配置(推荐)</p>
+</blockquote>
+<p>修改配置文件<code>~/.config/ranger/rc.conf</code></p>
+<ul>
+<li>显示边框<code>set draw_borders both</code></li>
+<li>显示序号<code>set line_numbers true</code></li>
+<li>序号从1开始<code>set one_indexed true</code></li>
+</ul>
+<h2 id="配置图标"><a href="#配置图标" class="headerlink" title="配置图标"></a>配置图标</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;default_linemode devicons&quot;</span> &gt;&gt; <span class="variable">$HOME</span>/.config/ranger/rc.conf</span><br></pre></td></tr></table></figure>
+
+<h5 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h5><p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523171348133.png" alt="image-20230523171348133"></p>
+<h4 id="配置文本编辑器"><a href="#配置文本编辑器" class="headerlink" title="配置文本编辑器"></a>配置文本编辑器</h4><p>设置默认为nvim</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">export</span> EDITOR=/usr/bin/nvim &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="comment"># zsh</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">export</span> EDITOR=/usr/bin/nvim &gt;&gt; ~/.zshrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h2 id="文件管理器操作"><a href="#文件管理器操作" class="headerlink" title="文件管理器操作"></a>文件管理器操作</h2><table>
+<thead>
+<tr>
+<th>文件管理器操作</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>h</code></td>
+<td>返回上一层</td>
+</tr>
+<tr>
+<td><code>l</code></td>
+<td>进入文件</td>
+</tr>
+<tr>
+<td><code>j</code></td>
+<td>向下</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>向上</td>
+</tr>
+<tr>
+<td><code>Enter</code></td>
+<td>打开文件</td>
+</tr>
+<tr>
+<td><code>q</code></td>
+<td>退出</td>
+</tr>
+</tbody></table>
+<h2 id="获得帮助"><a href="#获得帮助" class="headerlink" title="获得帮助"></a>获得帮助</h2><p>您可以在使用Ranger时获得帮助</p>
+<table>
+<thead>
+<tr>
+<th>字符</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>m</code></td>
+<td>打开护林员的手册页</td>
+</tr>
+<tr>
+<td><code>k</code></td>
+<td>打开键绑定列表</td>
+</tr>
+<tr>
+<td><code>c</code></td>
+<td>打开可用命令和描述的列表</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>打开设置及其当前值的列表 |</td>
+</tr>
+</tbody></table>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dD</code> 或者 <code>F8</code></td>
+<td>删除条目（文件或者文件夹），或者 <code>:</code> + <code>delete</code>。</td>
+</tr>
+<tr>
+<td><code>DD</code></td>
+<td>将条目移动到回收站里。</td>
+</tr>
+</tbody></table>
+<h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>F7</code></td>
+<td>新建文件夹，等同于 <code>:mkdir </code>。</td>
+</tr>
+<tr>
+<td><code>INSERT</code></td>
+<td>新建文件，等同于 <code>:touch </code>。</td>
+</tr>
+</tbody></table>
+<h2 id="重命名"><a href="#重命名" class="headerlink" title="重命名"></a>重命名</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cw</code></td>
+<td>重命名（含后缀名）</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>重命名，光标在最前</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>重命名，光标在最后（含后缀名）</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>重命名，光标在最后（不含后缀名）</td>
+</tr>
+</tbody></table>
+<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>yy</code> 或者 <code>F5</code></td>
+<td>复制</td>
+</tr>
+<tr>
+<td><code>ya</code></td>
+<td><code>add</code> 模式，添加光标处文件到复制队列中（文件夹无效）。</td>
+</tr>
+<tr>
+<td><code>yr</code></td>
+<td><code>remove</code> 模式，从复制队列中移除光标处文件（文件夹无效）。</td>
+</tr>
+<tr>
+<td><code>yt</code></td>
+<td><code>toggle</code> 模式，切换光标处文件是否在复制队列中（文件夹无效）。</td>
+</tr>
+<tr>
+<td><code>yk</code></td>
+<td>将光标处文件和上一文件添加到复制队列中（文件夹无效）。</td>
+</tr>
+<tr>
+<td><code>yj</code></td>
+<td>将光标处文件和下一文件添加到复制队列中（文件夹无效）。</td>
+</tr>
+<tr>
+<td><code>ygg</code></td>
+<td>将光标处到顶端的所有文件添加到复制队列中（文件夹无效）</td>
+</tr>
+<tr>
+<td><code>yG</code></td>
+<td>将光标处到底端的所有文件添加到复制队列中（文件夹无效）</td>
+</tr>
+</tbody></table>
+<h2 id="剪切"><a href="#剪切" class="headerlink" title="剪切"></a>剪切</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>dd</code> 或者 <code>F6</code></td>
+<td>剪切</td>
+</tr>
+<tr>
+<td><code>da</code></td>
+<td><code>add</code> 模式，同复制。</td>
+</tr>
+<tr>
+<td><code>dr</code></td>
+<td><code>remove</code> 模式，同复制。</td>
+</tr>
+<tr>
+<td><code>dt</code></td>
+<td><code>toggle</code> 模式，同复制。</td>
+</tr>
+<tr>
+<td><code>dk</code></td>
+<td>同复制</td>
+</tr>
+<tr>
+<td><code>dj</code></td>
+<td>同复制</td>
+</tr>
+<tr>
+<td><code>dgg</code></td>
+<td>同复制</td>
+</tr>
+<tr>
+<td><code>dG</code></td>
+<td>同复制</td>
+</tr>
+<tr>
+<td><code>ud</code> 或者 <code>uy</code></td>
+<td>取消剪切</td>
+</tr>
+</tbody></table>
+<h2 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>pp</code></td>
+<td>粘贴，默认 <code>append</code> 模式</td>
+</tr>
+<tr>
+<td><code>pP</code></td>
+<td><code>append</code> 模式，如果该目录中有同名条目，则在条目后面加上 <code>_</code>、<code>_0</code>、<code>_1</code>……。如果条目是文件，则在文件后缀名后加入。</td>
+</tr>
+<tr>
+<td><code>po</code></td>
+<td><code>overwrite</code> 模式，如果该目录中有同名条目，则覆盖原来的条目。</td>
+</tr>
+<tr>
+<td><code>pO</code></td>
+<td><code>append</code> 模式 + <code>overwrite</code> 模式。</td>
+</tr>
+<tr>
+<td><code>pl</code></td>
+<td>粘贴为符号链接，不在状态栏显示目标条目的相对路径。</td>
+</tr>
+<tr>
+<td><code>pL</code></td>
+<td>粘贴为符号链接（相对路径），在状态栏显示目标条目的相对路径。</td>
+</tr>
+<tr>
+<td><code>phl</code></td>
+<td>粘贴为硬链接</td>
+</tr>
+<tr>
+<td><code>pht</code></td>
+<td>粘贴为硬链接的子目录（hardlinked subtree）</td>
+</tr>
+</tbody></table>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/</code></td>
+<td>打开搜索框，输入要搜索的字符串，回车后开始搜索。</td>
+</tr>
+<tr>
+<td><code>f</code></td>
+<td>查找，等同于运行满足条件的文件或者打开满足条件的文件夹。</td>
+</tr>
+<tr>
+<td><code>zf</code></td>
+<td>与命令行 <code>filter</code> 作用一样，只显示符合条件的条目，区分大小写。</td>
+</tr>
+<tr>
+<td><code>n</code> <code>N</code></td>
+<td>查找下一个搜索结果 查找上一个搜索结果</td>
+</tr>
+<tr>
+<td><code>c</code> + <code>对应字母</code></td>
+<td>通过对应属性依次遍历，如：<code>ca</code>：通过 <code>atime</code>属性依次遍历<code>cc</code>：通过 <code>ctime</code> 属性依次遍历<code>ci</code>：通过 <code>mimetype</code> 属性依次遍历<code>cm</code>：通过 <code>mtime</code> 属性依次遍历<code>cs</code>：通过 <code>size</code> 属性依次遍历<code>ct</code>：通过 <code>tag</code> 属性依次遍历</td>
+</tr>
+</tbody></table>
+<h3 id="相关插件"><a href="#相关插件" class="headerlink" title="相关插件"></a>相关插件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu</span><br><span class="line">sudo apt-get install caca-utils <span class="comment"># img2txt 图片</span></span><br><span class="line">sudo apt-get install highlight  <span class="comment"># 代码高亮</span></span><br><span class="line">sudo apt-get install atool　    <span class="comment"># 存档预览</span></span><br><span class="line">sudo apt-get install w3m        <span class="comment"># html页面预览</span></span><br><span class="line">sudo apt-get install mediainfo  <span class="comment"># 多媒体文件预览</span></span><br><span class="line">sudo apt-get install catdoc     <span class="comment"># doc预览</span></span><br><span class="line">sudo apt-get install docx2txt   <span class="comment"># docx预览</span></span><br><span class="line">sudo apt-get install xlsx2csv   <span class="comment"># xlsx预览</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="LazyGit"><a href="#LazyGit" class="headerlink" title="LazyGit"></a>LazyGit</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>官方解释：git命令的简单终端UI，使用gocui库在Go中编写。</p>
+<p>官方链接：<a href="https://github.com/jesseduffield/lazygit">jesseduffield&#x2F;lazygit: simple terminal UI for git commands (github.com)</a></p>
+<h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><h5 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">LAZYGIT_VERSION=$(curl -s <span class="string">&quot;https://api.github.com/repos/jesseduffield/lazygit/releases/latest&quot;</span> | grep -Po <span class="string">&#x27;&quot;tag_name&quot;: &quot;v\K[^&quot;]*&#x27;</span>)</span><br><span class="line">curl -Lo lazygit.tar.gz <span class="string">&quot;https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_<span class="variable">$&#123;LAZYGIT_VERSION&#125;</span>_Linux_x86_64.tar.gz&quot;</span></span><br><span class="line">tar xf lazygit.tar.gz lazygit</span><br><span class="line">sudo install lazygit /usr/local/bin</span><br></pre></td></tr></table></figure>
+
+<p>执行<code>lazygit</code>即可启动</p>
+<p>可以添加别名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;alias lg=&#x27;lazygit&#x27;&quot;</span> &gt;&gt; ~/.zshrc</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果</strong>：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523222702767.png" alt="image-20230523222702767"></p>
+<p>可以使用数字键或是<code>tab</code>或是<code>h</code>和<code>l</code>切换标签</p>
+<p>之后在对应tab中使用使用<code>?</code>查看帮助文档学习相应操作</p>
+<p>参考链接：</p>
+<blockquote>
+<p><a href="https://www.ruanyifeng.com/blog/2019/10/tmux.html">https://www.ruanyifeng.com/blog/2019/10/tmux.html</a></p>
+<p><a href="https://www.zssnp.top/2021/06/03/ranger/#post-comment">https://www.zssnp.top/2021/06/03/ranger/#post-comment</a></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>env</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Neovim 配置教程</title>
     <url>/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
     <content><![CDATA[<blockquote>
@@ -752,555 +1301,6 @@
 ]]></content>
       <tags>
         <tag>vim</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>优雅提交 Git Commit Message</title>
-    <url>/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</url>
-    <content><![CDATA[<blockquote>
-<p>commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><blockquote>
-<p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
-</blockquote>
-<p>message 样例：</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><p>Type：必须是下列之一</p>
-<ul>
-<li><strong>feat</strong>：一个新功能</li>
-</ul>
-</li>
-<li><p><strong>fix</strong>：bug修复</p>
-<ul>
-<li><strong>docs</strong>：编辑文档</li>
-<li><strong>style</strong>：不影响代码含义的更改(空格、格式、缺少分号等，不是css的更改)</li>
-<li><strong>refactor</strong>：既不修复bug也不添加特性的代码更改</li>
-<li><strong>perf</strong>：提高性能的代码更改</li>
-<li><strong>test</strong>：添加缺失的或纠正现有的测试</li>
-<li><strong>chore</strong>：对构建过程或辅助工具和库(如文档生成)的更改</li>
-</ul>
-</li>
-<li><p><strong>Subject</strong>：主题包含对变更的简洁描述</p>
-</li>
-<li><p><strong>Body</strong>：具体的修改内容，可以包括与之前的对比</p>
-</li>
-<li><p><strong>Footer</strong>：通常是 BREAKING CHANGE 或修复的 issue 链接</p>
-</li>
-</ul>
-<h1 id="规范工具"><a href="#规范工具" class="headerlink" title="规范工具"></a>规范工具</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>commitizen git commit 格式化工具, 为我们提供标准化的 commit 信息。 帮助我们统一项目commit ， 便于信息的回溯或日志的生成。# commit message 格式</p>
-<p>commitizen 只是提供一个commit 格式化或交互工具, 最终需要输出符合 commit 规则的信息给 git， 所以需要线了解 commit 格式规则</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
-
-<p>package.json中添加</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="string">&quot;commit&quot;</span>: <span class="string">&quot;git-cz&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;commitizen&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;path&quot;</span>: <span class="string">&quot;./node_modules/cz-conventional-changelog&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="自定义-Adapter"><a href="#自定义-Adapter" class="headerlink" title="自定义 Adapter"></a>自定义 Adapter</h3><p>如果 Angular 的规范不符合我们的实际，同样我们也可以通过 <a href="https://github.com/leonardoanalista/cz-customizable">cz-customizable</a> 定制一套符合自己或者团队的规范。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D cz-customizable</span><br></pre></td></tr></table></figure>
-
-<p>同时package.json需要修改</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node_modules/cz-customizable&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
-<p>之后对应项目目录下创建 .cz-config.js 文件，用来维护自己的格式</p>
-<p>官网中有对应的样例配置文件：<a href="https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js">cz-customizable&#x2F;cz-config-EXAMPLE.js at master · leoforfree&#x2F;cz-customizable · GitHub</a></p>
-<h3 id="校验-Message"><a href="#校验-Message" class="headerlink" title="校验 Message"></a>校验 Message</h3><h5 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h5><p>可以做到如果不符合校验规范，就会直接拒绝 commit 请求</p>
-<h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Angular 团队的规范</span></span><br><span class="line">npm install -D @commitlint/config-conventional @commitlint/cli</span><br><span class="line"><span class="comment"># 自定义规范</span></span><br><span class="line">npm install -D commitlint-config-cz @commitlint/cli</span><br></pre></td></tr></table></figure>
-
-
-
-<h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>在项目目录下创建配置文件 .commitlintrc.js</p>
-<p>Angular 团队的规范</p>
-<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;&#x27;</span>@commitlint/config-conventional<span class="string">&#x27;&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h5 id="自定义规范"><a href="#自定义规范" class="headerlink" title="自定义规范"></a>自定义规范</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  extends: [</span><br><span class="line">    <span class="string">&#x27;cz&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  rules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="Husky"><a href="#Husky" class="headerlink" title="Husky"></a>Husky</h3><p>在做前端工程化时husky可以说是一个必不可少的工具。husky可以让我们向项目中方便添加git hooks。</p>
-<p>官方链接：<a href="https://github.com/typicode/husky">typicode&#x2F;husky: Git hooks made easy 🐶 woof! (github.com)</a></p>
-<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -D husky</span><br></pre></td></tr></table></figure>
-
-<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>package.json中添加：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;husky&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      ...<span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-
-<p>或者在 .huskyrc 文件中</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>]]></content>
-      <tags>
-        <tag>env</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>配置工具篇（tmux+ranger+lazygit）</title>
-    <url>/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</url>
-    <content><![CDATA[<blockquote>
-<p>tmux 可以管理多个会话和任务，在一个终端窗口中同时运行多个命令行程序</p>
-<p>ranger 可以帮助你在命令行下进行文件管理和操作</p>
-<p>lazygit 提供了一个简化的界面来管理 Git 仓库，可以提高你在命令行环境下的工作效率和操作便捷性。</p>
-<p>本文主要将详细讲解如何配置（tmux+ranger+lazygit），希望可以帮助大家</p>
-</blockquote>
-<span id="more"></span>
-
-<h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
-<p>此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。</p>
-<p>官网地址：<a href="https://github.com/tmux/tmux">tmux&#x2F;tmux: tmux source code (github.com)</a></p>
-<h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu 或 Debian</span></span><br><span class="line">$ sudo apt-get install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 或 Fedora</span></span><br><span class="line">$ sudo yum install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac</span></span><br><span class="line">$ brew install tmux</span><br></pre></td></tr></table></figure>
-
-<h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></table></figure>
-
-<p>上面命令会启动 Tmux 窗口，底部有一个状态栏。状态栏的左侧是窗口信息（编号和名称），右侧是系统信息。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523160429119.png" alt="image-20230523160429119"></p>
-<p>按下<code>Ctrl+d</code>或者显式输入<code>exit</code>命令，就可以退出 Tmux 窗口。</p>
-<h3 id="前缀键"><a href="#前缀键" class="headerlink" title="前缀键"></a>前缀键</h3><p>Tmux 窗口有大量的快捷键。所有快捷键都要通过前缀键唤起。默认的前缀键是<code>Ctrl+b</code>，即先按下<code>Ctrl+b</code>，快捷键才会生效。</p>
-<p>举例来说，帮助命令的快捷键是<code>Ctrl+b ?</code>。它的用法是，在 Tmux 窗口中，先按下<code>Ctrl+b</code>，再按下<code>?</code>，就会显示帮助信息。</p>
-<p>然后，按下 ESC 键或<code>q</code>键，就可以退出帮助。</p>
-<h2 id="会话管理"><a href="#会话管理" class="headerlink" title="会话管理"></a>会话管理</h2><h3 id="新建会话"><a href="#新建会话" class="headerlink" title="新建会话"></a>新建会话</h3><p>第一个启动的 Tmux 窗口，编号是<code>0</code>，第二个窗口的编号是<code>1</code>，以此类推。这些窗口对应的会话，就是 0 号会话、1 号会话。</p>
-<p>使用编号区分会话，不太直观，更好的方法是为会话起名。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux new -s &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="分离会话"><a href="#分离会话" class="headerlink" title="分离会话"></a>分离会话</h3><p> Tmux 窗口中，按下<code>Ctrl+b d</code>或者输入<code>tmux detach</code>命令，就会将当前会话与窗口分离。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux detach</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>上面命令执行后，就会退出当前 Tmux 窗口，但是会话和里面的进程仍然在后台运行。</p>
-<p><code>tmux ls</code>命令可以查看当前所有的 Tmux 会话。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux <span class="built_in">ls</span></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">$ tmux list-session</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="接入会话"><a href="#接入会话" class="headerlink" title="接入会话"></a>接入会话</h3><p><code>tmux attach</code>命令用于重新接入某个已存在的会话。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用会话编号</span></span><br><span class="line">$ tmux attach -t 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用会话名称</span></span><br><span class="line">$ tmux attach -t &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="杀死会话"><a href="#杀死会话" class="headerlink" title="杀死会话"></a>杀死会话</h3><p><code>tmux kill-session</code>命令用于杀死某个会话。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用会话编号</span></span><br><span class="line">$ tmux kill-session -t 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用会话名称</span></span><br><span class="line">$ tmux kill-session -t &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="切换会话"><a href="#切换会话" class="headerlink" title="切换会话"></a>切换会话</h3><p><code>tmux switch</code>命令用于切换会话。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用会话编号</span></span><br><span class="line">$ tmux switch -t 0</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用会话名称</span></span><br><span class="line">$ tmux switch -t &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="重命名会话"><a href="#重命名会话" class="headerlink" title="重命名会话"></a>重命名会话</h3><p><code>tmux rename-session</code>命令用于重命名会话。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux rename-session -t 0 &lt;new-name&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<p>上面命令将0号会话重命名。</p>
-<h3 id="会话快捷键"><a href="#会话快捷键" class="headerlink" title="会话快捷键"></a>会话快捷键</h3><p>下面是一些会话相关的快捷键。</p>
-<blockquote>
-<ul>
-<li><code>Ctrl+b d</code>：分离当前会话。</li>
-<li><code>Ctrl+b s</code>：列出所有会话。</li>
-<li><code>Ctrl+b $</code>：重命名当前会话。</li>
-</ul>
-</blockquote>
-<h2 id="最简流程"><a href="#最简流程" class="headerlink" title="最简流程"></a>最简流程</h2><ol>
-<li>新建会话<code>tmux new -s my_session</code>。</li>
-<li>在 Tmux 窗口运行所需的程序。</li>
-<li>按下快捷键<code>Ctrl+b d</code>将会话分离。</li>
-<li>下次使用时，重新连接到会话<code>tmux attach-session -t my_session</code>。</li>
-</ol>
-<h2 id="窗格操作"><a href="#窗格操作" class="headerlink" title="窗格操作"></a>窗格操作</h2><h3 id="划分窗格"><a href="#划分窗格" class="headerlink" title="划分窗格"></a>划分窗格</h3><p><code>tmux split-window</code>命令用来划分窗格。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 划分上下两个窗格</span></span><br><span class="line">$ tmux split-window</span><br><span class="line"></span><br><span class="line"><span class="comment"># 划分左右两个窗格</span></span><br><span class="line">$ tmux split-window -h</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="移动光标"><a href="#移动光标" class="headerlink" title="移动光标"></a>移动光标</h3><p><code>tmux select-pane</code>命令用来移动光标位置。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 光标切换到上方窗格</span></span><br><span class="line">$ tmux select-pane -U</span><br><span class="line"></span><br><span class="line"><span class="comment"># 光标切换到下方窗格</span></span><br><span class="line">$ tmux select-pane -D</span><br><span class="line"></span><br><span class="line"><span class="comment"># 光标切换到左边窗格</span></span><br><span class="line">$ tmux select-pane -L</span><br><span class="line"></span><br><span class="line"><span class="comment"># 光标切换到右边窗格</span></span><br><span class="line">$ tmux select-pane -R</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="交换窗格位置"><a href="#交换窗格位置" class="headerlink" title="交换窗格位置"></a>交换窗格位置</h3><p><code>tmux swap-pane</code>命令用来交换窗格位置。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当前窗格上移</span></span><br><span class="line">$ tmux swap-pane -U</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当前窗格下移</span></span><br><span class="line">$ tmux swap-pane -D</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="窗格快捷键"><a href="#窗格快捷键" class="headerlink" title="窗格快捷键"></a>窗格快捷键</h3><p>下面是一些窗格操作的快捷键。</p>
-<blockquote>
-<ul>
-<li><code>Ctrl+b %</code>：划分左右两个窗格。</li>
-<li><code>Ctrl+b &quot;</code>：划分上下两个窗格。</li>
-<li><code>Ctrl+b &lt;arrow key&gt;</code>：光标切换到其他窗格。<code>&lt;arrow key&gt;</code>是指向要切换到的窗格的方向键，比如切换到下方窗格，就按方向键<code>↓</code>。</li>
-<li><code>Ctrl+b ;</code>：光标切换到上一个窗格。</li>
-<li><code>Ctrl+b o</code>：光标切换到下一个窗格。</li>
-<li><code>Ctrl+b &#123;</code>：当前窗格与上一个窗格交换位置。</li>
-<li><code>Ctrl+b &#125;</code>：当前窗格与下一个窗格交换位置。</li>
-<li><code>Ctrl+b Ctrl+o</code>：所有窗格向前移动一个位置，第一个窗格变成最后一个窗格。</li>
-<li><code>Ctrl+b Alt+o</code>：所有窗格向后移动一个位置，最后一个窗格变成第一个窗格。</li>
-<li><code>Ctrl+b x</code>：关闭当前窗格。</li>
-<li><code>Ctrl+b !</code>：将当前窗格拆分为一个独立窗口。</li>
-<li><code>Ctrl+b z</code>：当前窗格全屏显示，再使用一次会变回原来大小。</li>
-<li><code>Ctrl+b Ctrl+&lt;arrow key&gt;</code>：按箭头方向调整窗格大小。</li>
-<li><code>Ctrl+b q</code>：显示窗格编号。</li>
-</ul>
-</blockquote>
-<h2 id="窗口管理"><a href="#窗口管理" class="headerlink" title="窗口管理"></a>窗口管理</h2><p>除了将一个窗口划分成多个窗格，Tmux 也允许新建多个窗口。</p>
-<h3 id="新建窗口"><a href="#新建窗口" class="headerlink" title="新建窗口"></a>新建窗口</h3><p><code>tmux new-window</code>命令用来创建新窗口。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux new-window</span><br><span class="line"></span><br><span class="line"><span class="comment"># 新建一个指定名称的窗口</span></span><br><span class="line">$ tmux new-window -n &lt;window-name&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="切换窗口"><a href="#切换窗口" class="headerlink" title="切换窗口"></a>切换窗口</h3><p><code>tmux select-window</code>命令用来切换窗口。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 切换到指定编号的窗口</span></span><br><span class="line">$ tmux select-window -t &lt;window-number&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 切换到指定名称的窗口</span></span><br><span class="line">$ tmux select-window -t &lt;window-name&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="重命名窗口"><a href="#重命名窗口" class="headerlink" title="重命名窗口"></a>重命名窗口</h3><p><code>tmux rename-window</code>命令用于为当前窗口起名（或重命名）。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux rename-window &lt;new-name&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h3 id="窗口快捷键"><a href="#窗口快捷键" class="headerlink" title="窗口快捷键"></a>窗口快捷键</h3><p>下面是一些窗口操作的快捷键。</p>
-<blockquote>
-<ul>
-<li><code>Ctrl+b c</code>：创建一个新窗口，状态栏会显示多个窗口的信息。</li>
-<li><code>Ctrl+b p</code>：切换到上一个窗口（按照状态栏上的顺序）。</li>
-<li><code>Ctrl+b n</code>：切换到下一个窗口。</li>
-<li><code>Ctrl+b &lt;number&gt;</code>：切换到指定编号的窗口，其中的<code>&lt;number&gt;</code>是状态栏上的窗口编号。</li>
-<li><code>Ctrl+b w</code>：从列表中选择窗口。</li>
-<li><code>Ctrl+b ,</code>：窗口重命名。</li>
-</ul>
-</blockquote>
-<h2 id="其他命令"><a href="#其他命令" class="headerlink" title="其他命令"></a>其他命令</h2><p>下面是一些其他命令。</p>
-<blockquote>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列出所有快捷键，及其对应的 Tmux 命令</span></span><br><span class="line">$ tmux list-keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有 Tmux 命令及其参数</span></span><br><span class="line">$ tmux list-commands</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出当前所有 Tmux 会话的信息</span></span><br><span class="line">$ tmux info</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载当前的 Tmux 配置</span></span><br><span class="line">$ tmux source-file ~/.tmux.conf</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h1 id="Ranger"><a href="#Ranger" class="headerlink" title="Ranger"></a>Ranger</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>官方解释：ranger是一个带有VI密钥绑定的控制台文件管理器。它提供了一个简洁美观的curses界面，并提供了目录层次结构视图。它配备了rifle，这是一种文件启动器，能够自动找出要用于何种文件类型的程序。</p>
-<p>官房链接：<a href="https://github.com/ranger/ranger">ranger&#x2F;ranger: A VIM-inspired filemanager for the console (github.com)</a></p>
-<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>ubuntu 安装命令如下</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install ranger</span><br></pre></td></tr></table></figure>
-
-<p>最终在终端下输入ranger即可打开程序了</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523164316992.png" alt="image-20230523164316992"></p>
-<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>使用<code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>来进行光标的移动,来穿越在不同的文件夹中</p>
-<p>使用<code>q</code>进行退出程序,使用<code>S</code>来进行当前光标所在的文件夹中(进入文件夹后终端下执行<code>exit</code>命令重新回到ranger程序当中去)</p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><p>使用<code>ranger --copy-config=all</code>将在<code>~/.config/ranger</code>中生成一系列配置文件</p>
-<ul>
-<li>rc.conf 常用于设置选项和绑定快捷键.(最常用)</li>
-<li>scope.sh 常用于设置文件的预览方式</li>
-<li>rifle.conf 常用于设置使用那个软件来打开文件</li>
-<li>commands.py python文件,增强和改进ranger的各种功能</li>
-</ul>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ranger --copy-config=all</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>rc.conf</code>-选项设置和快捷键</li>
-<li><code>commands.py</code>-能通过<code>:</code>执行的命令</li>
-<li><code>commands_full.py</code>-全套命令</li>
-<li><code>rifle.conf</code>-指定不同类型的文件的默认打开程序</li>
-<li><code>scope.conf</code>-负责各种文件预览</li>
-</ul>
-<p>注意：如果要使用<code>~/.config/ranger</code>目录下的配置生效，需要把<code>RANGER_LOAD_DEFAULT_RC</code>变量设置为<code>false</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export RANGER_LOAD_DEFAULT_RC=false&quot;</span>&gt;&gt;~/.bashrc</span><br><span class="line"></span><br><span class="line">zsh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export RANGER_LOAD_DEFAULT_RC=false&quot;</span>&gt;&gt;~/.zshrc</span><br></pre></td></tr></table></figure>
-
-
-
-<blockquote>
-<p>可选配置(推荐)</p>
-</blockquote>
-<p>修改配置文件<code>~/.config/ranger/rc.conf</code></p>
-<ul>
-<li>显示边框<code>set draw_borders both</code></li>
-<li>显示序号<code>set line_numbers true</code></li>
-<li>序号从1开始<code>set one_indexed true</code></li>
-</ul>
-<h2 id="配置图标"><a href="#配置图标" class="headerlink" title="配置图标"></a>配置图标</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;default_linemode devicons&quot;</span> &gt;&gt; <span class="variable">$HOME</span>/.config/ranger/rc.conf</span><br></pre></td></tr></table></figure>
-
-<h5 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h5><p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523171348133.png" alt="image-20230523171348133"></p>
-<h4 id="配置文本编辑器"><a href="#配置文本编辑器" class="headerlink" title="配置文本编辑器"></a>配置文本编辑器</h4><p>设置默认为nvim</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">export</span> EDITOR=/usr/bin/nvim &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="comment"># zsh</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">export</span> EDITOR=/usr/bin/nvim &gt;&gt; ~/.zshrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h2 id="文件管理器操作"><a href="#文件管理器操作" class="headerlink" title="文件管理器操作"></a>文件管理器操作</h2><table>
-<thead>
-<tr>
-<th>文件管理器操作</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>h</code></td>
-<td>返回上一层</td>
-</tr>
-<tr>
-<td><code>l</code></td>
-<td>进入文件</td>
-</tr>
-<tr>
-<td><code>j</code></td>
-<td>向下</td>
-</tr>
-<tr>
-<td><code>k</code></td>
-<td>向上</td>
-</tr>
-<tr>
-<td><code>Enter</code></td>
-<td>打开文件</td>
-</tr>
-<tr>
-<td><code>q</code></td>
-<td>退出</td>
-</tr>
-</tbody></table>
-<h2 id="获得帮助"><a href="#获得帮助" class="headerlink" title="获得帮助"></a>获得帮助</h2><p>您可以在使用Ranger时获得帮助</p>
-<table>
-<thead>
-<tr>
-<th>字符</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>m</code></td>
-<td>打开护林员的手册页</td>
-</tr>
-<tr>
-<td><code>k</code></td>
-<td>打开键绑定列表</td>
-</tr>
-<tr>
-<td><code>c</code></td>
-<td>打开可用命令和描述的列表</td>
-</tr>
-<tr>
-<td><code>s</code></td>
-<td>打开设置及其当前值的列表 |</td>
-</tr>
-</tbody></table>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>dD</code> 或者 <code>F8</code></td>
-<td>删除条目（文件或者文件夹），或者 <code>:</code> + <code>delete</code>。</td>
-</tr>
-<tr>
-<td><code>DD</code></td>
-<td>将条目移动到回收站里。</td>
-</tr>
-</tbody></table>
-<h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>F7</code></td>
-<td>新建文件夹，等同于 <code>:mkdir </code>。</td>
-</tr>
-<tr>
-<td><code>INSERT</code></td>
-<td>新建文件，等同于 <code>:touch </code>。</td>
-</tr>
-</tbody></table>
-<h2 id="重命名"><a href="#重命名" class="headerlink" title="重命名"></a>重命名</h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>cw</code></td>
-<td>重命名（含后缀名）</td>
-</tr>
-<tr>
-<td><code>I</code></td>
-<td>重命名，光标在最前</td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td>重命名，光标在最后（含后缀名）</td>
-</tr>
-<tr>
-<td><code>a</code></td>
-<td>重命名，光标在最后（不含后缀名）</td>
-</tr>
-</tbody></table>
-<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>yy</code> 或者 <code>F5</code></td>
-<td>复制</td>
-</tr>
-<tr>
-<td><code>ya</code></td>
-<td><code>add</code> 模式，添加光标处文件到复制队列中（文件夹无效）。</td>
-</tr>
-<tr>
-<td><code>yr</code></td>
-<td><code>remove</code> 模式，从复制队列中移除光标处文件（文件夹无效）。</td>
-</tr>
-<tr>
-<td><code>yt</code></td>
-<td><code>toggle</code> 模式，切换光标处文件是否在复制队列中（文件夹无效）。</td>
-</tr>
-<tr>
-<td><code>yk</code></td>
-<td>将光标处文件和上一文件添加到复制队列中（文件夹无效）。</td>
-</tr>
-<tr>
-<td><code>yj</code></td>
-<td>将光标处文件和下一文件添加到复制队列中（文件夹无效）。</td>
-</tr>
-<tr>
-<td><code>ygg</code></td>
-<td>将光标处到顶端的所有文件添加到复制队列中（文件夹无效）</td>
-</tr>
-<tr>
-<td><code>yG</code></td>
-<td>将光标处到底端的所有文件添加到复制队列中（文件夹无效）</td>
-</tr>
-</tbody></table>
-<h2 id="剪切"><a href="#剪切" class="headerlink" title="剪切"></a>剪切</h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>dd</code> 或者 <code>F6</code></td>
-<td>剪切</td>
-</tr>
-<tr>
-<td><code>da</code></td>
-<td><code>add</code> 模式，同复制。</td>
-</tr>
-<tr>
-<td><code>dr</code></td>
-<td><code>remove</code> 模式，同复制。</td>
-</tr>
-<tr>
-<td><code>dt</code></td>
-<td><code>toggle</code> 模式，同复制。</td>
-</tr>
-<tr>
-<td><code>dk</code></td>
-<td>同复制</td>
-</tr>
-<tr>
-<td><code>dj</code></td>
-<td>同复制</td>
-</tr>
-<tr>
-<td><code>dgg</code></td>
-<td>同复制</td>
-</tr>
-<tr>
-<td><code>dG</code></td>
-<td>同复制</td>
-</tr>
-<tr>
-<td><code>ud</code> 或者 <code>uy</code></td>
-<td>取消剪切</td>
-</tr>
-</tbody></table>
-<h2 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>pp</code></td>
-<td>粘贴，默认 <code>append</code> 模式</td>
-</tr>
-<tr>
-<td><code>pP</code></td>
-<td><code>append</code> 模式，如果该目录中有同名条目，则在条目后面加上 <code>_</code>、<code>_0</code>、<code>_1</code>……。如果条目是文件，则在文件后缀名后加入。</td>
-</tr>
-<tr>
-<td><code>po</code></td>
-<td><code>overwrite</code> 模式，如果该目录中有同名条目，则覆盖原来的条目。</td>
-</tr>
-<tr>
-<td><code>pO</code></td>
-<td><code>append</code> 模式 + <code>overwrite</code> 模式。</td>
-</tr>
-<tr>
-<td><code>pl</code></td>
-<td>粘贴为符号链接，不在状态栏显示目标条目的相对路径。</td>
-</tr>
-<tr>
-<td><code>pL</code></td>
-<td>粘贴为符号链接（相对路径），在状态栏显示目标条目的相对路径。</td>
-</tr>
-<tr>
-<td><code>phl</code></td>
-<td>粘贴为硬链接</td>
-</tr>
-<tr>
-<td><code>pht</code></td>
-<td>粘贴为硬链接的子目录（hardlinked subtree）</td>
-</tr>
-</tbody></table>
-<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>/</code></td>
-<td>打开搜索框，输入要搜索的字符串，回车后开始搜索。</td>
-</tr>
-<tr>
-<td><code>f</code></td>
-<td>查找，等同于运行满足条件的文件或者打开满足条件的文件夹。</td>
-</tr>
-<tr>
-<td><code>zf</code></td>
-<td>与命令行 <code>filter</code> 作用一样，只显示符合条件的条目，区分大小写。</td>
-</tr>
-<tr>
-<td><code>n</code> <code>N</code></td>
-<td>查找下一个搜索结果 查找上一个搜索结果</td>
-</tr>
-<tr>
-<td><code>c</code> + <code>对应字母</code></td>
-<td>通过对应属性依次遍历，如：<code>ca</code>：通过 <code>atime</code>属性依次遍历<code>cc</code>：通过 <code>ctime</code> 属性依次遍历<code>ci</code>：通过 <code>mimetype</code> 属性依次遍历<code>cm</code>：通过 <code>mtime</code> 属性依次遍历<code>cs</code>：通过 <code>size</code> 属性依次遍历<code>ct</code>：通过 <code>tag</code> 属性依次遍历</td>
-</tr>
-</tbody></table>
-<h3 id="相关插件"><a href="#相关插件" class="headerlink" title="相关插件"></a>相关插件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu</span><br><span class="line">sudo apt-get install caca-utils <span class="comment"># img2txt 图片</span></span><br><span class="line">sudo apt-get install highlight  <span class="comment"># 代码高亮</span></span><br><span class="line">sudo apt-get install atool　    <span class="comment"># 存档预览</span></span><br><span class="line">sudo apt-get install w3m        <span class="comment"># html页面预览</span></span><br><span class="line">sudo apt-get install mediainfo  <span class="comment"># 多媒体文件预览</span></span><br><span class="line">sudo apt-get install catdoc     <span class="comment"># doc预览</span></span><br><span class="line">sudo apt-get install docx2txt   <span class="comment"># docx预览</span></span><br><span class="line">sudo apt-get install xlsx2csv   <span class="comment"># xlsx预览</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h1 id="LazyGit"><a href="#LazyGit" class="headerlink" title="LazyGit"></a>LazyGit</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>官方解释：git命令的简单终端UI，使用gocui库在Go中编写。</p>
-<p>官方链接：<a href="https://github.com/jesseduffield/lazygit">jesseduffield&#x2F;lazygit: simple terminal UI for git commands (github.com)</a></p>
-<h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><h5 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">LAZYGIT_VERSION=$(curl -s <span class="string">&quot;https://api.github.com/repos/jesseduffield/lazygit/releases/latest&quot;</span> | grep -Po <span class="string">&#x27;&quot;tag_name&quot;: &quot;v\K[^&quot;]*&#x27;</span>)</span><br><span class="line">curl -Lo lazygit.tar.gz <span class="string">&quot;https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_<span class="variable">$&#123;LAZYGIT_VERSION&#125;</span>_Linux_x86_64.tar.gz&quot;</span></span><br><span class="line">tar xf lazygit.tar.gz lazygit</span><br><span class="line">sudo install lazygit /usr/local/bin</span><br></pre></td></tr></table></figure>
-
-<p>执行<code>lazygit</code>即可启动</p>
-<p>可以添加别名</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;alias lg=&#x27;lazygit&#x27;&quot;</span> &gt;&gt; ~/.zshrc</span><br></pre></td></tr></table></figure>
-
-<p><strong>效果</strong>：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523222702767.png" alt="image-20230523222702767"></p>
-<p>可以使用数字键或是<code>tab</code>或是<code>h</code>和<code>l</code>切换标签</p>
-<p>之后在对应tab中使用使用<code>?</code>查看帮助文档学习相应操作</p>
-<p>参考链接：</p>
-<blockquote>
-<p><a href="https://www.ruanyifeng.com/blog/2019/10/tmux.html">https://www.ruanyifeng.com/blog/2019/10/tmux.html</a></p>
-<p><a href="https://www.zssnp.top/2021/06/03/ranger/#post-comment">https://www.zssnp.top/2021/06/03/ranger/#post-comment</a></p>
-</blockquote>
-]]></content>
-      <tags>
-        <tag>env</tag>
       </tags>
   </entry>
 </search>
