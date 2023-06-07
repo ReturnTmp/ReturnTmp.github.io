@@ -2,7 +2,11 @@
 
 极简博客（Hexo+NexT+GitHub Pages） Welcome to star and fork 🙌
 
-> 博客地址：[ReturnTmp](https://returntmp.github.io/)
+> 博客地址
+>
+> [https://returntmp.github.io](https://returntmp.github.io)
+>
+> [https://blog.returntmp.cn](https://blog.returntmp.cn)（国内推荐访问）
 
 
 
