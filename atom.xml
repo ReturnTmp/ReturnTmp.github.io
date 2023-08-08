@@ -6,7 +6,7 @@
   <link href="https://returntmp.github.io/atom.xml" rel="self"/>
   
   <link href="https://returntmp.github.io/"/>
-  <updated>2023-05-30T08:24:39.006Z</updated>
+  <updated>2023-07-18T03:36:47.518Z</updated>
   <id>https://returntmp.github.io/</id>
   
   <author>
@@ -17,11 +17,59 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>手动编译安装 Nginx（附带rtmp模块）</title>
+    <link href="https://returntmp.github.io/posts/6b08d7e3.html"/>
+    <id>https://returntmp.github.io/posts/6b08d7e3.html</id>
+    <published>2023-06-07T10:09:24.000Z</published>
+    <updated>2023-07-18T03:36:47.518Z</updated>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt; 环境：CentOS7.9&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;安装目录：&lt;code&gt;/usr/local/nginx&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;解压目录：&lt;code&gt;/usr/local/src/nginx&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</summary>
+    
+    
+    
+    
+    <category term="linux" scheme="https://returntmp.github.io/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>提高打字速度笔记</title>
+    <link href="https://returntmp.github.io/posts/c4f6e93f.html"/>
+    <id>https://returntmp.github.io/posts/c4f6e93f.html</id>
+    <published>2023-06-01T02:35:41.000Z</published>
+    <updated>2023-07-18T03:36:47.518Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;第一阶段：纠正指法&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;网站：&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="typing" scheme="https://returntmp.github.io/tags/typing/"/>
+    
+  </entry>
+  
+  <entry>
     <title>配置工具篇（tmux+ranger+lazygit）</title>
-    <link href="https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/"/>
-    <id>https://returntmp.github.io/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</id>
+    <link href="https://returntmp.github.io/posts/d1678e92.html"/>
+    <id>https://returntmp.github.io/posts/d1678e92.html</id>
     <published>2023-05-16T04:57:18.000Z</published>
-    <updated>2023-05-30T08:24:39.006Z</updated>
+    <updated>2023-07-18T03:36:47.518Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -40,10 +88,10 @@
   
   <entry>
     <title>优雅提交 Git Commit Message</title>
-    <link href="https://returntmp.github.io/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/"/>
-    <id>https://returntmp.github.io/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</id>
+    <link href="https://returntmp.github.io/posts/2bf156a6.html"/>
+    <id>https://returntmp.github.io/posts/2bf156a6.html</id>
     <published>2023-05-15T01:54:27.000Z</published>
-    <updated>2023-05-30T08:22:50.120Z</updated>
+    <updated>2023-07-18T03:36:47.503Z</updated>
     
     
     <summary type="html">&lt;blockquote&gt;
@@ -59,13 +107,14 @@
   
   <entry>
     <title>Neovim 配置教程</title>
-    <link href="https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/"/>
-    <id>https://returntmp.github.io/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</id>
+    <link href="https://returntmp.github.io/posts/e8223384.html"/>
+    <id>https://returntmp.github.io/posts/e8223384.html</id>
     <published>2023-05-01T08:40:14.000Z</published>
-    <updated>2023-05-14T09:40:58.899Z</updated>
+    <updated>2023-07-18T03:36:47.518Z</updated>
     
     
-    <summary type="html">&lt;blockquote&gt;
+    <summary type="html">&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/images.jpg&quot; alt=&quot;images&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
 &lt;p&gt;环境：Ubuntu 20.04 &lt;/p&gt;
 &lt;p&gt;宿主机：windows （windows terminal）WSL2&lt;/p&gt;
 &lt;p&gt;NVIM：v0.10.0-dev&lt;/p&gt;

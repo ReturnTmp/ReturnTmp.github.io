@@ -24,23 +24,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="ReturnTmp">
-<meta property="og:url" content="https://returntmp.github.io/archives/2023/05/index.html">
+    <meta name="description" content="commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优雅提交 Git Commit Message">
+<meta property="og:url" content="https://returntmp.github.io/posts/2bf156a6.html">
 <meta property="og:site_name" content="ReturnTmp">
+<meta property="og:description" content="commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-05-15T01:54:27.000Z">
+<meta property="article:modified_time" content="2023-07-18T03:36:47.503Z">
 <meta property="article:author" content="ReturnTmp">
+<meta property="article:tag" content="env">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://returntmp.github.io/archives/2023/05/">
+<link rel="canonical" href="https://returntmp.github.io/posts/2bf156a6.html">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"archives/2023/05/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://returntmp.github.io/posts/2bf156a6.html","path":"posts/2bf156a6.html","title":"优雅提交 Git Commit Message"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>归档 | ReturnTmp</title>
+<title>优雅提交 Git Commit Message | ReturnTmp</title>
   
 
 
@@ -100,7 +105,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">ReturnTmp</h1>
+      <p class="site-title">ReturnTmp</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Hello World</p>
@@ -160,7 +165,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -174,6 +179,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Message-%E8%A7%84%E8%8C%83"><span class="nav-number">1.</span> <span class="nav-text">Message 规范</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%84%E8%8C%83%E5%B7%A5%E5%85%B7"><span class="nav-number">2.</span> <span class="nav-text">规范工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89-Adapter"><span class="nav-number">2.2.1.</span> <span class="nav-text">自定义 Adapter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%A1%E9%AA%8C-Message"><span class="nav-number">2.2.2.</span> <span class="nav-text">校验 Message</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B7%A5%E5%85%B7%EF%BC%9A"><span class="nav-number">2.2.2.0.1.</span> <span class="nav-text">工具：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">2.2.2.0.2.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.2.0.3.</span> <span class="nav-text">配置文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%A7%84%E8%8C%83"><span class="nav-number">2.2.2.0.4.</span> <span class="nav-text">自定义规范</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Husky"><span class="nav-number">2.2.3.</span> <span class="nav-text">Husky</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-2"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">配置</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -522,90 +528,256 @@ if(canvas.getContext){
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 5 篇日志。 继续努力。</span>
-      </div>
 
-      
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://returntmp.github.io/posts/2bf156a6.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.jpg">
+      <meta itemprop="name" content="ReturnTmp">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ReturnTmp">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="优雅提交 Git Commit Message | ReturnTmp">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          优雅提交 Git Commit Message
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-05-15 09:54:27" itemprop="dateCreated datePublished" datetime="2023-05-15T09:54:27+08:00">2023-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-18 11:36:47" itemprop="dateModified" datetime="2023-07-18T11:36:47+08:00">2023-07-18</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">评论数：</span>
+  
+    <a title="waline" href="/posts/2bf156a6.html#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/posts/2bf156a6.html" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写</p>
+</blockquote>
+<span id="more"></span>
+
+<h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><blockquote>
+<p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a target="_blank" rel="noopener" href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
+</blockquote>
+<p>message 样例：</p>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Type：必须是下列之一</p>
+<ul>
+<li><strong>feat</strong>：一个新功能</li>
+</ul>
+</li>
+<li><p><strong>fix</strong>：bug修复</p>
+<ul>
+<li><strong>docs</strong>：编辑文档</li>
+<li><strong>style</strong>：不影响代码含义的更改(空格、格式、缺少分号等，不是css的更改)</li>
+<li><strong>refactor</strong>：既不修复bug也不添加特性的代码更改</li>
+<li><strong>perf</strong>：提高性能的代码更改</li>
+<li><strong>test</strong>：添加缺失的或纠正现有的测试</li>
+<li><strong>chore</strong>：对构建过程或辅助工具和库(如文档生成)的更改</li>
+</ul>
+</li>
+<li><p><strong>Subject</strong>：主题包含对变更的简洁描述</p>
+</li>
+<li><p><strong>Body</strong>：具体的修改内容，可以包括与之前的对比</p>
+</li>
+<li><p><strong>Footer</strong>：通常是 BREAKING CHANGE 或修复的 issue 链接</p>
+</li>
+</ul>
+<h1 id="规范工具"><a href="#规范工具" class="headerlink" title="规范工具"></a>规范工具</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>commitizen git commit 格式化工具, 为我们提供标准化的 commit 信息。 帮助我们统一项目commit ， 便于信息的回溯或日志的生成。# commit message 格式</p>
+<p>commitizen 只是提供一个commit 格式化或交互工具, 最终需要输出符合 commit 规则的信息给 git， 所以需要线了解 commit 格式规则</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
+
+<p>package.json中添加</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="string">&quot;commit&quot;</span>: <span class="string">&quot;git-cz&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;commitizen&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;path&quot;</span>: <span class="string">&quot;./node_modules/cz-conventional-changelog&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="自定义-Adapter"><a href="#自定义-Adapter" class="headerlink" title="自定义 Adapter"></a>自定义 Adapter</h3><p>如果 Angular 的规范不符合我们的实际，同样我们也可以通过 <a target="_blank" rel="noopener" href="https://github.com/leonardoanalista/cz-customizable">cz-customizable</a> 定制一套符合自己或者团队的规范。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D cz-customizable</span><br></pre></td></tr></table></figure>
+
+<p>同时package.json需要修改</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node_modules/cz-customizable&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>之后对应项目目录下创建 .cz-config.js 文件，用来维护自己的格式</p>
+<p>官网中有对应的样例配置文件：<a target="_blank" rel="noopener" href="https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js">cz-customizable&#x2F;cz-config-EXAMPLE.js at master · leoforfree&#x2F;cz-customizable · GitHub</a></p>
+<h3 id="校验-Message"><a href="#校验-Message" class="headerlink" title="校验 Message"></a>校验 Message</h3><h5 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h5><p>可以做到如果不符合校验规范，就会直接拒绝 commit 请求</p>
+<h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Angular 团队的规范</span></span><br><span class="line">npm install -D @commitlint/config-conventional @commitlint/cli</span><br><span class="line"><span class="comment"># 自定义规范</span></span><br><span class="line">npm install -D commitlint-config-cz @commitlint/cli</span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>在项目目录下创建配置文件 .commitlintrc.js</p>
+<p>Angular 团队的规范</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;&#x27;</span>@commitlint/config-conventional<span class="string">&#x27;&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h5 id="自定义规范"><a href="#自定义规范" class="headerlink" title="自定义规范"></a>自定义规范</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  extends: [</span><br><span class="line">    <span class="string">&#x27;cz&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  rules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Husky"><a href="#Husky" class="headerlink" title="Husky"></a>Husky</h3><p>在做前端工程化时husky可以说是一个必不可少的工具。husky可以让我们向项目中方便添加git hooks。</p>
+<p>官方链接：<a target="_blank" rel="noopener" href="https://github.com/typicode/husky">typicode&#x2F;husky: Git hooks made easy 🐶 woof! (github.com)</a></p>
+<h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -D husky</span><br></pre></td></tr></table></figure>
+
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>package.json中添加：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;husky&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      ...<span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
+
+<p>或者在 .huskyrc 文件中</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-05-16T12:57:18+08:00"
-              content="2023-05-16">
-          05-16
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/d1678e92.html" itemprop="url">
-            <span itemprop="name">配置工具篇（tmux+ranger+lazygit）</span>
-          </a>
-      </div>
-
+    <footer class="post-footer"><div class="post-widgets">
+    <div
+      class="social-share"
       
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-05-15T09:54:27+08:00"
-              content="2023-05-15">
-          05-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/2bf156a6.html" itemprop="url">
-            <span itemprop="name">优雅提交 Git Commit Message</span>
-          </a>
-      </div>
-
+        data-sites="weibo,qq,wechat,tencent,douban,qzone,linkedin,diandian,facebook,twitter,google"
       
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2023-05-01T16:40:14+08:00"
-              content="2023-05-01">
-          05-01
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/posts/e8223384.html" itemprop="url">
-            <span itemprop="name">Neovim 配置教程</span>
-          </a>
-      </div>
-
       
-    </header>
-  </article>
-
-
+        data-wechat-qrcode-title="share.title"
+      
+      
+        data-wechat-qrcode-helper="share.prompt"
+      
+    >
     </div>
   </div>
-  
-  
-  
+  <script src="https://lib.baomitu.com/social-share.js/1.0.16/js/social-share.min.js"></script><script src="//sdk.jinrishici.com/v2/browser/jinrishici.js"></script>
+<script>
+  jinrishici.load((result) => {
+    let jrsc = document.getElementById('jrsc');
+    const data = result.data;
+    let author = data.origin.author;
+    let title = '《' + data.origin.title + '》';
+    let content = data.content.substr(0, data.content.length - 1);
+    let dynasty = data.origin.dynasty.substr(0, data.origin.dynasty.length - 1);
+    jrsc.innerText = content + ' @ ' + dynasty + '·' + author + title;
+  });
+</script>
+<div style="text-align: center"><span id="jrsc" >正在加载今日诗词....</span></div>
 
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>ReturnTmp
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://returntmp.github.io/posts/2bf156a6.html" title="优雅提交 Git Commit Message">https://returntmp.github.io/posts/2bf156a6.html</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/env/" rel="tag"><i class="fa fa-tag"></i> env</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/e8223384.html" rel="prev" title="Neovim 配置教程">
+                  <i class="fa fa-chevron-left"></i> Neovim 配置教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/d1678e92.html" rel="next" title="配置工具篇（tmux+ranger+lazygit）">
+                  配置工具篇（tmux+ranger+lazygit） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
 </div>
   </main>
 
@@ -704,7 +876,7 @@ const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
 </script>
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/archives/2023/05/"}</script>
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/posts/2bf156a6.html"}</script>
 <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
 <script>
 document.addEventListener('page:loaded', () => {

@@ -7,28 +7,28 @@
 <h2 align="center">Step 1 &rarr; Go to NexT dir</h2>
 
 <p>Change dir to <strong>NexT</strong> directory. There must be <code>layout</code>, <code>source</code>, <code>languages</code> and other directories:</p>
-<pre><code class="sh">$ cd themes/next
+<pre><code class="lang-sh">$ cd themes/next
 $ ls
 _config.yml  crowdin.yml  docs  gulpfile.js  languages  layout  LICENSE.md  package.json  README.md  scripts  source
 </code></pre>
 <h2 align="center">Step 2 &rarr; Get module</h2>
 
 <p>Install module to <code>source/lib</code> directory:</p>
-<pre><code class="sh">$ git clone https://github.com/theme-next/theme-next-pjax source/lib/pjax
+<pre><code class="lang-sh">$ git clone https://github.com/theme-next/theme-next-pjax source/lib/pjax
 </code></pre>
 <h2 align="center">Step 3 &rarr; Set it up</h2>
 
 <p>Enable module in <strong>NexT</strong> <code>_config.yml</code> file and select your theme:</p>
-<pre><code class="yml">pjax: true
+<pre><code class="lang-yml">pjax: true
 </code></pre>
 <p><strong>And, if you wants to use the CDN, then need to set:</strong> (you also need to find your corresponding theme css link in <a href="https://www.jsdelivr.com/package/npm/pjax-js?path=themes">jsdelivr</a>)</p>
-<pre><code class="yml">vendors:
+<pre><code class="lang-yml">vendors:
   ...
   pjax: //cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js
 </code></pre>
 <h1 align="center">Update</h1>
 
-<pre><code class="sh">$ cd themes/next/source/lib/pjax
+<pre><code class="lang-sh">$ cd themes/next/source/lib/pjax
 $ git pull
 </code></pre>
 <h1 id="Pjax"><a href="#Pjax" class="headerlink" title="Pjax"></a>Pjax</h1><p><a href="https://travis-ci.org/MoOx/pjax"><img src="https://img.shields.io/travis/MoOx/pjax.svg" alt="Build Status"></a>.</p>
@@ -41,34 +41,32 @@ $ git pull
 <p><em>Pjax does not rely on other libraries, like jQuery or similar. It is written entirely in vanilla JS.</em></p>
 <h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><ul>
 <li><p>You can link directly to the <a href="https://cdn.jsdelivr.net/npm/pjax/pjax.js">bundle</a>:</p>
-<pre><code class="html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 </li>
 <li><p>Or the <a href="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js">minified bundle</a>:</p>
-<pre><code class="html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.min.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;https://cdn.jsdelivr.net/npm/pjax@VERSION/pjax.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 </li>
 <li><p>You can also install Pjax from <strong>npm</strong>:</p>
-<pre><code class="shell">npm install pjax
+<pre><code class="lang-shell">npm install pjax
 </code></pre>
 <p><strong>Note</strong>: If you use this option, you will need to do one of the following:</p>
 <ul>
-<li>Link a script tag to either <code>pjax.js</code> or <code>pjax.min.js</code>. E.g.:</li>
-</ul>
-<pre><code class="html">&lt;script src=&quot;./node_modules/pjax/pjax.js&quot;&gt;&lt;/script&gt;
+<li>Link a script tag to either <code>pjax.js</code> or <code>pjax.min.js</code>. E.g.:<pre><code class="lang-html">&lt;script src=&quot;./node_modules/pjax/pjax.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<ul>
+</li>
 <li>Use a bundler like Webpack. (<code>index.js</code> cannot be used in the browser without a bundler).</li>
 </ul>
 </li>
 <li><p>Or you can clone the repo and build the bundle from the source using npm:</p>
-<pre><code class="shell">git clone https://github.com/MoOx/pjax.git
+<pre><code class="lang-shell">git clone https://github.com/MoOx/pjax.git
 cd pjax
 npm install
 npm run build
 </code></pre>
 <p>and then link a script tag to either <code>pjax.js</code> or <code>pjax.min.js</code>. E.g.:</p>
-<pre><code class="html">&lt;script src=&quot;./pjax.min.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;./pjax.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 </li>
 </ul>
@@ -100,7 +98,7 @@ npm run build
 </ul>
 <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p><em>Pjax is fully automatic</em>. You don’t need to change anything about your existing HTML,<br>you just need to designate which elements on your page that you want to be replaced when your site is navigated.</p>
 <p>Consider the following page.</p>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
+<pre><code class="lang-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;!-- metas, title, styles, etc --&gt;
@@ -147,7 +145,7 @@ npm run build
 <p>It would also be nice if we could replace the <code>&lt;nav&gt;</code> to show that the <code>/about</code> link is active, as well as update our page meta and the <code>&lt;aside&gt;</code> sidebar.</p>
 <p>So all in all we want to update the page title and meta, header, content area, and sidebar, <strong>without reloading styles or scripts</strong>.</p>
 <p>We can easily do this by telling Pjax to listen on all <code>a</code> tags (which is the default) and use CSS selectors defined above (without forgetting minimal meta):</p>
-<pre><code class="javascript">var pjax = new Pjax({
+<pre><code class="lang-javascript">var pjax = new Pjax({
   selectors: [
     &quot;title&quot;,
     &quot;meta[name=description]&quot;,
@@ -163,7 +161,7 @@ npm run build
 <li>No jQuery dependency.</li>
 <li>Not limited to a container.</li>
 <li>No server-side requirements.</li>
-<li>Works for CommonJS environment (Webpack&#x2F;Browserify), AMD (RequireJS) or even globally.</li>
+<li>Works for CommonJS environment (Webpack/Browserify), AMD (RequireJS) or even globally.</li>
 <li>Allows page transitions with CSS animations.</li>
 <li>Can be easily tweaked, since every method is public (and as a result, overridable).</li>
 </ul>
@@ -171,7 +169,7 @@ npm run build
 <p>To see if Pjax is actually supported by your browser, use <code>Pjax.isSupported()</code>.</p>
 <h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><h3 id="new-Pjax"><a href="#new-Pjax" class="headerlink" title="new Pjax()"></a><code>new Pjax()</code></h3><p>Let’s talk more about the most basic way to get started.</p>
 <p>When instantiating <code>Pjax</code>, you can pass options into the constructor as an object:</p>
-<pre><code class="js">var pjax = new Pjax({
+<pre><code class="lang-js">var pjax = new Pjax({
   elements: &quot;a&quot;, // default is &quot;a[href], form[action]&quot;
   selectors: [&quot;title&quot;, &quot;.the-header&quot;, &quot;.the-content&quot;, &quot;.the-sidebar&quot;]
 })
@@ -185,10 +183,10 @@ npm run build
 </ul>
 </li>
 </ol>
-<pre><code class="js">// use case 1
+<pre><code class="lang-js">// use case 1
 var pjax = new Pjax({ elements: &quot;a.js-Pjax&quot; })
 </code></pre>
-<pre><code class="js">// use case 2
+<pre><code class="lang-js">// use case 2
 Pjax.prototype.getElements = function() {
   return document.getElementsByClassName(&quot;.js-Pjax&quot;)
 }
@@ -196,7 +194,7 @@ Pjax.prototype.getElements = function() {
 var pjax = new Pjax()
 </code></pre>
 <h3 id="loadUrl-href-options"><a href="#loadUrl-href-options" class="headerlink" title="loadUrl(href, [options])"></a><code>loadUrl(href, [options])</code></h3><p>With this method, you can manually trigger the loading of a URL:</p>
-<pre><code class="js">var pjax = new Pjax()
+<pre><code class="lang-js">var pjax = new Pjax()
 
 // use case 1
 pjax.loadUrl(&quot;/your-url&quot;)
@@ -214,7 +212,7 @@ pjax.loadUrl(&quot;/your-other-url&quot;, { timeout: 10 })
 </ul>
 <p>You can override this if you want to process the data before, or instead of, it being loaded into the DOM.</p>
 <p>For example, if you want to check for a non-HTML response, you could do the following:</p>
-<pre><code class="js">var pjax = new Pjax();
+<pre><code class="lang-js">var pjax = new Pjax();
 
 pjax._handleResponse = pjax.handleResponse;
 
@@ -227,27 +225,27 @@ pjax.handleResponse = function(responseText, request, href, options) {
 }
 </code></pre>
 <h3 id="refresh-el"><a href="#refresh-el" class="headerlink" title="refresh([el])"></a><code>refresh([el])</code></h3><p>Use this method to bind Pjax to children of a DOM element that didn’t exist when Pjax was initialised e.g. content inserted dynamically by another library or script. If called with no arguments, Pjax will parse the entire document again to look for newly-inserted elements.</p>
-<pre><code class="js">// Inside a callback or Promise that runs after new DOM content has been inserted
+<pre><code class="lang-js">// Inside a callback or Promise that runs after new DOM content has been inserted
 var newContent = document.querySelector(&quot;.new-content&quot;);
 
 pjax.refresh(newContent);
 </code></pre>
 <h3 id="reload"><a href="#reload" class="headerlink" title="reload()"></a><code>reload()</code></h3><p>A helper shortcut for <code>window.location.reload()</code>. Used to force a page reload.</p>
-<pre><code class="js">pjax.reload()
+<pre><code class="lang-js">pjax.reload()
 </code></pre>
 <h2 id="Options"><a href="#Options" class="headerlink" title="Options"></a>Options</h2><h3 id="elements-String-default-quot-a-href-form-action-quot"><a href="#elements-String-default-quot-a-href-form-action-quot" class="headerlink" title="elements (String, default: &quot;a[href], form[action]&quot;)"></a><code>elements</code> (String, default: <code>&quot;a[href], form[action]&quot;</code>)</h3><p>CSS selector(s) used to find links to apply Pjax to. If needing multiple specific selectors, separate them by a comma.</p>
-<pre><code class="js">// Single element
+<pre><code class="lang-js">// Single element
 var pjax = new Pjax({
   elements: &quot;.ajax&quot;
 })
 </code></pre>
-<pre><code class="js">// Multiple elements
+<pre><code class="lang-js">// Multiple elements
 var pjax = new Pjax({
   elements: &quot;.pjax, .ajax&quot;,
 })
 </code></pre>
 <h3 id="selectors-Array-default-quot-title-quot-quot-js-Pjax-quot"><a href="#selectors-Array-default-quot-title-quot-quot-js-Pjax-quot" class="headerlink" title="selectors (Array, default: [&quot;title&quot;, &quot;.js-Pjax&quot;])"></a><code>selectors</code> (Array, default: <code>[&quot;title&quot;, &quot;.js-Pjax&quot;]</code>)</h3><p>CSS selectors used to find which content to replace.</p>
-<pre><code class="js">var pjax = new Pjax({
+<pre><code class="lang-js">var pjax = new Pjax({
   selectors: [
     &quot;title&quot;,
     &quot;the-content&quot;,
@@ -256,7 +254,7 @@ var pjax = new Pjax({
 </code></pre>
 <p>If a query returns multiples items, it will just keep the index.</p>
 <p>Example of what you can do:</p>
-<pre><code class="html">&lt;!DOCTYPE html&gt;
+<pre><code class="lang-html">&lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Page title&lt;/title&gt;
@@ -274,7 +272,7 @@ var pjax = new Pjax({
 <h3 id="switches-Object-default"><a href="#switches-Object-default" class="headerlink" title="switches (Object, default: {})"></a><code>switches</code> (Object, default: <code>{}</code>)</h3><p>This is an object containing callbacks that can be used to switch old elements with new elements.</p>
 <p>The object keys should be one of the defined selectors (from the <code>selectors</code> option).</p>
 <p>Examples:</p>
-<pre><code class="js">var pjax = new Pjax({
+<pre><code class="lang-js">var pjax = new Pjax({
   selectors: [&quot;title&quot;, &quot;.Navbar&quot;, &quot;.js-Pjax&quot;],
   switches: {
     &quot;title&quot;: Pjax.switches.outerHTML, // default behavior
@@ -300,13 +298,13 @@ var pjax = new Pjax({
 <li>Call <code>this.onSwitch()</code> to trigger the attached callback.</li>
 </ol>
 <p>Here is the default behavior as an example:</p>
-<pre><code class="js">function(oldEl, newEl, pjaxOptions) {
+<pre><code class="lang-js">function(oldEl, newEl, pjaxOptions) {
   oldEl.outerHTML = newEl.outerHTML
   this.onSwitch()
 }
 </code></pre>
 <h3 id="switchesOptions-Object-default"><a href="#switchesOptions-Object-default" class="headerlink" title="switchesOptions (Object, default: {})"></a><code>switchesOptions</code> (Object, default: <code>{}</code>)</h3><p>These are options that can be used during content replacement by switches. For now, only <code>Pjax.switches.sideBySide</code> uses it. This is very convenient when you use something like <a href="https://github.com/daneden/animate.css">Animate.css</a> with or without <a href="https://github.com/matthieua/WOW">WOW.js</a>.</p>
-<pre><code class="js">var pjax = new Pjax({
+<pre><code class="lang-js">var pjax = new Pjax({
   selectors: [&quot;title&quot;, &quot;.js-Pjax&quot;],
   switches: {
     &quot;.js-Pjax&quot;: Pjax.switches.sideBySide
@@ -336,9 +334,9 @@ var pjax = new Pjax({
   }
 })
 </code></pre>
-<p><em>Note that <code>remove</code> includes <code>Animated--reverse</code> which is a simple way to not have to have a duplicate transition (slideIn + reverse &#x3D;&gt; slideOut).</em></p>
+<p><em>Note that <code>remove</code> includes <code>Animated--reverse</code> which is a simple way to not have to have a duplicate transition (slideIn + reverse =&gt; slideOut).</em></p>
 <p>Here is some css that works well with the above configuration:</p>
-<pre><code class="css">/*
+<pre><code class="lang-css">/*
   Note: If your content elements don&#39;t have a fixed width it can cause
   an issue when positioning absolutely
 */
@@ -394,7 +392,7 @@ var pjax = new Pjax({
 }
 </code></pre>
 <p>To give context to this CSS, here is an HTML snippet:</p>
-<pre><code class="html">&lt;!doctype html&gt;
+<pre><code class="lang-html">&lt;!doctype html&gt;
 &lt;html&gt;
 &lt;head&gt;
   &lt;title&gt;Page Title&lt;/title&gt;
@@ -434,7 +432,7 @@ var pjax = new Pjax({
 <p>When set to <code>false</code>, clicking on such a link will cause Pjax to load the current page without a full page reload. If you want to add some custom behavior, add a click listener to the link and call <code>preventDefault()</code>. This will prevent Pjax from receiving the event.</p>
 <p><strong>Note</strong>: This must be done before Pjax is instantiated, otherwise Pjax’s event handler will be called first, and <code>preventDefault()</code> won’t have been called yet.</p>
 <p>Here is some sample code:</p>
-<pre><code class="js">  var links = document.querySelectorAll(&quot;.js-Pjax&quot;);
+<pre><code class="lang-js">  var links = document.querySelectorAll(&quot;.js-Pjax&quot;);
 
   for (var i = 0; i &lt; links.length; i++) {
     var el = links[i]
@@ -462,7 +460,7 @@ var pjax = new Pjax({
 <li><code>pjax:error</code> - Fired after the Pjax request fails. The request object will be passed along as <code>event.options.request</code>.</li>
 </ul>
 <p><code>send</code> and <code>complete</code> are a good pair of events to use if you are implementing a loading indicator (eg: <a href="http://buunguyen.github.io/topbar/">topbar</a>)</p>
-<pre><code class="js">document.addEventListener(&#39;pjax:send&#39;, topbar.show)
+<pre><code class="lang-js">document.addEventListener(&#39;pjax:send&#39;, topbar.show)
 document.addEventListener(&#39;pjax:complete&#39;, topbar.hide)
 </code></pre>
 <h2 id="HTTP-Headers"><a href="#HTTP-Headers" class="headerlink" title="HTTP Headers"></a>HTTP Headers</h2><p>Pjax uses several custom headers when it makes and receives HTTP requests. If the requests are going to your server, you can use those headers for some meta information about the response.</p>
@@ -479,7 +477,7 @@ document.addEventListener(&#39;pjax:complete&#39;, topbar.hide)
 <p>Pjax first checks the <code>responseURL</code> property on the XHR object to see if the request was redirected by the server. Most browsers support this, but not all. To ensure Pjax will be able to tell when the request is redirected, you can include one of these headers with the response, set to the final URL.</p>
 <h2 id="DOM-Ready-State"><a href="#DOM-Ready-State" class="headerlink" title="DOM Ready State"></a>DOM Ready State</h2><p>Most of the time, you will have code related to the current DOM that you only execute when the DOM is ready.</p>
 <p>Since Pjax doesn’t automatically re-execute your previous code each time you load a page, you’ll need to add code to re-trigger the DOM ready code. Here’s a simple example:</p>
-<pre><code class="js">function whenDOMReady() {
+<pre><code class="lang-js">function whenDOMReady() {
   // do your stuff
 }
 
@@ -491,7 +489,7 @@ document.addEventListener(&quot;pjax:success&quot;, whenDOMReady)
 </code></pre>
 <p><em>Note: Don’t create the Pjax instance in the <code>whenDOMReady</code> function.</em></p>
 <p>If you want to just update a specific part (which is a good idea), you can add the DOM-related code in a function and re-execute this function when the <code>pjax:success</code> event is fired.</p>
-<pre><code class="js">// do your global stuff
+<pre><code class="lang-js">// do your global stuff
 //... DOM ready code
 
 function whenContainerReady() {
@@ -510,7 +508,7 @@ document.addEventListener(&quot;pjax:success&quot;, whenContainerReady)
 <li><p>Edit your Disqus snippet like the one below.</p>
 </li>
 </ul>
-<h4 id="Disqus-snippet-before-Pjax-integration"><a href="#Disqus-snippet-before-Pjax-integration" class="headerlink" title="Disqus snippet before Pjax integration"></a>Disqus snippet <em>before</em> Pjax integration</h4><pre><code class="html">&lt;script&gt;
+<h4 id="Disqus-snippet-before-Pjax-integration"><a href="#Disqus-snippet-before-Pjax-integration" class="headerlink" title="Disqus snippet before Pjax integration"></a>Disqus snippet <em>before</em> Pjax integration</h4><pre><code class="lang-html">&lt;script&gt;
   var disqus_shortname = &#39;YOURSHORTNAME&#39;
   var disqus_identifier = &#39;PAGEID&#39;
   var disqus_url = &#39;PAGEURL&#39;
@@ -522,7 +520,7 @@ document.addEventListener(&quot;pjax:success&quot;, whenContainerReady)
   })(document)
 &lt;/script&gt;
 </code></pre>
-<h4 id="Disqus-snippet-after-Pjax-integration"><a href="#Disqus-snippet-after-Pjax-integration" class="headerlink" title="Disqus snippet after Pjax integration"></a>Disqus snippet <em>after</em> Pjax integration</h4><pre><code class="html">&lt;div class=&quot;js-Pjax&quot;&gt;&lt;!-- needs to be here on every Pjax-ified page, even if empty --&gt;
+<h4 id="Disqus-snippet-after-Pjax-integration"><a href="#Disqus-snippet-after-Pjax-integration" class="headerlink" title="Disqus snippet after Pjax integration"></a>Disqus snippet <em>after</em> Pjax integration</h4><pre><code class="lang-html">&lt;div class=&quot;js-Pjax&quot;&gt;&lt;!-- needs to be here on every Pjax-ified page, even if empty --&gt;
 &lt;!-- if (some condition) { // eventual server-side test to know whether or not you include this script --&gt;
   &lt;script&gt;
     var disqus_shortname = &#39;YOURSHORTNAME&#39;

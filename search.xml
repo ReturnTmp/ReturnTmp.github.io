@@ -2,8 +2,9 @@
 <search>
   <entry>
     <title>Neovim 配置教程</title>
-    <url>/2023/05/01/Neovim-%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<blockquote>
+    <url>/posts/e8223384.html</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/images.jpg" alt="images"></p>
+<blockquote>
 <p>环境：Ubuntu 20.04 </p>
 <p>宿主机：windows （windows terminal）WSL2</p>
 <p>NVIM：v0.10.0-dev</p>
@@ -756,7 +757,7 @@
   </entry>
   <entry>
     <title>优雅提交 Git Commit Message</title>
-    <url>/2023/05/15/%E4%BC%98%E9%9B%85%E6%8F%90%E4%BA%A4-Git-Commit-Message/</url>
+    <url>/posts/2bf156a6.html</url>
     <content><![CDATA[<blockquote>
 <p>commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写</p>
 </blockquote>
@@ -836,7 +837,7 @@
   </entry>
   <entry>
     <title>配置工具篇（tmux+ranger+lazygit）</title>
-    <url>/2023/05/16/%E4%BC%98%E9%9B%85%E9%85%8D%E7%BD%AE%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83/</url>
+    <url>/posts/d1678e92.html</url>
     <content><![CDATA[<blockquote>
 <p>tmux 可以管理多个会话和任务，在一个终端窗口中同时运行多个命令行程序</p>
 <p>ranger 可以帮助你在命令行下进行文件管理和操作</p>
@@ -1301,6 +1302,112 @@
 ]]></content>
       <tags>
         <tag>env</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>手动编译安装 Nginx（附带rtmp模块）</title>
+    <url>/posts/6b08d7e3.html</url>
+    <content><![CDATA[<blockquote>
+<p> 环境：CentOS7.9</p>
+</blockquote>
+<blockquote>
+<p>安装目录：<code>/usr/local/nginx</code></p>
+<p>解压目录：<code>/usr/local/src/nginx</code></p>
+</blockquote>
+<span id="more"></span>
+
+<h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/src</span><br><span class="line">wget http://nginx.org/download/nginx-1.12.1.tar.gz</span><br><span class="line">tar -zxvf nginx-1.12.1.tar.gz</span><br><span class="line"><span class="built_in">mv</span> nginx-1.12.1 nginx</span><br><span class="line"><span class="built_in">cd</span> nginx</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/arut/nginx-rtmp-module.git</span><br><span class="line">./configure --prefix=/usr/local/nginx --add-module=./nginx-rtmp-module --with-http_ssl_module</span><br><span class="line"><span class="comment"># 编译工程</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="展示"><a href="#展示" class="headerlink" title="展示"></a>展示</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@VM-4-3-centos nginx]<span class="comment"># cd  /usr/local/nginx/</span></span><br><span class="line">[root@VM-4-3-centos nginx]<span class="comment"># ls</span></span><br><span class="line">conf  html  logs  sbin</span><br><span class="line">[root@VM-4-3-centos nginx]<span class="comment"># cd sbin/</span></span><br><span class="line">[root@VM-4-3-centos sbin]<span class="comment"># ls</span></span><br><span class="line">nginx</span><br><span class="line">[root@VM-4-3-centos sbin]<span class="comment"># ./nginx  -v</span></span><br><span class="line">nginx version: nginx/1.12.1</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@VM-4-3-centos conf]<span class="comment"># cd /usr/local/nginx/conf</span></span><br><span class="line">[root@VM-4-3-centos conf]<span class="comment"># vim nginx.conf</span></span><br><span class="line"><span class="comment"># 添加如下</span></span><br><span class="line">rtmp &#123;</span><br><span class="line"> </span><br><span class="line">     server &#123;</span><br><span class="line"> </span><br><span class="line">         listen 1935 so_keepalive=2s:1:1;  <span class="comment">#监听的端口  </span></span><br><span class="line">         chunk_size 4000;</span><br><span class="line">         application hls &#123;  <span class="comment">#rtmp推流请求路径  </span></span><br><span class="line">             live on;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="nginx-相关命令"><a href="#nginx-相关命令" class="headerlink" title="nginx 相关命令"></a>nginx 相关命令</h4><h5 id="启动-nginx"><a href="#启动-nginx" class="headerlink" title="启动 nginx"></a>启动 nginx</h5><ol>
+<li>直接启动</li>
+</ol>
+<ul>
+<li>进入 nginx 安装目录找到 sbin 文件夹，然后启动 nginx。<br> 命令：**<code>cd /sbin</code>** 进入到 sbin 目录下<br> 命令：**<code>./nginx</code>** 启动 nginx</li>
+</ul>
+<ol>
+<li>指定配置文件方式启动：<br> 命令：**<code>./nginx -c /usr/local/nginx/conf/nginx.conf</code>**</li>
+</ol>
+<h5 id="检查-nginx-配置"><a href="#检查-nginx-配置" class="headerlink" title="检查 nginx 配置"></a>检查 nginx 配置</h5><p>进入 nginx 下的 sbin 目录下执行命令：<br>命令：**<code>./nginx -t</code>**</p>
+<h5 id="重启-nginx"><a href="#重启-nginx" class="headerlink" title="重启 nginx"></a>重启 nginx</h5><p><strong><code>./nginx -s reload</code></strong></p>
+<h5 id="自启动-nginx"><a href="#自启动-nginx" class="headerlink" title="自启动 nginx"></a>自启动 nginx</h5><p>设置 Linux 重启之后 nginx 自动启动命令：**<code>systemctl enable nginx</code>**</p>
+<p>查看状态，命令：**<code>systemctl is-enabled nginx</code>** 或者**<code>service nginx status</code>**</p>
+<h5 id="关闭-nginx"><a href="#关闭-nginx" class="headerlink" title="关闭 nginx"></a>关闭 nginx</h5><h6 id="关闭-nginx-1"><a href="#关闭-nginx-1" class="headerlink" title="关闭 nginx"></a>关闭 nginx</h6><ol>
+<li>进入 nginx 下的 sbin 目录下执行命令：<br> 快速停止 nginx 命令：**<code>./nginx -s stop</code>**<br> 完整有序的停止 nginx：**<code>./nginx -s quit</code>**；这个命令会等待所有请求结束后再关闭 nginx。</li>
+<li>使用 kill 命令关闭 nginx</li>
+</ol>
+<ul>
+<li>先查看 nginx 进程，找到主进程号。然后再使用 kill 命令杀死 nginx 进程。<br> 查看 nginx 进程号命令：**<code>ps -ef | grep nginx</code>**<br> 从容停止 nginx 命令：**<code>kill -QUIT 主进程号</code>**<br> 快速停止 nginx 命令：**<code>kill -TERM 主进程号</code>**<br> 强制停止 nginx  命令：**<code>kill -HUP 主进程号</code>**<br> 平滑重启 nginx 命令：**<code>kill -9 nginx</code>**<br> 查找并杀死所有 nginx 进程：**<code>ps aux | grep nginx |awk &#39;&#123;print $2&#125;&#39; | xargs kill -9</code>**</li>
+</ul>
+<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><blockquote>
+<p>启动时出现 Failed to start nginx.service:unit not found</p>
+</blockquote>
+<h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/init.d/nginx</span><br></pre></td></tr></table></figure>
+
+<p>插入代码</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># nginx - this script starts and stops the nginx daemin</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># chkconfig:   - 85 15</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># description:  Nginx is an HTTP(S) server, HTTP(S) reverse \</span></span><br><span class="line"><span class="comment">#               proxy and IMAP/POP3 proxy server</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># processname: nginx</span></span><br><span class="line"><span class="comment"># config:      /usr/local/nginx/conf/nginx.conf</span></span><br><span class="line"><span class="comment"># pidfile:     /usr/local/nginx/logs/nginx.pid</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># Source function library.</span></span><br><span class="line"> </span><br><span class="line">. /etc/rc.d/init.d/functions</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Source networking configuration.</span></span><br><span class="line"> </span><br><span class="line">. /etc/sysconfig/network</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Check that networking is up.</span></span><br><span class="line"> </span><br><span class="line">[ <span class="string">&quot;<span class="variable">$NETWORKING</span>&quot;</span> = <span class="string">&quot;no&quot;</span> ] &amp;&amp; <span class="built_in">exit</span> 0</span><br><span class="line"> </span><br><span class="line">nginx=<span class="string">&quot;/usr/local/nginx/sbin/nginx&quot;</span></span><br><span class="line"> </span><br><span class="line">prog=$(<span class="built_in">basename</span> <span class="variable">$nginx</span>)</span><br><span class="line"> </span><br><span class="line">NGINX_CONF_FILE=<span class="string">&quot;/usr/local/nginx/conf/nginx.conf&quot;</span></span><br><span class="line"> </span><br><span class="line">lockfile=/var/lock/subsys/nginx</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">start</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    [ -x <span class="variable">$nginx</span> ] || <span class="built_in">exit</span> 5</span><br><span class="line"> </span><br><span class="line">    [ -f <span class="variable">$NGINX_CONF_FILE</span> ] || <span class="built_in">exit</span> 6</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">&quot;Starting <span class="variable">$prog</span>: &quot;</span></span><br><span class="line"> </span><br><span class="line">    daemon <span class="variable">$nginx</span> -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line"> </span><br><span class="line">    retval=$?</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line"> </span><br><span class="line">    [ <span class="variable">$retval</span> -eq 0 ] &amp;&amp; <span class="built_in">touch</span> <span class="variable">$lockfile</span></span><br><span class="line"> </span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$retval</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">stop</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">&quot;Stopping <span class="variable">$prog</span>: &quot;</span></span><br><span class="line"> </span><br><span class="line">    killproc <span class="variable">$prog</span> -QUIT</span><br><span class="line"> </span><br><span class="line">    retval=$?</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line"> </span><br><span class="line">    [ <span class="variable">$retval</span> -eq 0 ] &amp;&amp; <span class="built_in">rm</span> -f <span class="variable">$lockfile</span></span><br><span class="line"> </span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$retval</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">restart</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    configtest || <span class="built_in">return</span> $?</span><br><span class="line"> </span><br><span class="line">    stop</span><br><span class="line"> </span><br><span class="line">    start</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">reload</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    configtest || <span class="built_in">return</span> $?</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">&quot;Reloading <span class="variable">$prog</span>: &quot;</span></span><br><span class="line"> </span><br><span class="line">    killproc <span class="variable">$nginx</span> -HUP</span><br><span class="line"> </span><br><span class="line">    RETVAL=$?</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">force_reload</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    restart</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">configtest</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="variable">$nginx</span> -t -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">rh_status</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    status <span class="variable">$prog</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">rh_status_q</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    rh_status &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line"> </span><br><span class="line">    start)</span><br><span class="line"> </span><br><span class="line">        rh_status_q &amp;&amp; <span class="built_in">exit</span> 0</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">    stop)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 0</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">    restart|configtest)</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">    reload)</span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 7</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    force-reload)</span><br><span class="line">        force_reload</span><br><span class="line">        ;;</span><br><span class="line">    status)</span><br><span class="line">        rh_status</span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    condrestart|try-restart)</span><br><span class="line"> </span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 0</span><br><span class="line">            ;;</span><br><span class="line"> </span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">echo</span> $<span class="string">&quot;Usage: <span class="variable">$0</span> &#123;start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest&#125;&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 2</span><br><span class="line"> </span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="依次执行"><a href="#依次执行" class="headerlink" title="依次执行"></a>依次执行</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/init.d</span><br><span class="line"> </span><br><span class="line"><span class="built_in">chmod</span> 755 /etc/init.d/nginx</span><br><span class="line"> </span><br><span class="line">chkconfig --add nginx</span><br></pre></td></tr></table></figure>
+
+
+
+<blockquote>
+<p>需要注意的是如果之前没有配置&#x2F;etc&#x2F;init.d&#x2F;nginx之前如果启动了nginx </p>
+<p>需要手动关闭（kill 命令），再执行<code>systemctl start nginx.service</code></p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>提高打字速度笔记</title>
+    <url>/posts/c4f6e93f.html</url>
+    <content><![CDATA[<p>第一阶段：纠正指法</p>
+<blockquote>
+<p>网站：<a href="https://www.typingclub.com/">https://www.typingclub.com/</a></p>
+</blockquote>
+<p>typingclub对于初学者非常友好，界面也很有趣，打字的部分结合下方的手指提示，可以让我知道应该出哪个指头来打字。最难的部分应该是小指头和数字区，这个阶段可以知道自己薄弱的手指是哪些，其实基本上六百多关打完基本就可以保证70wpm以上了，但是博主训练到35wpm之后发现因为有些弱项（比如说左手和一些特殊符号），所以很难提高，所以就进行了专项训练</p>
+<p>第二阶段：专项训练</p>
+<blockquote>
+<p>网站：<a href="https://www.keybr.com/">Typing Practice (keybr.com)</a></p>
+</blockquote>
+<p>这个网站会使用算法把你的薄弱项全部找出来，然后让你一直训练那个地方，对我来说小指最薄弱，就专门训练小指。觉得训练的差不多了，就可以进入全面练习，打一些自己感兴趣的东西。</p>
+<p>第三阶段：全面练习</p>
+<blockquote>
+<p>网站：<a href="https://www.keybr.com/">Typing Practice (keybr.com)</a></p>
+</blockquote>
+<p>keybr可以自定义你想打的内容，可以找一些文章自己进行自定义训练，主要就是进行全面练习</p>
+<p>第四阶段：速度练习</p>
+<blockquote>
+<p>网站：<a href="https://monkeytype.com/">Monkeytype | A minimalistic, customizable typing test</a></p>
+</blockquote>
+<p>这个阶段的话就是多练测速。monkeytype可以选择是否需要大小写和标点符号，可以根据自己需求自定义训练</p>
+<blockquote>
+<p>针对程序员的码字专用网站：</p>
+<p><a href="https://www.speedtyper.dev/">SpeedTyper.dev | Typing practice for programmers</a></p>
+<p><a href="https://typing.io/">typing.io</a></p>
+<p><a href="https://www.shortcutfoo.com/">Learn shortcuts and commands | ShortcutFoo</a></p>
+</blockquote>
+<p>其他网站：</p>
+<p><a href="https://www.speedcoder.net/">Typing Practice for Programmers | SpeedCoder</a></p>
+<p><a href="https://www.typing.com/">Learn to Type | Type Better | Type Faster - Typing.com - Typing.com</a></p>
+<p>相关博客：</p>
+<p><a href="https://cookcode.blog.csdn.net/article/details/109152229?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-109152229-blog-120637642.235%5Ev38%5Epc_relevant_sort&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-2-109152229-blog-120637642.235%5Ev38%5Epc_relevant_sort&utm_relevant_index=5">程序员如何提高编程时打字速度的5个Tips_编程打字_nklinsirui的博客-CSDN博客</a></p>
+]]></content>
+      <tags>
+        <tag>typing</tag>
       </tags>
   </entry>
 </search>
