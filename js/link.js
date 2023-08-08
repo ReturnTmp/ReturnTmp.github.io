@@ -1,4 +1,4 @@
-// 随机排列
+<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script>// 随机排列
 function shuffle(arr) {
   let i = arr.length;
   while (i) {
