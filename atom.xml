@@ -26,8 +26,6 @@
     
     <summary type="html">&lt;blockquote&gt;
 &lt;p&gt; 环境：CentOS7.9&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
 &lt;p&gt;安装目录：&lt;code&gt;/usr/local/nginx&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;解压目录：&lt;code&gt;/usr/local/src/nginx&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;</summary>

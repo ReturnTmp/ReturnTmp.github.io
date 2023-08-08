@@ -24,12 +24,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"returntmp.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.11.1","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":"waline","storage":true,"lazyload":false,"nav":null,"activeClass":"waline"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="环境：CentOS7.9   安装目录：&#x2F;usr&#x2F;local&#x2F;nginx 解压目录：&#x2F;usr&#x2F;local&#x2F;src&#x2F;nginx">
+    <meta name="description" content="环境：CentOS7.9 安装目录：&#x2F;usr&#x2F;local&#x2F;nginx 解压目录：&#x2F;usr&#x2F;local&#x2F;src&#x2F;nginx">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手动编译安装 Nginx（附带rtmp模块）">
 <meta property="og:url" content="https://returntmp.github.io/posts/6b08d7e3.html">
 <meta property="og:site_name" content="ReturnTmp">
-<meta property="og:description" content="环境：CentOS7.9   安装目录：&#x2F;usr&#x2F;local&#x2F;nginx 解压目录：&#x2F;usr&#x2F;local&#x2F;src&#x2F;nginx">
+<meta property="og:description" content="环境：CentOS7.9 安装目录：&#x2F;usr&#x2F;local&#x2F;nginx 解压目录：&#x2F;usr&#x2F;local&#x2F;src&#x2F;nginx">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-06-07T10:09:24.000Z">
 <meta property="article:modified_time" content="2023-07-18T03:36:47.518Z">
@@ -51,13 +51,13 @@
 
 
 
-<link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css"><link rel="dns-prefetch" href="https://returntmp-waline.vercel.app">
+<link rel="dns-prefetch" href="https://returntmp-waline.vercel.app"><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
   
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="ReturnTmp" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="ReturnTmp" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
 
@@ -121,7 +121,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -606,14 +606,14 @@ if(canvas.getContext){
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.4k</span>
+      <span>3.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -626,61 +626,42 @@ if(canvas.getContext){
     <div class="post-body" itemprop="articleBody">
         <blockquote>
 <p> 环境：CentOS7.9</p>
-</blockquote>
-<blockquote>
 <p>安装目录：<code>/usr/local/nginx</code></p>
 <p>解压目录：<code>/usr/local/src/nginx</code></p>
 </blockquote>
 <span id="more"></span>
-
 <h4 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /usr/local/src</span><br><span class="line">wget http://nginx.org/download/nginx-1.12.1.tar.gz</span><br><span class="line">tar -zxvf nginx-1.12.1.tar.gz</span><br><span class="line"><span class="built_in">mv</span> nginx-1.12.1 nginx</span><br><span class="line"><span class="built_in">cd</span> nginx</span><br><span class="line">git <span class="built_in">clone</span> https://github.com/arut/nginx-rtmp-module.git</span><br><span class="line">./configure --prefix=/usr/local/nginx --add-module=./nginx-rtmp-module --with-http_ssl_module</span><br><span class="line"><span class="comment"># 编译工程</span></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="展示"><a href="#展示" class="headerlink" title="展示"></a>展示</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@VM-4-3-centos nginx]<span class="comment"># cd  /usr/local/nginx/</span></span><br><span class="line">[root@VM-4-3-centos nginx]<span class="comment"># ls</span></span><br><span class="line">conf  html  logs  sbin</span><br><span class="line">[root@VM-4-3-centos nginx]<span class="comment"># cd sbin/</span></span><br><span class="line">[root@VM-4-3-centos sbin]<span class="comment"># ls</span></span><br><span class="line">nginx</span><br><span class="line">[root@VM-4-3-centos sbin]<span class="comment"># ./nginx  -v</span></span><br><span class="line">nginx version: nginx/1.12.1</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">[root@VM-4-3-centos conf]<span class="comment"># cd /usr/local/nginx/conf</span></span><br><span class="line">[root@VM-4-3-centos conf]<span class="comment"># vim nginx.conf</span></span><br><span class="line"><span class="comment"># 添加如下</span></span><br><span class="line">rtmp &#123;</span><br><span class="line"> </span><br><span class="line">     server &#123;</span><br><span class="line"> </span><br><span class="line">         listen 1935 so_keepalive=2s:1:1;  <span class="comment">#监听的端口  </span></span><br><span class="line">         chunk_size 4000;</span><br><span class="line">         application hls &#123;  <span class="comment">#rtmp推流请求路径  </span></span><br><span class="line">             live on;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h4 id="nginx-相关命令"><a href="#nginx-相关命令" class="headerlink" title="nginx 相关命令"></a>nginx 相关命令</h4><h5 id="启动-nginx"><a href="#启动-nginx" class="headerlink" title="启动 nginx"></a>启动 nginx</h5><ol>
 <li>直接启动</li>
 </ol>
 <ul>
-<li>进入 nginx 安装目录找到 sbin 文件夹，然后启动 nginx。<br> 命令：**<code>cd /sbin</code>** 进入到 sbin 目录下<br> 命令：**<code>./nginx</code>** 启动 nginx</li>
+<li>进入 nginx 安装目录找到 sbin 文件夹，然后启动 nginx。<br> 命令：<strong><code>cd /sbin</code></strong> 进入到 sbin 目录下<br> 命令：<strong><code>./nginx</code></strong> 启动 nginx</li>
 </ul>
 <ol>
-<li>指定配置文件方式启动：<br> 命令：**<code>./nginx -c /usr/local/nginx/conf/nginx.conf</code>**</li>
+<li>指定配置文件方式启动：<br> 命令：<strong><code>./nginx -c /usr/local/nginx/conf/nginx.conf</code></strong></li>
 </ol>
-<h5 id="检查-nginx-配置"><a href="#检查-nginx-配置" class="headerlink" title="检查 nginx 配置"></a>检查 nginx 配置</h5><p>进入 nginx 下的 sbin 目录下执行命令：<br>命令：**<code>./nginx -t</code>**</p>
+<h5 id="检查-nginx-配置"><a href="#检查-nginx-配置" class="headerlink" title="检查 nginx 配置"></a>检查 nginx 配置</h5><p>进入 nginx 下的 sbin 目录下执行命令：<br>命令：<strong><code>./nginx -t</code></strong></p>
 <h5 id="重启-nginx"><a href="#重启-nginx" class="headerlink" title="重启 nginx"></a>重启 nginx</h5><p><strong><code>./nginx -s reload</code></strong></p>
-<h5 id="自启动-nginx"><a href="#自启动-nginx" class="headerlink" title="自启动 nginx"></a>自启动 nginx</h5><p>设置 Linux 重启之后 nginx 自动启动命令：**<code>systemctl enable nginx</code>**</p>
-<p>查看状态，命令：**<code>systemctl is-enabled nginx</code>** 或者**<code>service nginx status</code>**</p>
+<h5 id="自启动-nginx"><a href="#自启动-nginx" class="headerlink" title="自启动 nginx"></a>自启动 nginx</h5><p>设置 Linux 重启之后 nginx 自动启动命令：<strong><code>systemctl enable nginx</code></strong></p>
+<p>查看状态，命令：<strong><code>systemctl is-enabled nginx</code></strong> 或者<strong><code>service nginx status</code></strong></p>
 <h5 id="关闭-nginx"><a href="#关闭-nginx" class="headerlink" title="关闭 nginx"></a>关闭 nginx</h5><h6 id="关闭-nginx-1"><a href="#关闭-nginx-1" class="headerlink" title="关闭 nginx"></a>关闭 nginx</h6><ol>
-<li>进入 nginx 下的 sbin 目录下执行命令：<br> 快速停止 nginx 命令：**<code>./nginx -s stop</code>**<br> 完整有序的停止 nginx：**<code>./nginx -s quit</code>**；这个命令会等待所有请求结束后再关闭 nginx。</li>
+<li>进入 nginx 下的 sbin 目录下执行命令：<br> 快速停止 nginx 命令：<strong><code>./nginx -s stop</code></strong><br> 完整有序的停止 nginx：<strong><code>./nginx -s quit</code></strong>；这个命令会等待所有请求结束后再关闭 nginx。</li>
 <li>使用 kill 命令关闭 nginx</li>
 </ol>
 <ul>
-<li>先查看 nginx 进程，找到主进程号。然后再使用 kill 命令杀死 nginx 进程。<br> 查看 nginx 进程号命令：**<code>ps -ef | grep nginx</code>**<br> 从容停止 nginx 命令：**<code>kill -QUIT 主进程号</code>**<br> 快速停止 nginx 命令：**<code>kill -TERM 主进程号</code>**<br> 强制停止 nginx  命令：**<code>kill -HUP 主进程号</code>**<br> 平滑重启 nginx 命令：**<code>kill -9 nginx</code>**<br> 查找并杀死所有 nginx 进程：**<code>ps aux | grep nginx |awk &#39;&#123;print $2&#125;&#39; | xargs kill -9</code>**</li>
+<li>先查看 nginx 进程，找到主进程号。然后再使用 kill 命令杀死 nginx 进程。<br> 查看 nginx 进程号命令：<strong><code>ps -ef | grep nginx</code></strong><br> 从容停止 nginx 命令：<strong><code>kill -QUIT 主进程号</code></strong><br> 快速停止 nginx 命令：<strong><code>kill -TERM 主进程号</code></strong><br> 强制停止 nginx  命令：<strong><code>kill -HUP 主进程号</code></strong><br> 平滑重启 nginx 命令：<strong><code>kill -9 nginx</code></strong><br> 查找并杀死所有 nginx 进程：<strong><code>ps aux | grep nginx |awk &#39;&#123;print $2&#125;&#39; | xargs kill -9</code></strong></li>
 </ul>
 <h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><blockquote>
 <p>启动时出现 Failed to start nginx.service:unit not found</p>
 </blockquote>
 <h5 id="方案"><a href="#方案" class="headerlink" title="方案"></a>方案</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">vim /etc/init.d/nginx</span><br></pre></td></tr></table></figure>
-
 <p>插入代码</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"><span class="comment"># nginx - this script starts and stops the nginx daemin</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># chkconfig:   - 85 15</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># description:  Nginx is an HTTP(S) server, HTTP(S) reverse \</span></span><br><span class="line"><span class="comment">#               proxy and IMAP/POP3 proxy server</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># processname: nginx</span></span><br><span class="line"><span class="comment"># config:      /usr/local/nginx/conf/nginx.conf</span></span><br><span class="line"><span class="comment"># pidfile:     /usr/local/nginx/logs/nginx.pid</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># Source function library.</span></span><br><span class="line"> </span><br><span class="line">. /etc/rc.d/init.d/functions</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Source networking configuration.</span></span><br><span class="line"> </span><br><span class="line">. /etc/sysconfig/network</span><br><span class="line"> </span><br><span class="line"><span class="comment"># Check that networking is up.</span></span><br><span class="line"> </span><br><span class="line">[ <span class="string">&quot;<span class="variable">$NETWORKING</span>&quot;</span> = <span class="string">&quot;no&quot;</span> ] &amp;&amp; <span class="built_in">exit</span> 0</span><br><span class="line"> </span><br><span class="line">nginx=<span class="string">&quot;/usr/local/nginx/sbin/nginx&quot;</span></span><br><span class="line"> </span><br><span class="line">prog=$(<span class="built_in">basename</span> <span class="variable">$nginx</span>)</span><br><span class="line"> </span><br><span class="line">NGINX_CONF_FILE=<span class="string">&quot;/usr/local/nginx/conf/nginx.conf&quot;</span></span><br><span class="line"> </span><br><span class="line">lockfile=/var/lock/subsys/nginx</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">start</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    [ -x <span class="variable">$nginx</span> ] || <span class="built_in">exit</span> 5</span><br><span class="line"> </span><br><span class="line">    [ -f <span class="variable">$NGINX_CONF_FILE</span> ] || <span class="built_in">exit</span> 6</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">&quot;Starting <span class="variable">$prog</span>: &quot;</span></span><br><span class="line"> </span><br><span class="line">    daemon <span class="variable">$nginx</span> -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line"> </span><br><span class="line">    retval=$?</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line"> </span><br><span class="line">    [ <span class="variable">$retval</span> -eq 0 ] &amp;&amp; <span class="built_in">touch</span> <span class="variable">$lockfile</span></span><br><span class="line"> </span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$retval</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">stop</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">&quot;Stopping <span class="variable">$prog</span>: &quot;</span></span><br><span class="line"> </span><br><span class="line">    killproc <span class="variable">$prog</span> -QUIT</span><br><span class="line"> </span><br><span class="line">    retval=$?</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line"> </span><br><span class="line">    [ <span class="variable">$retval</span> -eq 0 ] &amp;&amp; <span class="built_in">rm</span> -f <span class="variable">$lockfile</span></span><br><span class="line"> </span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$retval</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">restart</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    configtest || <span class="built_in">return</span> $?</span><br><span class="line"> </span><br><span class="line">    stop</span><br><span class="line"> </span><br><span class="line">    start</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">reload</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    configtest || <span class="built_in">return</span> $?</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span> -n $<span class="string">&quot;Reloading <span class="variable">$prog</span>: &quot;</span></span><br><span class="line"> </span><br><span class="line">    killproc <span class="variable">$nginx</span> -HUP</span><br><span class="line"> </span><br><span class="line">    RETVAL=$?</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">echo</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">force_reload</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    restart</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">configtest</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">  <span class="variable">$nginx</span> -t -c <span class="variable">$NGINX_CONF_FILE</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">rh_status</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    status <span class="variable">$prog</span></span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="title">rh_status_q</span></span>() &#123;</span><br><span class="line"> </span><br><span class="line">    rh_status &gt;/dev/null 2&gt;&amp;1</span><br><span class="line"> </span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$1</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line"> </span><br><span class="line">    start)</span><br><span class="line"> </span><br><span class="line">        rh_status_q &amp;&amp; <span class="built_in">exit</span> 0</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">    stop)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 0</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">    restart|configtest)</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line">    reload)</span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 7</span><br><span class="line">        <span class="variable">$1</span></span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    force-reload)</span><br><span class="line">        force_reload</span><br><span class="line">        ;;</span><br><span class="line">    status)</span><br><span class="line">        rh_status</span><br><span class="line">        ;;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    condrestart|try-restart)</span><br><span class="line"> </span><br><span class="line">        rh_status_q || <span class="built_in">exit</span> 0</span><br><span class="line">            ;;</span><br><span class="line"> </span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">echo</span> $<span class="string">&quot;Usage: <span class="variable">$0</span> &#123;start|stop|status|restart|condrestart|try-restart|reload|force-reload|configtest&#125;&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 2</span><br><span class="line"> </span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
-
-
-
 <h5 id="依次执行"><a href="#依次执行" class="headerlink" title="依次执行"></a>依次执行</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> /etc/init.d</span><br><span class="line"> </span><br><span class="line"><span class="built_in">chmod</span> 755 /etc/init.d/nginx</span><br><span class="line"> </span><br><span class="line">chkconfig --add nginx</span><br></pre></td></tr></table></figure>
-
-
-
 <blockquote>
-<p>需要注意的是如果之前没有配置&#x2F;etc&#x2F;init.d&#x2F;nginx之前如果启动了nginx </p>
+<p>需要注意的是如果之前没有配置/etc/init.d/nginx之前如果启动了nginx </p>
 <p>需要手动关闭（kill 命令），再执行<code>systemctl start nginx.service</code></p>
 </blockquote>
 
@@ -782,13 +763,13 @@ if(canvas.getContext){
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">75k</span>
+    <span title="站点总字数">74k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:05</span>
+    <span title="站点阅读时长">2:04</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -834,12 +815,17 @@ if(canvas.getContext){
 
 
 
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/posts/6b08d7e3.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
 <script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
 <script>
@@ -860,17 +846,7 @@ const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
 </script>
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/posts/6b08d7e3.html"}</script>
-<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
-<script>
-document.addEventListener('page:loaded', () => {
-  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
-    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
-  ).then(() => 
-    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
-  );
-});
-</script>
+
 
 </body>
 </html>

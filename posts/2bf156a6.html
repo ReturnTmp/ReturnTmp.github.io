@@ -51,13 +51,13 @@
 
 
 
-<link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css"><link rel="dns-prefetch" href="https://returntmp-waline.vercel.app">
+<link rel="dns-prefetch" href="https://returntmp-waline.vercel.app"><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
   
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="ReturnTmp" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="ReturnTmp" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
 
@@ -121,7 +121,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -628,13 +628,11 @@ if(canvas.getContext){
 <p>commit message 是开发的日常操作, 一个优秀的message不仅有助于他人 review, 还可以有效的输出 CHANGELOG, 对项目的管理实际至关重要, 但是实际工作中却常常被大家忽略，希望通过本文， 能够帮助大家规范 commit message 的书写</p>
 </blockquote>
 <span id="more"></span>
-
 <h1 id="Message-规范"><a href="#Message-规范" class="headerlink" title="Message 规范"></a>Message 规范</h1><blockquote>
 <p>那么如何能优雅而又不失体面的提交你的代码呢？其实我们的 <code>git commit message</code> 是应该具备一些规范的。目前规范用的比较多的是 <a target="_blank" rel="noopener" href="https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines">Angular 团队的规范</a></p>
 </blockquote>
 <p>message 样例：</p>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;BLANK LINE&gt;</span><br><span class="line">&lt;footer&gt;</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p>Type：必须是下列之一</p>
 <ul>
@@ -661,40 +659,25 @@ if(canvas.getContext){
 <h1 id="规范工具"><a href="#规范工具" class="headerlink" title="规范工具"></a>规范工具</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>commitizen git commit 格式化工具, 为我们提供标准化的 commit 信息。 帮助我们统一项目commit ， 便于信息的回溯或日志的生成。# commit message 格式</p>
 <p>commitizen 只是提供一个commit 格式化或交互工具, 最终需要输出符合 commit 规则的信息给 git， 所以需要线了解 commit 格式规则</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D commitizen cz-conventional-changelog</span><br></pre></td></tr></table></figure>
-
 <p>package.json中添加</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">	...</span><br><span class="line">  <span class="string">&quot;commit&quot;</span>: <span class="string">&quot;git-cz&quot;</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="string">&quot;config&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;commitizen&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;path&quot;</span>: <span class="string">&quot;./node_modules/cz-conventional-changelog&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="自定义-Adapter"><a href="#自定义-Adapter" class="headerlink" title="自定义 Adapter"></a>自定义 Adapter</h3><p>如果 Angular 的规范不符合我们的实际，同样我们也可以通过 <a target="_blank" rel="noopener" href="https://github.com/leonardoanalista/cz-customizable">cz-customizable</a> 定制一套符合自己或者团队的规范。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">npm install -D cz-customizable</span><br></pre></td></tr></table></figure>
-
 <p>同时package.json需要修改</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;config&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;commitizen&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;path&quot;</span><span class="punctuation">:</span> <span class="string">&quot;node_modules/cz-customizable&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-
 <p>之后对应项目目录下创建 .cz-config.js 文件，用来维护自己的格式</p>
-<p>官网中有对应的样例配置文件：<a target="_blank" rel="noopener" href="https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js">cz-customizable&#x2F;cz-config-EXAMPLE.js at master · leoforfree&#x2F;cz-customizable · GitHub</a></p>
+<p>官网中有对应的样例配置文件：<a target="_blank" rel="noopener" href="https://github.com/leoforfree/cz-customizable/blob/master/cz-config-EXAMPLE.js">cz-customizable/cz-config-EXAMPLE.js at master · leoforfree/cz-customizable · GitHub</a></p>
 <h3 id="校验-Message"><a href="#校验-Message" class="headerlink" title="校验 Message"></a>校验 Message</h3><h5 id="工具："><a href="#工具：" class="headerlink" title="工具："></a>工具：</h5><p>可以做到如果不符合校验规范，就会直接拒绝 commit 请求</p>
 <h5 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Angular 团队的规范</span></span><br><span class="line">npm install -D @commitlint/config-conventional @commitlint/cli</span><br><span class="line"><span class="comment"># 自定义规范</span></span><br><span class="line">npm install -D commitlint-config-cz @commitlint/cli</span><br></pre></td></tr></table></figure>
-
-
-
 <h5 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h5><p>在项目目录下创建配置文件 .commitlintrc.js</p>
 <p>Angular 团队的规范</p>
 <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">extends</span>: [</span><br><span class="line">    <span class="string">&#x27;&#x27;</span>@commitlint/config-conventional<span class="string">&#x27;&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">rules</span>: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <h5 id="自定义规范"><a href="#自定义规范" class="headerlink" title="自定义规范"></a>自定义规范</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">  extends: [</span><br><span class="line">    <span class="string">&#x27;cz&#x27;</span></span><br><span class="line">  ],</span><br><span class="line">  rules: &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="Husky"><a href="#Husky" class="headerlink" title="Husky"></a>Husky</h3><p>在做前端工程化时husky可以说是一个必不可少的工具。husky可以让我们向项目中方便添加git hooks。</p>
-<p>官方链接：<a target="_blank" rel="noopener" href="https://github.com/typicode/husky">typicode&#x2F;husky: Git hooks made easy 🐶 woof! (github.com)</a></p>
+<p>官方链接：<a target="_blank" rel="noopener" href="https://github.com/typicode/husky">typicode/husky: Git hooks made easy 🐶 woof! (github.com)</a></p>
 <h4 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h4><figure class="highlight sh"><table><tr><td class="code"><pre><span class="line">npm install -D husky</span><br></pre></td></tr></table></figure>
-
 <h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>package.json中添加：</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;husky&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      ...<span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br></pre></td></tr></table></figure>
-
 <p>或者在 .huskyrc 文件中</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;hooks&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    ...<span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;commit-msg&quot;</span><span class="punctuation">:</span> <span class="string">&quot;commitlint -e $GIT_PARAMS&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
     </div>
@@ -798,13 +781,13 @@ if(canvas.getContext){
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">75k</span>
+    <span title="站点总字数">74k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:05</span>
+    <span title="站点阅读时长">2:04</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -850,12 +833,17 @@ if(canvas.getContext){
 
 
 
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/posts/2bf156a6.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
 <script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
 <script>
@@ -876,17 +864,7 @@ const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
 </script>
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/posts/2bf156a6.html"}</script>
-<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
-<script>
-document.addEventListener('page:loaded', () => {
-  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
-    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
-  ).then(() => 
-    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
-  );
-});
-</script>
+
 
 </body>
 </html>

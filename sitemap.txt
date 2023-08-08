@@ -1,6 +1,8 @@
+https://returntmp.github.io/links/linklist.json
+https://returntmp.github.io/links/index.html
 https://returntmp.github.io/posts/e8223384.html
-https://returntmp.github.io/posts/d1678e92.html
 https://returntmp.github.io/posts/6b08d7e3.html
+https://returntmp.github.io/posts/d1678e92.html
 https://returntmp.github.io/posts/c4f6e93f.html
 https://returntmp.github.io/posts/2bf156a6.html
 https://returntmp.github.io/about/index.html
@@ -8,7 +10,7 @@ https://returntmp.github.io/index.html
 https://returntmp.github.io/categories/index.html
 https://returntmp.github.io/tags/index.html
 https://returntmp.github.io/
+https://returntmp.github.io/tags/linux/
 https://returntmp.github.io/tags/vim/
 https://returntmp.github.io/tags/env/
-https://returntmp.github.io/tags/linux/
 https://returntmp.github.io/tags/typing/

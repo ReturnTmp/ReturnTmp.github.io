@@ -56,13 +56,13 @@
 
 
 
-<link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css"><link rel="dns-prefetch" href="https://returntmp-waline.vercel.app">
+<link rel="dns-prefetch" href="https://returntmp-waline.vercel.app"><link rel="stylesheet" href="https://lib.baomitu.com/social-share.js/1.0.16/css/share.min.css">
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
   
-<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style><link rel="alternate" href="/atom.xml" title="ReturnTmp" type="application/atom+xml">
-</head>
+<link rel="alternate" href="/atom.xml" title="ReturnTmp" type="application/atom+xml">
+<style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
 
@@ -126,7 +126,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-links"><a href="/links/" rel="section"><i class="fa fa-link fa-fw"></i>友链</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -611,7 +611,7 @@ if(canvas.getContext){
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.2k</span>
+      <span>6.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -636,14 +636,11 @@ if(canvas.getContext){
 <p>本文主要将详细讲解如何配置（tmux+ranger+lazygit），希望可以帮助大家</p>
 </blockquote>
 <span id="more"></span>
-
 <h1 id="Tmux"><a href="#Tmux" class="headerlink" title="Tmux"></a>Tmux</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>官网解释：tmux是一个终端多路复用器：它允许在单个屏幕上创建、访问和控制多个终端。tmux可以从屏幕上分离出来，继续在后台运行，然后再重新连接。</p>
 <p>此版本在Open BSD、Free BSD、Net BSD、Linux、mac OS和Solaris上运行。</p>
-<p>官网地址：<a target="_blank" rel="noopener" href="https://github.com/tmux/tmux">tmux&#x2F;tmux: tmux source code (github.com)</a></p>
+<p>官网地址：<a target="_blank" rel="noopener" href="https://github.com/tmux/tmux">tmux/tmux: tmux source code (github.com)</a></p>
 <h2 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Ubuntu 或 Debian</span></span><br><span class="line">$ sudo apt-get install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># CentOS 或 Fedora</span></span><br><span class="line">$ sudo yum install tmux</span><br><span class="line"></span><br><span class="line"><span class="comment"># Mac</span></span><br><span class="line">$ brew install tmux</span><br></pre></td></tr></table></figure>
-
 <h3 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></table></figure>
-
 <p>上面命令会启动 Tmux 窗口，底部有一个状态栏。状态栏的左侧是窗口信息（编号和名称），右侧是系统信息。</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523160429119.png" alt="image-20230523160429119"></p>
 <p>按下<code>Ctrl+d</code>或者显式输入<code>exit</code>命令，就可以退出 Tmux 窗口。</p>
@@ -653,9 +650,6 @@ if(canvas.getContext){
 <h2 id="会话管理"><a href="#会话管理" class="headerlink" title="会话管理"></a>会话管理</h2><h3 id="新建会话"><a href="#新建会话" class="headerlink" title="新建会话"></a>新建会话</h3><p>第一个启动的 Tmux 窗口，编号是<code>0</code>，第二个窗口的编号是<code>1</code>，以此类推。这些窗口对应的会话，就是 0 号会话、1 号会话。</p>
 <p>使用编号区分会话，不太直观，更好的方法是为会话起名。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">tmux new -s &lt;session-name&gt;</span><br></pre></td></tr></table></figure>
-
-
-
 <h3 id="分离会话"><a href="#分离会话" class="headerlink" title="分离会话"></a>分离会话</h3><p> Tmux 窗口中，按下<code>Ctrl+b d</code>或者输入<code>tmux detach</code>命令，就会将当前会话与窗口分离。</p>
 <blockquote>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ tmux detach</span><br></pre></td></tr></table></figure>
@@ -756,10 +750,9 @@ if(canvas.getContext){
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 列出所有快捷键，及其对应的 Tmux 命令</span></span><br><span class="line">$ tmux list-keys</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出所有 Tmux 命令及其参数</span></span><br><span class="line">$ tmux list-commands</span><br><span class="line"></span><br><span class="line"><span class="comment"># 列出当前所有 Tmux 会话的信息</span></span><br><span class="line">$ tmux info</span><br><span class="line"></span><br><span class="line"><span class="comment"># 重新加载当前的 Tmux 配置</span></span><br><span class="line">$ tmux source-file ~/.tmux.conf</span><br></pre></td></tr></table></figure>
 </blockquote>
 <h1 id="Ranger"><a href="#Ranger" class="headerlink" title="Ranger"></a>Ranger</h1><h2 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h2><p>官方解释：ranger是一个带有VI密钥绑定的控制台文件管理器。它提供了一个简洁美观的curses界面，并提供了目录层次结构视图。它配备了rifle，这是一种文件启动器，能够自动找出要用于何种文件类型的程序。</p>
-<p>官房链接：<a target="_blank" rel="noopener" href="https://github.com/ranger/ranger">ranger&#x2F;ranger: A VIM-inspired filemanager for the console (github.com)</a></p>
+<p>官房链接：<a target="_blank" rel="noopener" href="https://github.com/ranger/ranger">ranger/ranger: A VIM-inspired filemanager for the console (github.com)</a></p>
 <h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>ubuntu 安装命令如下</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">apt install ranger</span><br></pre></td></tr></table></figure>
-
 <p>最终在终端下输入ranger即可打开程序了</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523164316992.png" alt="image-20230523164316992"></p>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>使用<code>h</code>,<code>j</code>,<code>k</code>,<code>l</code>来进行光标的移动,来穿越在不同的文件夹中</p>
@@ -772,7 +765,6 @@ if(canvas.getContext){
 <li>commands.py python文件,增强和改进ranger的各种功能</li>
 </ul>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">ranger --copy-config=all</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><code>rc.conf</code>-选项设置和快捷键</li>
 <li><code>commands.py</code>-能通过<code>:</code>执行的命令</li>
@@ -782,9 +774,6 @@ if(canvas.getContext){
 </ul>
 <p>注意：如果要使用<code>~/.config/ranger</code>目录下的配置生效，需要把<code>RANGER_LOAD_DEFAULT_RC</code>变量设置为<code>false</code></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">bash</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export RANGER_LOAD_DEFAULT_RC=false&quot;</span>&gt;&gt;~/.bashrc</span><br><span class="line"></span><br><span class="line">zsh</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export RANGER_LOAD_DEFAULT_RC=false&quot;</span>&gt;&gt;~/.zshrc</span><br></pre></td></tr></table></figure>
-
-
-
 <blockquote>
 <p>可选配置(推荐)</p>
 </blockquote>
@@ -795,21 +784,19 @@ if(canvas.getContext){
 <li>序号从1开始<code>set one_indexed true</code></li>
 </ul>
 <h2 id="配置图标"><a href="#配置图标" class="headerlink" title="配置图标"></a>配置图标</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;default_linemode devicons&quot;</span> &gt;&gt; <span class="variable">$HOME</span>/.config/ranger/rc.conf</span><br></pre></td></tr></table></figure>
-
 <h5 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h5><p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523171348133.png" alt="image-20230523171348133"></p>
 <h4 id="配置文本编辑器"><a href="#配置文本编辑器" class="headerlink" title="配置文本编辑器"></a>配置文本编辑器</h4><p>设置默认为nvim</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">export</span> EDITOR=/usr/bin/nvim &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="comment"># zsh</span></span><br><span class="line"><span class="built_in">echo</span> <span class="built_in">export</span> EDITOR=/usr/bin/nvim &gt;&gt; ~/.zshrc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h2 id="文件管理器操作"><a href="#文件管理器操作" class="headerlink" title="文件管理器操作"></a>文件管理器操作</h2><table>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><h2 id="文件管理器操作"><a href="#文件管理器操作" class="headerlink" title="文件管理器操作"></a>文件管理器操作</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>文件管理器操作</th>
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>h</code></td>
 <td>返回上一层</td>
 </tr>
@@ -833,8 +820,11 @@ if(canvas.getContext){
 <td><code>q</code></td>
 <td>退出</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h2 id="获得帮助"><a href="#获得帮助" class="headerlink" title="获得帮助"></a>获得帮助</h2><p>您可以在使用Ranger时获得帮助</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -842,7 +832,8 @@ if(canvas.getContext){
 <th>作用</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>m</code></td>
 <td>打开护林员的手册页</td>
 </tr>
@@ -856,17 +847,21 @@ if(canvas.getContext){
 </tr>
 <tr>
 <td><code>s</code></td>
-<td>打开设置及其当前值的列表 |</td>
+<td>打开设置及其当前值的列表 \</td>
 </tr>
-</tbody></table>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>按键</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>dD</code> 或者 <code>F8</code></td>
 <td>删除条目（文件或者文件夹），或者 <code>:</code> + <code>delete</code>。</td>
 </tr>
@@ -874,31 +869,39 @@ if(canvas.getContext){
 <td><code>DD</code></td>
 <td>将条目移动到回收站里。</td>
 </tr>
-</tbody></table>
-<h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="新建"><a href="#新建" class="headerlink" title="新建"></a>新建</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>按键</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>F7</code></td>
-<td>新建文件夹，等同于 <code>:mkdir </code>。</td>
+<td>新建文件夹，等同于 <code>:mkdir</code>。</td>
 </tr>
 <tr>
 <td><code>INSERT</code></td>
-<td>新建文件，等同于 <code>:touch </code>。</td>
+<td>新建文件，等同于 <code>:touch</code>。</td>
 </tr>
-</tbody></table>
-<h2 id="重命名"><a href="#重命名" class="headerlink" title="重命名"></a>重命名</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="重命名"><a href="#重命名" class="headerlink" title="重命名"></a>重命名</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>按键</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>cw</code></td>
 <td>重命名（含后缀名）</td>
 </tr>
@@ -914,15 +917,19 @@ if(canvas.getContext){
 <td><code>a</code></td>
 <td>重命名，光标在最后（不含后缀名）</td>
 </tr>
-</tbody></table>
-<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>按键</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>yy</code> 或者 <code>F5</code></td>
 <td>复制</td>
 </tr>
@@ -954,15 +961,19 @@ if(canvas.getContext){
 <td><code>yG</code></td>
 <td>将光标处到底端的所有文件添加到复制队列中（文件夹无效）</td>
 </tr>
-</tbody></table>
-<h2 id="剪切"><a href="#剪切" class="headerlink" title="剪切"></a>剪切</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="剪切"><a href="#剪切" class="headerlink" title="剪切"></a>剪切</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>按键</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>dd</code> 或者 <code>F6</code></td>
 <td>剪切</td>
 </tr>
@@ -998,15 +1009,19 @@ if(canvas.getContext){
 <td><code>ud</code> 或者 <code>uy</code></td>
 <td>取消剪切</td>
 </tr>
-</tbody></table>
-<h2 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="粘贴"><a href="#粘贴" class="headerlink" title="粘贴"></a>粘贴</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>按键</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>pp</code></td>
 <td>粘贴，默认 <code>append</code> 模式</td>
 </tr>
@@ -1038,15 +1053,19 @@ if(canvas.getContext){
 <td><code>pht</code></td>
 <td>粘贴为硬链接的子目录（hardlinked subtree）</td>
 </tr>
-</tbody></table>
-<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><table>
+</tbody>
+</table>
+</div>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>按键</th>
 <th>说明</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td><code>/</code></td>
 <td>打开搜索框，输入要搜索的字符串，回车后开始搜索。</td>
 </tr>
@@ -1066,21 +1085,16 @@ if(canvas.getContext){
 <td><code>c</code> + <code>对应字母</code></td>
 <td>通过对应属性依次遍历，如：<code>ca</code>：通过 <code>atime</code>属性依次遍历<code>cc</code>：通过 <code>ctime</code> 属性依次遍历<code>ci</code>：通过 <code>mimetype</code> 属性依次遍历<code>cm</code>：通过 <code>mtime</code> 属性依次遍历<code>cs</code>：通过 <code>size</code> 属性依次遍历<code>ct</code>：通过 <code>tag</code> 属性依次遍历</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h3 id="相关插件"><a href="#相关插件" class="headerlink" title="相关插件"></a>相关插件</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ubuntu</span><br><span class="line">sudo apt-get install caca-utils <span class="comment"># img2txt 图片</span></span><br><span class="line">sudo apt-get install highlight  <span class="comment"># 代码高亮</span></span><br><span class="line">sudo apt-get install atool　    <span class="comment"># 存档预览</span></span><br><span class="line">sudo apt-get install w3m        <span class="comment"># html页面预览</span></span><br><span class="line">sudo apt-get install mediainfo  <span class="comment"># 多媒体文件预览</span></span><br><span class="line">sudo apt-get install catdoc     <span class="comment"># doc预览</span></span><br><span class="line">sudo apt-get install docx2txt   <span class="comment"># docx预览</span></span><br><span class="line">sudo apt-get install xlsx2csv   <span class="comment"># xlsx预览</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
 <h1 id="LazyGit"><a href="#LazyGit" class="headerlink" title="LazyGit"></a>LazyGit</h1><h2 id="简介-2"><a href="#简介-2" class="headerlink" title="简介"></a>简介</h2><p>官方解释：git命令的简单终端UI，使用gocui库在Go中编写。</p>
-<p>官方链接：<a target="_blank" rel="noopener" href="https://github.com/jesseduffield/lazygit">jesseduffield&#x2F;lazygit: simple terminal UI for git commands (github.com)</a></p>
+<p>官方链接：<a target="_blank" rel="noopener" href="https://github.com/jesseduffield/lazygit">jesseduffield/lazygit: simple terminal UI for git commands (github.com)</a></p>
 <h2 id="安装-2"><a href="#安装-2" class="headerlink" title="安装"></a>安装</h2><h5 id="ubuntu"><a href="#ubuntu" class="headerlink" title="ubuntu"></a>ubuntu</h5><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">LAZYGIT_VERSION=$(curl -s <span class="string">&quot;https://api.github.com/repos/jesseduffield/lazygit/releases/latest&quot;</span> | grep -Po <span class="string">&#x27;&quot;tag_name&quot;: &quot;v\K[^&quot;]*&#x27;</span>)</span><br><span class="line">curl -Lo lazygit.tar.gz <span class="string">&quot;https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_<span class="variable">$&#123;LAZYGIT_VERSION&#125;</span>_Linux_x86_64.tar.gz&quot;</span></span><br><span class="line">tar xf lazygit.tar.gz lazygit</span><br><span class="line">sudo install lazygit /usr/local/bin</span><br></pre></td></tr></table></figure>
-
 <p>执行<code>lazygit</code>即可启动</p>
 <p>可以添加别名</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;alias lg=&#x27;lazygit&#x27;&quot;</span> &gt;&gt; ~/.zshrc</span><br></pre></td></tr></table></figure>
-
 <p><strong>效果</strong>：</p>
 <p><img src="https://cdn.jsdelivr.net/gh/Returntmp/blog-image@main/blog/image-20230523222702767.png" alt="image-20230523222702767"></p>
 <p>可以使用数字键或是<code>tab</code>或是<code>h</code>和<code>l</code>切换标签</p>
@@ -1192,13 +1206,13 @@ if(canvas.getContext){
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">75k</span>
+    <span title="站点总字数">74k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">2:05</span>
+    <span title="站点阅读时长">2:04</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1244,12 +1258,17 @@ if(canvas.getContext){
 
 
 
-  
-
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
-<script src="/js/third-party/math/mathjax.js"></script>
-
-
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/posts/d1678e92.html"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
 <script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
 
 <script>
@@ -1270,17 +1289,7 @@ const darkmode = new Darkmode(options);
 window.darkmode = darkmode;
 darkmode.showWidget();
 </script>
-<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-CN","enable":true,"serverURL":"https://returntmp-waline.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"libUrl":"https://unpkg.com/@waline/client@v2/dist/waline.js","pageSize":10,"el":"#waline","comment":true,"path":"/posts/d1678e92.html"}</script>
-<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
-<script>
-document.addEventListener('page:loaded', () => {
-  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
-    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
-  ).then(() => 
-    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
-  );
-});
-</script>
+
 
 </body>
 </html>

@@ -2580,13 +2580,6 @@ mark.search-keyword {
   color: #ff2a2a;
   font-weight: bold;
 }
-mjx-container[jax='CHTML'][display='true'],
-.has-jax {
-  overflow: auto hidden;
-}
-mjx-container[display='true'] + br {
-  display: none;
-}
 .use-motion .animated {
   animation-fill-mode: none;
   visibility: inherit;
@@ -2910,8 +2903,7 @@ mjx-container[display='true'] + br {
   background-repeat: no-repeat;
   height: 1rem;
   width: 1rem;
-  border-radius: 0rem;
-/*鼠标停留在图标上时，图标呈现发光效果*/
+  border-radius: 0rem; /* 鼠标停留在图标上时，图标呈现发光效果 */
 }
 .my-csdn:hover {
   opacity: 1;
@@ -2924,8 +2916,7 @@ mjx-container[display='true'] + br {
   background-repeat: no-repeat;
   height: 1rem;
   width: 1rem;
-  border-radius: 0rem;
-/*鼠标停留在图标上时，图标呈现发光效果*/
+  border-radius: 0rem; /* 鼠标停留在图标上时，图标呈现发光效果 */
 }
 .my-bilibili:hover {
   opacity: 1;
@@ -2938,8 +2929,7 @@ mjx-container[display='true'] + br {
   background-repeat: no-repeat;
   height: 1rem;
   width: 1rem;
-  border-radius: 0rem;
-/*鼠标停留在图标上时，图标呈现发光效果*/
+  border-radius: 0rem; /* 鼠标停留在图标上时，图标呈现发光效果 */
 }
 .my-gitee:hover {
   opacity: 1;
@@ -2952,8 +2942,7 @@ mjx-container[display='true'] + br {
   background-repeat: no-repeat;
   height: 1rem;
   width: 1rem;
-  border-radius: 0rem;
-/*鼠标停留在图标上时，图标呈现发光效果*/
+  border-radius: 0rem; /* 鼠标停留在图标上时，图标呈现发光效果 */
 }
 .my-github:hover {
   opacity: 1;
@@ -2966,8 +2955,7 @@ mjx-container[display='true'] + br {
   background-repeat: no-repeat;
   height: 1rem;
   width: 1rem;
-  border-radius: 0rem;
-/*鼠标停留在图标上时，图标呈现发光效果*/
+  border-radius: 0rem; /* 鼠标停留在图标上时，图标呈现发光效果 */
 }
 .my-google:hover {
   opacity: 1;
@@ -2980,8 +2968,7 @@ mjx-container[display='true'] + br {
   background-repeat: no-repeat;
   height: 1rem;
   width: 1rem;
-  border-radius: 0rem;
-/*鼠标停留在图标上时，图标呈现发光效果*/
+  border-radius: 0rem; /* 鼠标停留在图标上时，图标呈现发光效果 */
 }
 .my-rss:hover {
   opacity: 1;
